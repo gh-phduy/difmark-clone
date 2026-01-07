@@ -1,0 +1,244 @@
+/**
+ * PopularGameItem Component
+ *
+ * Interactive game card with video preview on hover
+ * Uses GSAP for smooth animations
+ */
+
+"use client";
+
+import { useRef, useState, useEffect, useCallback } from "react";
+import Image from "next/image";
+import { gsap } from "gsap";
+import { BsPersonFillCheck } from "react-icons/bs";
+
+/* ============================================
+   TYPES
+   ============================================ */
+
+interface PopularGameItemProps {
+  /** Game title */
+  title?: string;
+  /** Game price */
+  price?: string;
+  /** Cover image path */
+  coverImage?: string;
+  /** Preview video path */
+  previewVideo?: string;
+  /** Seller name */
+  sellerName?: string;
+  /** Seller avatar */
+  sellerAvatar?: string;
+  /** Seller rank */
+  sellerRank?: string;
+}
+
+/* ============================================
+   CONSTANTS
+   ============================================ */
+
+/** Default values for the component */
+const DEFAULTS = {
+  title: "Deliver At All Costs",
+  price: "$38.30",
+  coverImage: "/product1.png",
+  previewVideo: "/video/product1.webm",
+  sellerName: "Easy-key",
+  sellerAvatar: "/avt1.png",
+  sellerRank: "🦄 Legendary",
+} as const;
+
+/** Animation durations */
+const ANIMATION = {
+  containerExpand: 0.7,
+  imageFade: 0.3,
+  videoFade: 0.3,
+  footerColor: 0.5,
+} as const;
+
+/* ============================================
+   MAIN COMPONENT
+   ============================================ */
+
+/**
+ * PopularGameItem Component
+ *
+ * Game card with hover video preview and GSAP animations
+ */
+export default function PopularGameItem({
+  title = DEFAULTS.title,
+  price = DEFAULTS.price,
+  coverImage = DEFAULTS.coverImage,
+  previewVideo = DEFAULTS.previewVideo,
+  sellerName = DEFAULTS.sellerName,
+  sellerAvatar = DEFAULTS.sellerAvatar,
+  sellerRank = DEFAULTS.sellerRank,
+}: PopularGameItemProps) {
+  // State
+  const [isHovered, setIsHovered] = useState(false);
+
+  // Refs
+  const videoRef = useRef<HTMLVideoElement>(null);
+  const containerRef = useRef<HTMLDivElement>(null);
+  const imageRef = useRef<HTMLDivElement>(null);
+  const footerRef = useRef<HTMLDivElement>(null);
+  const timelineRef = useRef<gsap.core.Timeline | null>(null);
+
+  // Initialize GSAP timeline
+  useEffect(() => {
+    if (!containerRef.current || !imageRef.current || !footerRef.current) {
+      return;
+    }
+
+    timelineRef.current = gsap.timeline({ paused: true });
+
+    timelineRef.current
+      // Expand container
+      .to(
+        containerRef.current,
+        {
+          height: "300px",
+          duration: ANIMATION.containerExpand,
+          ease: "power2.out",
+        },
+        0
+      )
+      // Fade out image
+      .to(
+        imageRef.current,
+        {
+          opacity: 0,
+          duration: ANIMATION.imageFade,
+          ease: "power2.out",
+        },
+        0
+      )
+      // Fade in video
+      .to(
+        videoRef.current,
+        {
+          opacity: 1,
+          duration: ANIMATION.videoFade,
+          ease: "power2.out",
+        },
+        0.1
+      )
+      // Change footer background
+      .to(
+        footerRef.current,
+        {
+          backgroundColor: "#2A3240",
+          duration: ANIMATION.footerColor,
+          ease: "power2.out",
+        },
+        0.3
+      );
+
+    return () => {
+      timelineRef.current?.kill();
+    };
+  }, []);
+
+  // Event handlers
+  const handleMouseEnter = useCallback(() => {
+    setIsHovered(true);
+    videoRef.current?.play();
+    timelineRef.current?.play();
+  }, []);
+
+  const handleMouseLeave = useCallback(() => {
+    setIsHovered(false);
+    if (videoRef.current) {
+      videoRef.current.pause();
+      videoRef.current.currentTime = 0;
+    }
+    timelineRef.current?.reverse();
+  }, []);
+
+  return (
+    <article
+      className="relative w-[252px] 800:w-full h-[300px] mx-auto select-none"
+      role="listitem"
+    >
+      <div
+        ref={containerRef}
+        className="w-full cursor-pointer absolute top-1/2 group -translate-y-1/2 left-1/2 -translate-x-1/2 h-[275px] rounded-lg overflow-hidden bg-surface-base flex flex-col"
+        onMouseEnter={handleMouseEnter}
+        onMouseLeave={handleMouseLeave}
+        tabIndex={0}
+        onFocus={handleMouseEnter}
+        onBlur={handleMouseLeave}
+        aria-label={`${title} - ${price}`}
+      >
+        {/* Media Container */}
+        <div className="relative flex-1">
+          {/* Cover Image */}
+          <div
+            ref={imageRef}
+            className="absolute inset-0 w-full h-full"
+          >
+            <Image
+              src={coverImage}
+              alt={title}
+              fill
+              className="object-cover"
+              sizes="(max-width: 800px) 252px, 100%"
+            />
+          </div>
+
+          {/* Preview Video */}
+          <video
+            ref={videoRef}
+            className="absolute inset-0 w-full h-full object-cover opacity-0"
+            src={previewVideo}
+            muted
+            loop
+            playsInline
+            aria-hidden="true"
+          />
+
+          {/* Seller Info Overlay */}
+          <div className="absolute bottom-0 w-full">
+            <div className="w-full relative gap-x-2 backdrop-blur-sm bg-surface-card/30 h-[65px] flex items-center px-4">
+              {/* Seller Avatar */}
+              <Image
+                src={sellerAvatar}
+                alt={`${sellerName} avatar`}
+                width={30}
+                height={30}
+                className="rounded-full"
+              />
+
+              {/* Seller Details */}
+              <div className="flex flex-col">
+                <div className="flex text-dm-text-primary gap-x-1 items-center">
+                  <span className="text-[12px]">{sellerName}</span>
+                  <BsPersonFillCheck
+                    size={15}
+                    aria-label="Verified seller"
+                  />
+                </div>
+                <span className="text-dm-text-muted text-[10px]">
+                  Rank: {sellerRank}
+                </span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        {/* Footer */}
+        <div
+          ref={footerRef}
+          className="w-full h-[57px] bg-surface-card flex px-2 justify-between items-center"
+        >
+          <h3 className="text-dm-text-primary text-xl font-semibold truncate">
+            {title}
+          </h3>
+          <span className="text-dm-text-primary text-xl font-semibold">
+            {price}
+          </span>
+        </div>
+      </div>
+    </article>
+  );
+}

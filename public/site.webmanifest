@@ -1,0 +1,17 @@
+{
+  "name": "Difmark - Digital Game Marketplace",
+  "short_name": "Difmark",
+  "description": "Buy digital games at the best prices. Steam, Xbox, PlayStation, Nintendo games and more. Trusted marketplace with instant delivery.",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#171f2a",
+  "theme_color": "#202835",
+  "orientation": "portrait-primary",
+  "icons": [
+    {
+      "src": "/favicon.ico",
+      "sizes": "48x48",
+      "type": "image/x-icon"
+    }
+  ]
+}

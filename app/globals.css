@@ -1,0 +1,336 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    /* ============================================
+       DIFMARK DESIGN SYSTEM - CSS Custom Properties
+       ============================================ */
+
+    /* Brand Colors */
+    --brand-primary: 212 28% 17%; /* #202835 - Main dark blue */
+    --brand-primary-light: 213 23% 22%; /* #2b3545 - Lighter blue */
+    --brand-primary-dark: 212 30% 12%; /* #171f2a - Darker blue */
+    --brand-accent: 142 71% 45%; /* #46ca43 - Green accent */
+
+    /* Surface Colors */
+    --surface-base: 212 30% 12%; /* #171f2a - Page background */
+    --surface-elevated: 213 21% 19%; /* #262c3a - Cards, modals */
+    --surface-overlay: 213 18% 26%; /* #354051 - Input backgrounds */
+    --surface-card: 213 22% 18%; /* #212937 - Card backgrounds */
+
+    /* Text Colors */
+    --text-primary: 0 0% 96%; /* #f6f6f6 - Primary text */
+    --text-secondary: 218 9% 64%; /* #9ba1ab - Secondary text */
+    --text-tertiary: 218 10% 47%; /* #636b79 - Muted text */
+    --text-muted: 217 10% 75%; /* #c0c3c9 - Light gray text */
+    --text-disabled: 217 6% 54%; /* #888a8d - Disabled text */
+
+    /* Border Colors */
+    --border-subtle: 217 12% 25%; /* #373d4a - Subtle borders */
+    --border-default: 213 18% 26%; /* #354051 - Default borders */
+    --border-strong: 213 15% 35%; /* Stronger borders */
+
+    /* State Colors */
+    --state-hover: 213 20% 28%; /* #3d4855 - Hover state */
+    --state-active: 213 22% 23%; /* #3f4a5a - Active state */
+    --state-focus: 210 100% 50%; /* Blue focus ring */
+
+    /* Accent Colors */
+    --accent-green: 119 52% 53%; /* #46ca43 - Success, CTA */
+    --accent-green-hover: 119 52% 45%; /* Darker green for hover */
+    --accent-yellow: 52 95% 73%; /* #FCE97A - Highlights */
+    --accent-blue: 210 100% 50%; /* Blue accent */
+    --accent-red: 0 84% 60%; /* Error, destructive */
+    --accent-orange: 25 95% 53%; /* Warnings */
+
+    /* Rating Colors */
+    --rating-star: 45 93% 47%; /* Gold star color */
+    --rating-empty: 217 10% 65%; /* Empty star */
+
+    /* Gradient Overlays */
+    --gradient-card-overlay: rgba(33, 41, 55, 0.3); /* Card overlay */
+    --gradient-backdrop: rgba(38, 44, 58, 0.9); /* Backdrop blur */
+
+    /* Spacing Scale (for reference) */
+    --spacing-xs: 0.25rem; /* 4px */
+    --spacing-sm: 0.5rem; /* 8px */
+    --spacing-md: 1rem; /* 16px */
+    --spacing-lg: 1.5rem; /* 24px */
+    --spacing-xl: 2rem; /* 32px */
+    --spacing-2xl: 3rem; /* 48px */
+    --spacing-3xl: 4rem; /* 64px */
+
+    /* Border Radius */
+    --radius-sm: 0.25rem; /* 4px */
+    --radius-md: 0.5rem; /* 8px */
+    --radius-lg: 0.75rem; /* 12px */
+    --radius-xl: 1rem; /* 16px */
+    --radius-full: 9999px;
+
+    /* Shadows */
+    --shadow-sm: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
+    --shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+    --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
+
+    /* Transitions */
+    --transition-fast: 150ms;
+    --transition-normal: 300ms;
+    --transition-slow: 500ms;
+    --transition-slower: 700ms;
+
+    /* ============================================
+       SHADCN/UI Default Variables
+       ============================================ */
+    --background: 0 0% 100%;
+    --foreground: 0 0% 3.9%;
+    --card: 0 0% 100%;
+    --card-foreground: 0 0% 3.9%;
+    --popover: 0 0% 100%;
+    --popover-foreground: 0 0% 3.9%;
+    --primary: 0 0% 9%;
+    --primary-foreground: 0 0% 98%;
+    --secondary: 0 0% 96.1%;
+    --secondary-foreground: 0 0% 9%;
+    --muted: 0 0% 96.1%;
+    --muted-foreground: 0 0% 45.1%;
+    --accent: 0 0% 96.1%;
+    --accent-foreground: 0 0% 9%;
+    --destructive: 0 84.2% 60.2%;
+    --destructive-foreground: 0 0% 98%;
+    --border: 0 0% 89.8%;
+    --input: 0 0% 89.8%;
+    --ring: 0 0% 3.9%;
+    --chart-1: 12 76% 61%;
+    --chart-2: 173 58% 39%;
+    --chart-3: 197 37% 24%;
+    --chart-4: 43 74% 66%;
+    --chart-5: 27 87% 67%;
+    --radius: 0.5rem;
+  }
+
+  .dark {
+    --background: 0 0% 3.9%;
+    --foreground: 0 0% 98%;
+    --card: 0 0% 3.9%;
+    --card-foreground: 0 0% 98%;
+    --popover: 0 0% 3.9%;
+    --popover-foreground: 0 0% 98%;
+    --primary: 0 0% 98%;
+    --primary-foreground: 0 0% 9%;
+    --secondary: 0 0% 14.9%;
+    --secondary-foreground: 0 0% 98%;
+    --muted: 0 0% 14.9%;
+    --muted-foreground: 0 0% 63.9%;
+    --accent: 0 0% 14.9%;
+    --accent-foreground: 0 0% 98%;
+    --destructive: 0 62.8% 30.6%;
+    --destructive-foreground: 0 0% 98%;
+    --border: 0 0% 14.9%;
+    --input: 0 0% 14.9%;
+    --ring: 0 0% 83.1%;
+    --chart-1: 220 70% 50%;
+    --chart-2: 160 60% 45%;
+    --chart-3: 30 80% 55%;
+    --chart-4: 280 65% 60%;
+    --chart-5: 340 75% 55%;
+  }
+}
+
+/* ============================================
+   Custom Shadows
+   ============================================ */
+.shadow-custom {
+  box-shadow: -0.5px -0.5px 4px 0.1px #bebebe;
+}
+
+.shadow-nav-cate {
+  box-shadow: -0.5px -0.5px 1px 0.1px #706e6e;
+}
+
+/* ============================================
+   Responsive Utilities
+   ============================================ */
+@layer utilities {
+  /* Container widths */
+  .responsive {
+    @apply max-w-[720px] 990:max-w-[940px] 1200:max-w-[1140px] 1640:max-w-[1310px] 1920:max-w-[1590px];
+  }
+
+  .responsive-nav {
+    @apply max-w-[752px] 990:max-w-[972px] 1200:max-w-[1172px] 1640:max-w-[1342px] 1920:max-w-[1622px];
+  }
+
+  .w-nav {
+    @apply 990:w-[972px] 1200:w-[1172px] 1640:w-[1342px] 1920:w-[1622px];
+  }
+
+  /* Platform section */
+  .responsive-platforms-item-bg {
+    @apply w-[345px] h-[205px] 990:w-[293px] 990:h-[263px] 1200:w-[360px] 1200:h-[316px] 1640:w-[416px] 1640:h-[351px] 1920:w-[509px] 1920:h-[355px];
+  }
+
+  .responsive-platforms-item-content {
+    @apply w-[155px] h-[166px] 990:w-[210px] 990:h-[226px] 1280:w-[245px] 1280:h-[264px] 1920:w-[290px] 1920:h-[312px];
+  }
+}
+
+/* ============================================
+   Base Styles
+   ============================================ */
+@layer base {
+  * {
+    @apply border-border;
+  }
+
+  body {
+    @apply bg-background text-foreground;
+  }
+
+  /* Focus visible styles for accessibility */
+  :focus-visible {
+    outline: 2px solid hsl(var(--state-focus));
+    outline-offset: 2px;
+  }
+
+  /* Smooth scrolling */
+  html {
+    scroll-behavior: smooth;
+  }
+
+  /* Selection styles */
+  ::selection {
+    background-color: hsl(var(--accent-blue) / 0.3);
+    color: hsl(var(--text-primary));
+  }
+
+  /* Screen reader only utility - for accessibility */
+  .sr-only {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    padding: 0;
+    margin: -1px;
+    overflow: hidden;
+    clip: rect(0, 0, 0, 0);
+    white-space: nowrap;
+    border-width: 0;
+  }
+
+  .not-sr-only {
+    position: static;
+    width: auto;
+    height: auto;
+    padding: 0;
+    margin: 0;
+    overflow: visible;
+    clip: auto;
+    white-space: normal;
+  }
+}
+
+/* ============================================
+   Component Classes (Semantic)
+   ============================================ */
+@layer components {
+  /* Surface backgrounds */
+  .surface-base {
+    background-color: hsl(var(--surface-base));
+  }
+
+  .surface-elevated {
+    background-color: hsl(var(--surface-elevated));
+  }
+
+  .surface-overlay {
+    background-color: hsl(var(--surface-overlay));
+  }
+
+  .surface-card {
+    background-color: hsl(var(--surface-card));
+  }
+
+  /* Brand backgrounds */
+  .bg-brand-primary {
+    background-color: hsl(var(--brand-primary));
+  }
+
+  .bg-brand-primary-light {
+    background-color: hsl(var(--brand-primary-light));
+  }
+
+  .bg-brand-primary-dark {
+    background-color: hsl(var(--brand-primary-dark));
+  }
+
+  /* Text colors */
+  .text-primary {
+    color: hsl(var(--text-primary));
+  }
+
+  .text-secondary {
+    color: hsl(var(--text-secondary));
+  }
+
+  .text-tertiary {
+    color: hsl(var(--text-tertiary));
+  }
+
+  .text-muted {
+    color: hsl(var(--text-muted));
+  }
+
+  /* Accent colors */
+  .bg-accent-green {
+    background-color: hsl(var(--accent-green));
+  }
+
+  .text-accent-yellow {
+    color: hsl(var(--accent-yellow));
+  }
+
+  /* Border colors */
+  .border-subtle {
+    border-color: hsl(var(--border-subtle));
+  }
+
+  .border-default {
+    border-color: hsl(var(--border-default));
+  }
+
+  /* Hover states */
+  .hover-surface:hover {
+    background-color: hsl(var(--state-hover));
+  }
+
+  /* Interactive card with hover effect */
+  .card-interactive {
+    @apply transition-all duration-300;
+  }
+
+  .card-interactive:hover {
+    @apply shadow-lg;
+    transform: translateY(-2px);
+  }
+
+  /* Backdrop blur with brand colors */
+  .backdrop-brand {
+    background-color: hsl(var(--gradient-backdrop));
+    backdrop-filter: blur(12px);
+  }
+
+  /* Button base styles */
+  .btn-primary {
+    @apply bg-accent-green text-white font-medium rounded-lg transition-colors;
+  }
+
+  .btn-primary:hover {
+    background-color: hsl(var(--accent-green-hover));
+  }
+
+  /* Skip to content link (accessibility) */
+  .skip-link {
+    @apply sr-only focus:not-sr-only focus:absolute focus:top-4 focus:left-4 focus:z-50 focus:px-4 focus:py-2 focus:bg-accent-green focus:text-white focus:rounded-lg;
+  }
+}
