@@ -5,24 +5,20 @@
  * Bao gồm tất cả các sections: Hero, Games, Sellers, News, etc.
  */
 
-// Layout Components
-import NavBar from "./components/NavBar";
-import Footer from "./components/Footer";
-
 // Section Components
-import HeroCarousel from "./components/HeroCarousel";
-import PopularGamesSection from "./components/PopularGamesSection";
-import FeaturesSection from "./components/FeaturesSection";
-import PromoBanner from "./components/PromoBanner";
-import UpcomingGamesSection from "./components/UpcomingGamesSection";
-import CategoryGridRow1 from "./components/CategoryGridRow1";
-import CategoryGridRow2 from "./components/CategoryGridRow2";
-import PopularSellersSection from "./components/PopularSellersSection";
-import CategoryCarousel from "./components/CategoryCarousel";
-import GamesSection from "./components/GamesSection";
-import FlashSaleSection from "./components/FlashSaleSection";
-import PlatformsSection from "./components/PlatformsSection";
-import LatestNewsSection from "./components/LatestNewsSection";
+// import HeroCarousel from "./components/home/HeroCarousel"; // TODO: Create this component
+import PopularGamesSection from "./components/home/PopularGamesSection";
+import FeaturesSection from "./components/home/FeaturesSection";
+import PromoBanner from "./components/home/PromoBanner";
+import UpcomingGamesSection from "./components/home/UpcomingGamesSection";
+import CategoryGridRow1 from "./components/home/CategoryGridRow1";
+import CategoryGridRow2 from "./components/home/CategoryGridRow2";
+import PopularSellersSection from "./components/home/PopularSellersSection";
+import CategoryCarousel from "./components/home/CategoryCarousel";
+import GamesSection from "./components/shared/GamesSection";
+import FlashSaleSection from "./components/home/FlashSaleSection";
+import PlatformsSection from "./components/home/PlatformsSection";
+import LatestNewsSection from "./components/home/LatestNewsSection";
 
 /**
  * HomePage Component
@@ -31,65 +27,55 @@ import LatestNewsSection from "./components/LatestNewsSection";
  */
 export default function HomePage() {
   return (
-    <div className="bg-surface-base overflow-hidden justify-center items-center gap-y-16 flex flex-col">
-      {/* Skip to content link for accessibility */}
-      <a href="#main-content" className="skip-link">
-        Skip to main content
-      </a>
+    <main id="main-content" className="w-full flex flex-col items-center gap-y-16">
+      {/* Hero Section */}
+      {/* <HeroCarousel /> */}
+      <div className="w-full h-[400px] bg-gradient-to-r from-brand to-brand-light flex items-center justify-center">
+        <h1 className="text-4xl font-bold text-white">Hero Carousel Placeholder</h1>
+      </div>
 
-      {/* Navigation */}
-      <NavBar />
+      {/* Popular Games Section */}
+      <PopularGamesSection />
 
-      {/* Main Content */}
-      <main id="main-content" className="w-full flex flex-col items-center gap-y-16">
-        {/* Hero Section */}
-        <HeroCarousel />
+      {/* Features Section */}
+      <FeaturesSection />
 
-        {/* Popular Games Section */}
-        <PopularGamesSection />
+      {/* Upcoming Games Section */}
+      <UpcomingGamesSection />
 
-        {/* Features Section */}
-        <FeaturesSection />
+      {/* Category Grid Row 1 */}
+      <CategoryGridRow1 />
 
-        {/* Upcoming Games Section */}
-        <UpcomingGamesSection />
+      {/* Popular Sellers Section */}
+      <PopularSellersSection />
 
-        {/* Category Grid Row 1 */}
-        <CategoryGridRow1 />
+      {/* Category Grid Row 2 */}
+      <CategoryGridRow2 />
 
-        {/* Popular Sellers Section */}
-        <PopularSellersSection />
+      {/* Category Carousel (Mobile) */}
+      <CategoryCarousel />
 
-        {/* Category Grid Row 2 */}
-        <CategoryGridRow2 />
+      {/* New on Difmark */}
+      <GamesSection title="NEW ON DIFMARK" />
 
-        {/* Category Carousel (Mobile) */}
-        <CategoryCarousel />
+      {/* Promo Banner */}
+      <PromoBanner />
 
-        {/* New on Difmark */}
-        <GamesSection title="NEW ON DIFMARK" />
+      {/* Weekly Chart */}
+      <GamesSection title="WEEKLY CHART" />
 
-        {/* Promo Banner */}
-        <PromoBanner />
+      {/* Flash Sale Section */}
+      <FlashSaleSection />
 
-        {/* Weekly Chart */}
-        <GamesSection title="WEEKLY CHART" />
+      {/* Under $100 */}
+      <GamesSection title="UNDER $100" />
 
-        {/* Flash Sale Section */}
-        <FlashSaleSection />
+      {/* Platforms Section */}
+      <PlatformsSection />
 
-        {/* Under $100 */}
-        <GamesSection title="UNDER $100" />
-
-        {/* Platforms Section */}
-        <PlatformsSection />
-
-        {/* Latest News Section */}
-        <LatestNewsSection />
-      </main>
-
-      {/* Footer */}
-      <Footer />
-    </div>
+      {/* Latest News Section */}
+      <LatestNewsSection />
+    </main>
   );
 }
+

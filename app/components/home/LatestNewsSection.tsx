@@ -1,7 +1,7 @@
 import { IoIosArrowForward } from "react-icons/io";
-import { CanvasTextImage } from "./TextImageCanvas";
+import { CanvasTextImage } from "../shared/TextImageCanvas";
 import NewsCard from "./NewsCard";
-import ProductCarousel from "./ProductCarousel";
+import ProductCarousel from "../product/ProductCarousel";
 
 export default function LatestNewsSection() {
   return (

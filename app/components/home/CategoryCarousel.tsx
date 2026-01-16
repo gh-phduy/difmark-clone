@@ -7,8 +7,9 @@
 
 "use client";
 
-import ProductCarousel from "./ProductCarousel";
-import { CategoryCard, type CategoryCardData } from "./ui/CategoryCard";
+import ProductCarousel from "../product/ProductCarousel";
+import { CategoryCard, CategoryCardData } from "../shared/CategoryCard";
+
 
 /* ============================================
    CONSTANTS

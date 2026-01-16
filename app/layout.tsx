@@ -1,6 +1,8 @@
 import type { Metadata, Viewport } from "next";
 import { Roboto } from "next/font/google";
 import "./globals.css";
+import NavBar from "./components/layout/NavBar";
+import Footer from "./components/layout/Footer";
 
 /* ============================================
    FONT CONFIGURATION
@@ -130,6 +132,7 @@ export const viewport: Viewport = {
  * - Font configuration
  * - Global styles
  * - HTML structure
+ * - Global Header (NavBar) & Footer
  *
  * @param children - Page content
  */
@@ -150,7 +153,15 @@ export default function RootLayout({
         />
       </head>
       <body className="font-sans antialiased bg-surface-base text-dm-text-primary">
-        {children}
+        <div className="bg-surface-base overflow-hidden flex flex-col items-center gap-y-16 min-h-screen">
+          {/* Skip to content link for accessibility */}
+          <a href="#main-content" className="skip-link">
+            Skip to main content
+          </a>
+          <NavBar />
+          {children}
+          <Footer />
+        </div>
       </body>
     </html>
   );

@@ -1,7 +1,7 @@
 import { IoIosArrowForward } from "react-icons/io";
-import { CanvasTextImage } from "./TextImageCanvas";
+import { CanvasTextImage } from "../shared/TextImageCanvas";
 import PlatformCard from "./PlatformCard";
-import ProductCarousel from "./ProductCarousel";
+import ProductCarousel from "../product/ProductCarousel";
 
 export default function PlatformsSection() {
   // Tạo array với 6 items cho grid layout

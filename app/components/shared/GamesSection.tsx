@@ -5,7 +5,7 @@
  * Responsive layout: shows carousel on mobile, grid on desktop
  */
 
-import ProductCarousel from "./ProductCarousel";
+import ProductCarousel from "../product/ProductCarousel";
 import GameCard from "./GameCard";
 import { CanvasTextImage } from "./TextImageCanvas";
 

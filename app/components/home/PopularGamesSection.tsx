@@ -1,5 +1,5 @@
-import ProductCarousel from "./ProductCarousel";
-import { CanvasTextImage } from "./TextImageCanvas";
+import ProductCarousel from "../product/ProductCarousel";
+import { CanvasTextImage } from "../shared/TextImageCanvas";
 import PopularGameCard from "./PopularGameCard";
 
 export default function PopularGamesSection() {
@@ -9,6 +9,7 @@ export default function PopularGamesSection() {
         Popular Games
       </h2>
       <CanvasTextImage
+        className="-translate-x-[22px]"
         text="POPULAR GAMES"
         imageUrl="/text-img.svg"
         size="24px"

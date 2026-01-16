@@ -12,7 +12,7 @@ import { ImStarFull } from "react-icons/im";
 import { IoIosArrowForward } from "react-icons/io";
 import { MdArrowBackIos, MdArrowForwardIos } from "react-icons/md";
 import { useCallback, useEffect, useState } from "react";
-import { CanvasTextImage } from "./TextImageCanvas";
+import { CanvasTextImage } from "../shared/TextImageCanvas";
 
 // Types
 interface SellerItemProps {

@@ -1,5 +1,5 @@
-import ProductCarousel from "./ProductCarousel";
-import { CanvasTextImage } from "./TextImageCanvas";
+import ProductCarousel from "../product/ProductCarousel";
+import { CanvasTextImage } from "../shared/TextImageCanvas";
 import UpcomingGameCard from "./UpcomingGameCard";
 
 export default function UpcomingGamesSection() {

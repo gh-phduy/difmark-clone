@@ -6,7 +6,7 @@
 
 "use client";
 
-import { CategoryCard, type CategoryCardData } from "./ui/CategoryCard";
+import { CategoryCard, type CategoryCardData } from "../shared/CategoryCard";
 
 /* ============================================
    CONSTANTS

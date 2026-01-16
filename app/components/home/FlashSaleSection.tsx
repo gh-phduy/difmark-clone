@@ -6,7 +6,7 @@
  */
 
 import Image from "next/image";
-import CountdownTimer from "./CountdownTimer";
+import CountdownTimer from "../shared/CountdownTimer";
 
 /* ============================================
    CONSTANTS
