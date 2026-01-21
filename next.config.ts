@@ -16,13 +16,6 @@ const nextConfig: NextConfig = {
     formats: ["image/avif", "image/webp"],
     deviceSizes: [640, 750, 828, 1080, 1200, 1920, 2048],
     imageSizes: [16, 32, 48, 64, 96, 128, 256, 384],
-    // Allow external images if needed
-    // remotePatterns: [
-    //   {
-    //     protocol: 'https',
-    //     hostname: 'example.com',
-    //   },
-    // ],
   },
 
   // Performance optimizations
@@ -31,10 +24,35 @@ const nextConfig: NextConfig = {
     optimizePackageImports: ["react-icons", "lucide-react"],
   },
 
-  // Compiler options
+  // Compiler options - SWC configuration for modern browsers
   compiler: {
     // Remove console.log in production
     removeConsole: process.env.NODE_ENV === "production",
+  },
+
+  // Webpack configuration to COMPLETELY exclude legacy polyfills
+  webpack: (config, { isServer }) => {
+    if (!isServer) {
+      // Alias all polyfill packages to false (exclude them completely)
+      config.resolve.alias = {
+        ...config.resolve.alias,
+        // Core polyfills
+        "core-js": false,
+        "core-js-pure": false,
+        "regenerator-runtime": false,
+        "@babel/runtime": false,
+        "@babel/runtime-corejs3": false,
+        // Next.js internal polyfills
+        "next/dist/compiled/@babel/runtime": false,
+        "next/dist/compiled/regenerator-runtime": false,
+      };
+
+      // Remove polyfill plugins from webpack
+      config.plugins = config.plugins?.filter((plugin: any) => {
+        return plugin.constructor.name !== "ProvidePlugin";
+      });
+    }
+    return config;
   },
 
   // Headers for security

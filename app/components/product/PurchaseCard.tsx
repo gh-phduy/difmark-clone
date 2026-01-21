@@ -6,7 +6,7 @@ import { MdPerson, MdInfo } from "react-icons/md";
 import { IoMdCheckmarkCircle } from "react-icons/io";
 import { useState } from "react";
 import { Card, CardContent } from "@/components/ui/card";
-import { Avatar, AvatarImage, AvatarFallback } from "@/components/ui/avatar";
+import { OptimizedAvatar } from "@/app/components/shared/OptimizedAvatar";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { Separator } from "@/components/ui/separator";
@@ -37,16 +37,14 @@ export default function PurchaseCard({
                                 onMouseEnter={() => setIsPopoverOpen(true)}
                                 onMouseLeave={() => setIsPopoverOpen(false)}
                             >
-                                {/* Seller Avatar */}
-                                <div className="relative">
-                                    <Avatar className="w-12 h-12">
-                                        <AvatarImage src={seller.avatar} alt={seller.name} className="object-cover" />
-                                        <AvatarFallback>{seller.name.substring(0, 2).toUpperCase()}</AvatarFallback>
-                                    </Avatar>
-                                    {seller.isOnline && (
-                                        <div className="absolute -bottom-1 -right-1 w-5 h-5 bg-green-500 rounded-full border-2 border-[#2a3441]"></div>
-                                    )}
-                                </div>
+                                {/* Seller Avatar - Using OptimizedAvatar for Next.js Image optimization */}
+                                <OptimizedAvatar
+                                    src={seller.avatar}
+                                    alt={`${seller.name} avatar`}
+                                    size={48}
+                                    isOnline={seller.isOnline}
+                                    fallback={seller.name.substring(0, 2).toUpperCase()}
+                                />
 
                                 {/* Seller Name and Badge */}
                                 <div className="flex flex-col gap-1">
@@ -79,15 +77,13 @@ export default function PurchaseCard({
                         >
                             {/* Tooltip Header */}
                             <div className="flex items-center gap-3 mb-4">
-                                <div className="relative">
-                                    <Avatar className="w-12 h-12">
-                                        <AvatarImage src={seller.avatar} alt={seller.name} className="object-cover" />
-                                        <AvatarFallback>{seller.name.substring(0, 2).toUpperCase()}</AvatarFallback>
-                                    </Avatar>
-                                    {seller.isOnline && (
-                                        <div className="absolute -bottom-1 -right-1 w-5 h-5 bg-green-500 rounded-full border-2 border-[#3a4654]"></div>
-                                    )}
-                                </div>
+                                <OptimizedAvatar
+                                    src={seller.avatar}
+                                    alt={`${seller.name} avatar`}
+                                    size={48}
+                                    isOnline={seller.isOnline}
+                                    fallback={seller.name.substring(0, 2).toUpperCase()}
+                                />
                                 <div className="flex flex-col gap-1">
                                     <div className="flex items-center gap-2">
                                         <span className="text-white font-semibold">{seller.name}</span>

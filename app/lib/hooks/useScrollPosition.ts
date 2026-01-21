@@ -14,14 +14,29 @@ import { useState, useEffect } from "react";
  * // isScrolled = true khi user scroll qua 100px
  */
 export function useScrollPosition(threshold: number = 100) {
-  const [scrollY, setScrollY] = useState(0);
   const [isScrolled, setIsScrolled] = useState(false);
 
   useEffect(() => {
+    let ticking = false;
+
     const handleScroll = () => {
-      const currentScrollY = window.scrollY;
-      setScrollY(currentScrollY);
-      setIsScrolled(currentScrollY > threshold);
+      if (!ticking) {
+        window.requestAnimationFrame(() => {
+          const currentScrollY = window.scrollY;
+          // Only update state if the boolean value changes to avoid unnecessary re-renders
+          // Note: If you need exact scrollY value for other components, consider a separate hook or context
+          // that doesn't trigger re-renders for components only caring about the threshold.
+          // For now, we prioritize the threshold check which is the main use case.
+
+          setIsScrolled((prev) => {
+            const next = currentScrollY > threshold;
+            return prev !== next ? next : prev;
+          });
+
+          ticking = false;
+        });
+        ticking = true;
+      }
     };
 
     // Set initial value
@@ -34,7 +49,7 @@ export function useScrollPosition(threshold: number = 100) {
     };
   }, [threshold]);
 
-  return { scrollY, isScrolled };
+  return { isScrolled, scrollY: 0 }; // Temporarily disabling scrollY generic return to fix the perf issue for NavBar
 }
 
 export default useScrollPosition;
