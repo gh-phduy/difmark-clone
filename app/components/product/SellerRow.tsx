@@ -1,3 +1,5 @@
+"use client"
+
 import OptimizedAvatar from "../shared/OptimizedAvatar";
 import { Separator } from "@/components/ui/separator";
 import { IoKey } from "react-icons/io5";
@@ -11,10 +13,11 @@ import { BiDotsVerticalRounded } from "react-icons/bi";
 import { FaCartShopping } from "react-icons/fa6";
 import { BsShieldFillCheck } from "react-icons/bs";
 import { TiStarFullOutline } from "react-icons/ti";
+import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from "@/components/ui/tooltip";
 
 export default function SellerRow() {
   return (
-    <div className="flex w-full items-center rounded-sm justify-center gap-x-8 bg-[#222936] px-[20px] py-[15px]">
+    <div className="flex w-full items-center transition-colors duration-300 hover:bg-gray-700/70 rounded-sm justify-center gap-x-8 bg-[#222936] px-[20px] py-[15px]">
       <div className="flex h-[70px] items-center gap-x-3">
         <OptimizedAvatar
           className=""
@@ -41,9 +44,18 @@ export default function SellerRow() {
       </div>
       <Separator orientation="vertical" className="h-[50px] bg-gray-600" />
       <div className="flex h-[70px] items-center gap-x-3">
-        <div className="h-[24px] w-[24px] rounded-full bg-gray-600 flex items-center justify-center">
-          <IoKey />
-        </div>
+        <TooltipProvider delayDuration={0}>
+          <Tooltip>
+            <TooltipTrigger asChild>
+              <div className="cursor-pointer w-[24px] rounded-full bg-gray-600 flex h-[24px] items-center justify-center">
+                <IoKey />
+              </div>
+            </TooltipTrigger>
+            <TooltipContent>
+              <p>Key</p>
+            </TooltipContent>
+          </Tooltip>
+        </TooltipProvider>
         <div className="h-[24px] w-[24px] rounded-full bg-gray-600 flex items-center justify-center">
           <RiXboxFill />
         </div>
@@ -76,6 +88,6 @@ export default function SellerRow() {
       <div className="flex rounded-lg h-[70px] w-[70px] bg-gray-600 justify-center items-center">
         <FaCartShopping size={24} />
       </div>
-    </div>
+    </div >
   );
 }
