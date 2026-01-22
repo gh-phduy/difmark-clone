@@ -31,7 +31,7 @@ export function OptimizedAvatar({
     const [hasError, setHasError] = React.useState(false);
 
     return (
-        <div className={cn("relative flex shrink-0", className)}>
+        <div className={cn("relative w-min flex shrink-0", className)}>
             <div
                 className="relative overflow-hidden rounded-full bg-muted"
                 style={{ width: size, height: size }}
