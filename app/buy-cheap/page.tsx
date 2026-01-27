@@ -5,13 +5,12 @@ import dynamic from "next/dynamic";
 import ProductGallery from "../components/product/ProductGallery";
 import Breadcrumbs from "../components/layout/Breadcrumbs";
 import PurchaseCard from "../components/product/PurchaseCard";
-import { PurchaseCardSkeleton } from "../components/product/PurchaseCardSkeleton";
-import { ProductGallerySkeleton } from "../components/product/ProductGallerySkeleton";
 import { Skeleton } from "@/components/ui/skeleton";
 import { useProduct } from "@/app/hooks/useProduct";
+import { TitleSkeleton, ProductSectionSkeleton } from "../components/product/PageSkeletons";
 
 // Dynamic imports for below-the-fold components (lazy loading)
-const ProductDecription = dynamic(() => import("../components/product/ProductDecription"), {
+const ProductDescription = dynamic(() => import("../components/product/ProductDescription"), {
     loading: () => <Skeleton className="h-[200px] w-full rounded-lg" />
 });
 const SellerList = dynamic(() => import("../components/product/SellerList"), {
@@ -23,27 +22,12 @@ const AboutProductSection = dynamic(() => import("../components/product/ProductC
     loading: () => <Skeleton className="h-[200px] w-full rounded-lg" />
 });
 
-// Skeleton components for loading states
-const TitleSkeleton = memo(() => (
-    <Skeleton className="h-10 w-[400px]" />
-));
-TitleSkeleton.displayName = "TitleSkeleton";
-
-const ProductSectionSkeleton = memo(() => (
-    <div className="flex w-full justify-between gap-8">
-        {/* Gallery Skeleton - Detailed */}
-        <ProductGallerySkeleton />
-        {/* PurchaseCard Skeleton - Detailed */}
-        <PurchaseCardSkeleton />
-    </div>
-));
-ProductSectionSkeleton.displayName = "ProductSectionSkeleton";
-
 // Memoized PurchaseCard wrapper
 const MemoizedPurchaseCard = memo(PurchaseCard);
 
 export default function BuyCheapPage() {
     // Fetch product data from API using TanStack Query
+    // Currently hardcoded to ID '1' as per original design
     const { data, isLoading, error } = useProduct('1');
 
     // Memoized event handlers to prevent re-renders
@@ -100,7 +84,7 @@ export default function BuyCheapPage() {
 
             {/* Below-the-fold content with Suspense */}
             <Suspense fallback={<Skeleton className="h-[200px] w-full rounded-lg" />}>
-                <ProductDecription />
+                <ProductDescription />
             </Suspense>
 
             <Suspense fallback={<Skeleton className="h-[300px] w-full rounded-lg" />}>

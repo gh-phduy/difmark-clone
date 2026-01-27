@@ -13,9 +13,9 @@ import { IoSearch } from "react-icons/io5";
 import { AiOutlineAppstore } from "react-icons/ai";
 import { PiShoppingCartBold, PiSignInBold } from "react-icons/pi";
 
-import { useScrollPosition } from "@/app/lib/hooks";
+import { useScrollPosition } from "@/lib/hooks";
 import NavCategories from "./NavCategories";
-import { ROUTES } from "@/app/lib/constants";
+import { ROUTES } from "@/lib/constants";
 
 /* ============================================
    CONSTANTS
