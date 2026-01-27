@@ -2,7 +2,7 @@ import { useQuery } from "@tanstack/react-query";
 import { ProductApiResponse } from "@/app/types/product";
 
 // Express backend URL
-const API_BASE_URL = "http://localhost:5000";
+const API_BASE_URL = process.env.NEXT_PUBLIC_API_URL || "http://localhost:5000";
 
 /**
  * Custom hook to fetch a single product by ID
