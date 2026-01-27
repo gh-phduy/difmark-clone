@@ -13,7 +13,8 @@ import { BiDotsVerticalRounded } from "react-icons/bi";
 import { FaCartShopping } from "react-icons/fa6";
 import { BsShieldFillCheck } from "react-icons/bs";
 import { TiStarFullOutline } from "react-icons/ti";
-import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from "@/components/ui/tooltip";
+import { IoBanSharp } from "react-icons/io5";
+import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger, TooltipArrow } from "@/components/ui/tooltip";
 
 export default function SellerRow() {
   return (
@@ -44,26 +45,43 @@ export default function SellerRow() {
       </div>
       <Separator orientation="vertical" className="h-[50px] bg-gray-600" />
       <div className="flex h-[70px] items-center gap-x-3">
-        <TooltipProvider delayDuration={0}>
-          <Tooltip>
+        <TooltipProvider delayDuration={200}>
+          <Tooltip disableHoverableContent={true}>
             <TooltipTrigger asChild>
-              <div className="cursor-pointer w-[24px] rounded-full bg-gray-600 flex h-[24px] items-center justify-center">
+              <div className="cursor-pointer w-[24px] rounded-full bg-[#3a475d] flex h-[24px] items-center justify-center">
                 <IoKey />
               </div>
             </TooltipTrigger>
-            <TooltipContent>
-              <p>Key</p>
+            <TooltipContent side="top" align="start" className="bg-[#3a475d] text-white text-base border-none" >
+              <p>The seller will send you a key that you can activate</p>
+              <TooltipArrow className="fill-[#3a475d]" />
+            </TooltipContent>
+          </Tooltip>
+          <Tooltip disableHoverableContent={true}>
+            <TooltipTrigger asChild>
+              <div className="cursor-pointer h-[24px] w-[24px] rounded-full bg-[#3a475d] flex items-center justify-center">
+                <RiXboxFill />
+              </div>
+            </TooltipTrigger>
+            <TooltipContent side="top" align="start" className="bg-[#3a475d] text-white text-base border-none" >
+              <p>Platform: Xbox</p>
+              <TooltipArrow className="fill-[#3a475d]" />
+            </TooltipContent>
+          </Tooltip>
+          <Tooltip disableHoverableContent={true}>
+            <TooltipTrigger asChild>
+              <div className="cursor-pointer h-[24px] w-[24px] rounded-full bg-[#3a475d] flex items-center justify-center">
+                <RiGlobalLine />
+              </div>
+            </TooltipTrigger>
+            <TooltipContent side="top" align="start" className="bg-[#3a475d] text-white text-base border-none" >
+              <p>Region: Global</p>
+              <TooltipArrow className="fill-[#3a475d]" />
             </TooltipContent>
           </Tooltip>
         </TooltipProvider>
-        <div className="h-[24px] w-[24px] rounded-full bg-gray-600 flex items-center justify-center">
-          <RiXboxFill />
-        </div>
-        <div className="h-[24px] w-[24px] rounded-full bg-gray-600 flex items-center justify-center">
-          <RiGlobalLine />
-        </div>
       </div>
-      <Separator orientation="vertical" className="h-[50px] bg-gray-600" />
+      <Separator orientation="vertical" className="h-[50px] bg-[#3a475d]" />
       <div className="flex gap-x-2 justify-center items-center">
         <FaMedal />
         <span className="text-[#9ba1ab]" >Edition:</span>
@@ -81,11 +99,11 @@ export default function SellerRow() {
         <span className="text-xl" >$ 58.98</span>
       </div>
       <Separator orientation="vertical" className="h-[50px] bg-gray-600" />
-      <MdOutlineRemoveRedEye color="#9ba1ab" size={24} />
+      <MdOutlineRemoveRedEye color="#9ba1ab" size={24} className="cursor-pointer" />
       <Separator orientation="vertical" className="h-[50px] bg-gray-600" />
-      <BiDotsVerticalRounded color="#9ba1ab" size={24} />
+      <BiDotsVerticalRounded color="#9ba1ab" size={24} className="cursor-pointer" />
       <Separator orientation="vertical" className="h-[50px] bg-gray-600" />
-      <div className="flex rounded-lg h-[70px] w-[70px] bg-gray-600 justify-center items-center">
+      <div className="flex rounded-lg h-[70px] cursor-pointer w-[70px] bg-gray-600 justify-center items-center">
         <FaCartShopping size={24} />
       </div>
     </div >
