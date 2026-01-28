@@ -184,8 +184,6 @@
     @apply border-border outline-ring/50;
   }
   html {
-    scroll-behavior: smooth;
-    overflow-y: scroll; /* Force scrollbar to always show */
     scrollbar-gutter: stable;
     background-color: #181f29; /* Color for scrollbar gutter area */
   }
@@ -201,7 +199,7 @@
   }
 
   ::-webkit-scrollbar-thumb {
-    background-color: rgb(7, 233, 94);
+    background-color: #374050;
     border-radius: 9999px;
   }
 
@@ -211,24 +209,13 @@
 
   body {
     @apply bg-background text-foreground;
-    overflow-x: hidden; /* Prevent horizontal scroll */
   }
 
   /* Fix: Radix UI adds padding/margin to body when scroll is locked */
   body[data-scroll-locked] {
     padding-right: 0 !important;
     margin-right: 0 !important;
-    overflow: hidden !important;
   }
-
-  /* Prevent layout shift on all fixed/sticky elements */
-  body[data-scroll-locked] nav,
-  body[data-scroll-locked] header,
-  body[data-scroll-locked] .fixed,
-  body[data-scroll-locked] .sticky {
-    padding-right: 0 !important;
-  }
-
   /* Selection styles */
   ::selection {
     background-color: hsl(var(--accent-blue) / 0.3);
@@ -236,7 +223,7 @@
   }
 
   /* Screen reader only utility - for accessibility */
-  .sr-only {
+  /* .sr-only {
     position: absolute;
     width: 1px;
     height: 1px;
@@ -257,7 +244,7 @@
     overflow: visible;
     clip: auto;
     white-space: normal;
-  }
+  } */
 }
 
 /* ============================================

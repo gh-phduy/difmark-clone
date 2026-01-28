@@ -90,7 +90,7 @@ interface CategoriesDropdownProps {
 
 function CategoriesDropdown({ isOpen, onOpenChange }: CategoriesDropdownProps) {
     return (
-        <Popover open={isOpen} onOpenChange={onOpenChange}>
+        <Popover modal={true} open={isOpen} onOpenChange={onOpenChange}>
             <PopoverTrigger asChild>
                 <button
                     className="bg-brand-light text-dm-text-secondary hover:text-dm-text-primary transition-all duration-500 flex gap-x-2 items-center text-[16px] px-4 py-1 rounded-lg flex-shrink-0"

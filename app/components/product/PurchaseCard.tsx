@@ -27,7 +27,7 @@ export default function PurchaseCard({
 
     return (
         <Card className="w-[780px] bg-[#2a3441]/80 backdrop-blur-md border-none">
-            <CardContent className="p-6 flex flex-col gap-6">
+            <CardContent className="p-6 flex flex-col gap-5">
                 {/* Seller Info Section */}
                 <div className="flex items-start justify-between">
                     <Popover open={isPopoverOpen} onOpenChange={setIsPopoverOpen}>
