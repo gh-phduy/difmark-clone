@@ -168,11 +168,11 @@
 
   /* Platform section */
   .responsive-platforms-item-bg {
-    @apply w-[345px] h-[205px] 990:w-[293px] 990:h-[263px] 1200:w-[360px] 1200:h-[316px] 1640:w-[416px] 1640:h-[351px] 1920:w-[509px] 1920:h-[355px];
+    @apply h-[205px] w-[345px] 990:h-[263px] 990:w-[293px] 1200:h-[316px] 1200:w-[360px] 1640:h-[351px] 1640:w-[416px] 1920:h-[355px] 1920:w-[509px];
   }
 
   .responsive-platforms-item-content {
-    @apply w-[155px] h-[166px] 990:w-[210px] 990:h-[226px] 1280:w-[245px] 1280:h-[264px] 1920:w-[290px] 1920:h-[312px];
+    @apply h-[166px] w-[155px] 990:h-[226px] 990:w-[210px] 1280:h-[264px] 1280:w-[245px] 1920:h-[312px] 1920:w-[290px];
   }
 }
 
@@ -181,22 +181,52 @@
    ============================================ */
 @layer base {
   * {
-    @apply border-border;
+    @apply border-border outline-ring/50;
+  }
+  html {
+    scroll-behavior: smooth;
+    overflow-y: scroll; /* Force scrollbar to always show */
+    scrollbar-gutter: stable;
+    background-color: #181f29; /* Color for scrollbar gutter area */
+  }
+
+  /* Custom Browser Scrollbar */
+  ::-webkit-scrollbar {
+    width: 8px;
+  }
+
+  ::-webkit-scrollbar-track {
+    background: transparent;
+    background-color: #181f29;
+  }
+
+  ::-webkit-scrollbar-thumb {
+    background-color: rgb(7, 233, 94);
+    border-radius: 9999px;
+  }
+
+  ::-webkit-scrollbar-thumb:hover {
+    background-color: rgba(255, 255, 255, 0.2);
   }
 
   body {
     @apply bg-background text-foreground;
+    overflow-x: hidden; /* Prevent horizontal scroll */
   }
 
-  /* Focus visible styles for accessibility */
-  :focus-visible {
-    outline: 2px solid hsl(var(--state-focus));
-    outline-offset: 2px;
+  /* Fix: Radix UI adds padding/margin to body when scroll is locked */
+  body[data-scroll-locked] {
+    padding-right: 0 !important;
+    margin-right: 0 !important;
+    overflow: hidden !important;
   }
 
-  /* Smooth scrolling */
-  html {
-    scroll-behavior: smooth;
+  /* Prevent layout shift on all fixed/sticky elements */
+  body[data-scroll-locked] nav,
+  body[data-scroll-locked] header,
+  body[data-scroll-locked] .fixed,
+  body[data-scroll-locked] .sticky {
+    padding-right: 0 !important;
   }
 
   /* Selection styles */
@@ -322,7 +352,7 @@
 
   /* Button base styles */
   .btn-primary {
-    @apply bg-accent-green text-white font-medium rounded-lg transition-colors;
+    @apply bg-accent-green rounded-lg font-medium text-white transition-colors;
   }
 
   .btn-primary:hover {
@@ -331,6 +361,6 @@
 
   /* Skip to content link (accessibility) */
   .skip-link {
-    @apply sr-only focus:not-sr-only focus:absolute focus:top-4 focus:left-4 focus:z-50 focus:px-4 focus:py-2 focus:bg-accent-green focus:text-white focus:rounded-lg;
+    @apply focus:bg-accent-green sr-only focus:not-sr-only focus:absolute focus:left-4 focus:top-4 focus:z-50 focus:rounded-lg focus:px-4 focus:py-2 focus:text-white;
   }
 }
