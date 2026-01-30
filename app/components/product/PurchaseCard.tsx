@@ -31,12 +31,11 @@ export default function PurchaseCard({
                 {/* Seller Info Section */}
                 <div className="flex items-start justify-between">
                     <Popover open={isPopoverOpen} onOpenChange={setIsPopoverOpen}>
-                        <PopoverTrigger asChild>
-                            <div
-                                className="flex items-center gap-3 cursor-pointer"
-                                onMouseEnter={() => setIsPopoverOpen(true)}
-                                onMouseLeave={() => setIsPopoverOpen(false)}
-                            >
+                        <PopoverTrigger
+                            className="flex items-center gap-3 cursor-pointer"
+                            onMouseEnter={() => setIsPopoverOpen(true)}
+                            onMouseLeave={() => setIsPopoverOpen(false)}
+                        >
                                 {/* Seller Avatar - Using OptimizedAvatar for Next.js Image optimization */}
                                 <OptimizedAvatar
                                     src={seller.avatar}
@@ -54,18 +53,17 @@ export default function PurchaseCard({
                                     </div>
                                     <div className="flex items-center gap-2">
                                         <Badge variant="outline" className="flex items-center gap-1 text-xs border-green-500/30 bg-green-500/10 text-gray-400 hover:bg-green-500/10">
-                                            <span className="text-green-500">🏆</span>
+                                            <span className="text-green-500"></span>
                                             {seller.tier}
                                         </Badge>
                                         {/* Star Rating */}
                                         <div className="flex items-center gap-0.5">
                                             {[...Array(5)].map((_, i) => (
-                                                <span key={i} className={`text-sm ${i < seller.rating ? 'text-yellow-500' : 'text-gray-600'}`}>⭐</span>
+                                                <span key={i} className={`text-sm ${i < seller.rating ? 'text-yellow-500' : 'text-gray-600'}`}></span>
                                             ))}
                                         </div>
                                     </div>
                                 </div>
-                            </div>
                         </PopoverTrigger>
 
                         <PopoverContent
@@ -91,12 +89,12 @@ export default function PurchaseCard({
                                     </div>
                                     <div className="flex items-center gap-2">
                                         <Badge variant="outline" className="flex items-center gap-1 text-xs border-green-500/30 bg-green-500/10 text-gray-400 hover:bg-green-500/10">
-                                            <span className="text-green-500">🏆</span>
+                                            <span className="text-green-500"></span>
                                             {seller.tier}
                                         </Badge>
                                         <div className="flex items-center gap-0.5">
                                             {[...Array(5)].map((_, i) => (
-                                                <span key={i} className={`text-xs ${i < seller.rating ? 'text-yellow-500' : 'text-gray-600'}`}>⭐</span>
+                                                <span key={i} className={`text-xs ${i < seller.rating ? 'text-yellow-500' : 'text-gray-600'}`}></span>
                                             ))}
                                         </div>
                                     </div>

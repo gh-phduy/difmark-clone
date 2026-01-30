@@ -184,7 +184,6 @@
     @apply border-border outline-ring/50;
   }
   html {
-    scrollbar-gutter: stable;
     background-color: #181f29; /* Color for scrollbar gutter area */
   }
 
@@ -212,10 +211,7 @@
   }
 
   /* Fix: Radix UI adds padding/margin to body when scroll is locked */
-  body[data-scroll-locked] {
-    padding-right: 0 !important;
-    margin-right: 0 !important;
-  }
+
   /* Selection styles */
   ::selection {
     background-color: hsl(var(--accent-blue) / 0.3);
