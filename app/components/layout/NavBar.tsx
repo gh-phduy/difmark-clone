@@ -14,8 +14,10 @@ import { AiOutlineAppstore } from "react-icons/ai";
 import { PiShoppingCartBold, PiSignInBold } from "react-icons/pi";
 
 import { useScrollPosition } from "@/lib/hooks";
+import { useAuth } from "@/app/context/AuthContext";
 import NavCategories from "./NavCategories";
 import SignIn from "@/app/components/auth/SignIn";
+import UserMenu from "@/app/components/auth/UserMenu";
 import { ROUTES } from "@/lib/constants";
 
 /* ============================================
@@ -157,9 +159,19 @@ function CartButton() {
 }
 
 /**
- * Sign in button
+ * Sign in button or User Menu
  */
 function SignInButton() {
+  const { user, isLoading } = useAuth();
+
+  if (isLoading) {
+    return null; // or a loading skeleton
+  }
+
+  if (user) {
+    return <UserMenu user={user} />;
+  }
+
   return <SignIn />;
 }
 

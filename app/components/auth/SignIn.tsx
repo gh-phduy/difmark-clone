@@ -81,6 +81,9 @@ export default function SignIn() {
                         <Button
                             variant="default"
                             className="w-full bg-white text-black hover:bg-gray-200 font-bold h-14 text-base rounded-xl mb-8 flex items-center justify-center gap-3 transition-all"
+                            onClick={() => {
+                                window.location.href = `${process.env.NEXT_PUBLIC_API_URL || "http://localhost:5000/api"}/auth/google`;
+                            }}
                         >
                             <FcGoogle className="h-6 w-6" />
                             <span>Log in with Google</span>

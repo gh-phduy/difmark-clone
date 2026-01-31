@@ -4,6 +4,7 @@ import "./globals.css";
 import NavBar from "./components/layout/NavBar";
 import Footer from "./components/layout/Footer";
 import { QueryProvider } from "./providers/QueryProvider";
+import { AuthProvider } from "./context/AuthContext";
 
 const inter = Inter({
     subsets: ["latin"],
@@ -31,20 +32,22 @@ export default function RootLayout({
             <body
                 className={`${inter.variable} antialiased bg-surface-base text-dm-text-primary min-h-screen flex flex-col`}
             >
-                <QueryProvider>
-                    {/* Skip to main content link for accessibility */}
-                    <a href="#main-content" className="skip-link">
-                        Skip to main content
-                    </a>
+                <AuthProvider>
+                    <QueryProvider>
+                        {/* Skip to main content link for accessibility */}
+                        <a href="#main-content" className="skip-link">
+                            Skip to main content
+                        </a>
 
-                    <NavBar />
+                        <NavBar />
 
-                    <div className="flex-1 flex flex-col items-center">
-                        {children}
-                    </div>
+                        <div className="flex-1 flex flex-col items-center">
+                            {children}
+                        </div>
 
-                    <Footer />
-                </QueryProvider>
+                        <Footer />
+                    </QueryProvider>
+                </AuthProvider>
             </body>
         </html>
     );
