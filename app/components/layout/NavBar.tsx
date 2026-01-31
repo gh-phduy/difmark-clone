@@ -15,6 +15,7 @@ import { PiShoppingCartBold, PiSignInBold } from "react-icons/pi";
 
 import { useScrollPosition } from "@/lib/hooks";
 import NavCategories from "./NavCategories";
+import SignIn from "@/app/components/auth/SignIn";
 import { ROUTES } from "@/lib/constants";
 
 /* ============================================
@@ -159,18 +160,7 @@ function CartButton() {
  * Sign in button
  */
 function SignInButton() {
-  return (
-    <Link
-      href={ROUTES.SIGNUP}
-      className="focus-visible:outline-none"
-      aria-label="Sign in to your account"
-    >
-      <button className="flex items-center gap-x-2 px-2 py-4 text-dm-text-secondary transition-colors duration-500 hover:text-dm-text-primary">
-        <PiSignInBold size={24} aria-hidden="true" />
-        <span className="hidden 770:block">SIGN IN</span>
-      </button>
-    </Link>
-  );
+  return <SignIn />;
 }
 
 /* ============================================
@@ -224,11 +214,10 @@ export default function NavBar() {
     >
       {/* Main Container */}
       <div
-        className={`flex justify-center gap-x-3 transition-all duration-700 ease-out ${
-          isScrolled
-            ? "w-full translate-y-0 bg-brand/80 backdrop-blur-xl"
-            : "w-full bg-brand 990:w-[972px] 990:translate-y-5 990:rounded-lg 1200:w-[1172px] 1640:w-[1342px] 1920:w-[1622px]"
-        }`}
+        className={`flex justify-center gap-x-3 transition-all duration-700 ease-out ${isScrolled
+          ? "w-full translate-y-0 bg-brand/80 backdrop-blur-xl"
+          : "w-full bg-brand 990:w-[972px] 990:translate-y-5 990:rounded-lg 1200:w-[1172px] 1640:w-[1342px] 1920:w-[1622px]"
+          }`}
       >
         <div className="responsive-nav flex h-10 w-full items-center justify-between px-8 py-10 770:justify-center 800:px-4">
           {/* Logo */}
