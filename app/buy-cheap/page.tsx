@@ -1,13 +1,9 @@
-"use client"
-
-import { Suspense, useCallback, useMemo, memo } from "react";
+import { Suspense } from "react";
 import dynamic from "next/dynamic";
-import ProductGallery from "../components/product/ProductGallery";
 import Breadcrumbs from "../components/layout/Breadcrumbs";
-import PurchaseCard from "../components/product/PurchaseCard";
 import { Skeleton } from "@/components/ui/skeleton";
-import { useProduct } from "@/app/hooks/useProduct";
-import { TitleSkeleton, ProductSectionSkeleton } from "../components/product/PageSkeletons";
+import ProductOverview from "../components/product/ProductOverview";
+import { ProductApiResponse } from "@/app/types/product";
 
 // Dynamic imports for below-the-fold components (lazy loading)
 const ProductDescription = dynamic(() => import("../components/product/ProductDescription"), {
@@ -22,65 +18,39 @@ const AboutProductSection = dynamic(() => import("../components/product/ProductC
     loading: () => <Skeleton className="h-[200px] w-full rounded-lg" />
 });
 
-// Memoized PurchaseCard wrapper
-const MemoizedPurchaseCard = memo(PurchaseCard);
+// Helper for server-side fetching
+async function getProduct(id: string): Promise<ProductApiResponse | null> {
+    try {
+        const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL || 'http://localhost:5000'}/api/products/${id}`, {
+            next: { revalidate: 60 } // Revalidate every minute
+        });
+        if (!res.ok) return null;
+        return res.json();
+    } catch (e) {
+        console.error("Failed to fetch product:", e);
+        return null;
+    }
+}
 
-export default function BuyCheapPage() {
-    // Fetch product data from API using TanStack Query
-    // Currently hardcoded to ID '1' as per original design
-    const { data, isLoading, error } = useProduct('1');
-
-    // Memoized event handlers to prevent re-renders
-    const handleAddToCart = useCallback(() => {
-        if (data?.data.id) {
-            console.log("Add to cart:", data.data.id);
-        }
-    }, [data?.data.id]);
-
-    const handleCheckout = useCallback(() => {
-        if (data?.data.id) {
-            console.log("Checkout:", data.data.id);
-        }
-    }, [data?.data.id]);
-
-    const handleChat = useCallback(() => {
-        if (data?.seller.name) {
-            console.log("Chat with seller:", data.seller.name);
-        }
-    }, [data?.seller.name]);
-
-    // Memoized product name to prevent unnecessary re-renders
-    const productName = useMemo(() => data?.data.name || "", [data?.data.name]);
+export default async function BuyCheapPage() {
+    // Fetch product data on the server
+    const productData = await getProduct('1');
 
     return (
         <main id="main-content" className="max-w-[1590px] w-full flex flex-col items-center gap-y-8 pt-40">
             <Breadcrumbs />
 
             {/* Product Header Section */}
-            {isLoading ? (
-                <>
-                    <TitleSkeleton />
-                    <ProductSectionSkeleton />
-                </>
-            ) : error ? (
+            {!productData ? (
                 <div className="text-red-500 p-4 bg-red-500/10 rounded-lg">
-                    Error loading product: {error.message}
+                    Product not found or failed to load. Please try again later.
                 </div>
-            ) : data ? (
+            ) : (
                 <>
-                    <h1 className="text-[32px] font-semibold uppercase">{productName}</h1>
-                    <div className="flex w-full justify-between">
-                        <ProductGallery />
-                        <MemoizedPurchaseCard
-                            product={data.data}
-                            seller={data.seller}
-                            onAddToCart={handleAddToCart}
-                            onCheckout={handleCheckout}
-                            onChat={handleChat}
-                        />
-                    </div>
+                    <h1 className="text-[32px] font-semibold uppercase">{productData.data.name}</h1>
+                    <ProductOverview data={productData} />
                 </>
-            ) : null}
+            )}
 
             {/* Below-the-fold content with Suspense */}
             <Suspense fallback={<Skeleton className="h-[200px] w-full rounded-lg" />}>
