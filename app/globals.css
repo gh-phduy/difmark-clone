@@ -1,10 +1,15 @@
 @import "tailwindcss";
 
-@plugin 'tailwindcss-animate';
+@plugin "tailwindcss-animate";
 
 @custom-variant dark (&:is(.dark *));
 
 @theme {
+  /* Forest Colors */
+  --color-forest-100: #b8ecb3;
+  --color-forest-500: #46ca43;
+  --color-forest-900: #34583d;
+
   /* Steel Colors */
   --color-steel-50: #f6f6f6;
   --color-steel-300: #c0c3c9;
@@ -326,19 +331,19 @@
 
 /* Custom Utilities */
 @utility responsive {
-  @apply 990:max-w-[940px] 1200:max-w-[1140px] 1640:max-w-[1310px] 1920:max-w-[1590px] max-w-[720px];
+  @apply max-w-[720px] 990:max-w-[940px] 1200:max-w-[1140px] 1640:max-w-[1310px] 1920:max-w-[1590px];
 }
 @utility responsive-nav {
-  @apply 990:max-w-[972px] 1200:max-w-[1172px] 1640:max-w-[1342px] 1920:max-w-[1622px] max-w-[752px];
+  @apply max-w-[752px] 990:max-w-[972px] 1200:max-w-[1172px] 1640:max-w-[1342px] 1920:max-w-[1622px];
 }
 @utility w-nav {
   @apply 990:w-[972px] 1200:w-[1172px] 1640:w-[1342px] 1920:w-[1622px];
 }
 @utility responsive-platforms-item-bg {
-  @apply 990:h-[263px] 990:w-[293px] 1200:h-[316px] 1200:w-[360px] 1640:h-[351px] 1640:w-[416px] 1920:h-[355px] 1920:w-[509px] h-[205px] w-[345px];
+  @apply h-[205px] w-[345px] 990:h-[263px] 990:w-[293px] 1200:h-[316px] 1200:w-[360px] 1640:h-[351px] 1640:w-[416px] 1920:h-[355px] 1920:w-[509px];
 }
 @utility responsive-platforms-item-content {
-  @apply 990:h-[226px] 990:w-[210px] 1280:h-[264px] 1280:w-[245px] 1920:h-[312px] 1920:w-[290px] h-[166px] w-[155px];
+  @apply h-[166px] w-[155px] 990:h-[226px] 990:w-[210px] 1280:h-[264px] 1280:w-[245px] 1920:h-[312px] 1920:w-[290px];
 }
 
 /* Semantic Component Utilities */
@@ -404,13 +409,13 @@
   backdrop-filter: blur(12px);
 }
 @utility btn-primary {
-  @apply bg-accent-green rounded-lg font-medium text-white transition-colors;
+  @apply rounded-lg bg-accent-green font-medium text-white transition-colors;
   &:hover {
     background-color: hsl(var(--accent-green-hover));
   }
 }
 @utility skip-link {
-  @apply focus:bg-accent-green sr-only focus:not-sr-only focus:absolute focus:top-4 focus:left-4 focus:z-50 focus:rounded-lg focus:px-4 focus:py-2 focus:text-white;
+  @apply sr-only focus:not-sr-only focus:absolute focus:top-4 focus:left-4 focus:z-50 focus:rounded-lg focus:bg-accent-green focus:px-4 focus:py-2 focus:text-white;
 }
 @utility shadow-custom {
   box-shadow: -0.5px -0.5px 4px 0.1px #bebebe;
