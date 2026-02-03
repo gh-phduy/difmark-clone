@@ -5,13 +5,12 @@ import { Skeleton } from "@/components/ui/skeleton";
  * Matches the layout of the real ProductGallery with main image and thumbnails
  */
 export function ProductGallerySkeleton() {
-    return (
-        <div className="w-[780px] flex flex-col gap-4">
-            {/* Main Image Skeleton */}
-            <Skeleton className="h-[450px] w-full rounded-xl" />
+  return (
+    <div className="flex w-[780px] flex-col gap-4">
+      {/* Main Image Skeleton */}
+      <Skeleton className="h-[450px] w-full rounded-xl" />
 
-            {/* Thumbnails Skeleton */}
-
-        </div>
-    );
+      {/* Thumbnails Skeleton */}
+    </div>
+  );
 }

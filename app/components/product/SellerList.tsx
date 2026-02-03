@@ -3,9 +3,12 @@ import SellerRow, { SellerOffer } from "./SellerRow";
 
 async function getSellers() {
   try {
-    const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL || 'http://localhost:5000'}/api/products`, {
-      next: { revalidate: 60 }
-    });
+    const res = await fetch(
+      `${process.env.NEXT_PUBLIC_API_URL || "http://localhost:5000"}/api/products`,
+      {
+        next: { revalidate: 60 },
+      },
+    );
     if (!res.ok) {
       throw new Error(`Failed to fetch sellers: ${res.status}`);
     }
@@ -22,9 +25,9 @@ export default async function SellerList() {
 
   if (!data) {
     return (
-      <div className="flex flex-col w-full gap-y-2">
+      <div className="flex w-full flex-col gap-y-2">
         <SellerFilterBar />
-        <div className="bg-red-500/10 text-red-500 p-4 rounded-lg">
+        <div className="rounded-lg bg-red-500/10 p-4 text-red-500">
           Failed to load sellers. Please try again later.
         </div>
       </div>
@@ -32,13 +35,13 @@ export default async function SellerList() {
   }
 
   return (
-    <div className="flex flex-col w-full gap-y-2">
+    <div className="flex w-full flex-col gap-y-2">
       <SellerFilterBar />
       {products.map((offer: SellerOffer) => (
         <SellerRow key={offer.data.id} offer={offer} />
       ))}
       {products.length === 0 && (
-        <div className="text-gray-400 p-4 text-center bg-[#2a3441] rounded-lg">
+        <div className="rounded-lg bg-[#2a3441] p-4 text-center text-gray-400">
           No sellers available at the moment.
         </div>
       )}

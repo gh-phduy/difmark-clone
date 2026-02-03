@@ -69,34 +69,34 @@ export default function ProductCard() {
 
   return (
     <div className="min-h-screen bg-linear-to-br from-gray-50 to-gray-100 p-8">
-      <div className="max-w-7xl mx-auto">
-        <div className="text-center mb-12">
-          <h1 className="text-4xl font-bold text-gray-900 mb-4">
+      <div className="mx-auto max-w-7xl">
+        <div className="mb-12 text-center">
+          <h1 className="mb-4 text-4xl font-bold text-gray-900">
             🛍️ Product Cards với Hover Animation
           </h1>
-          <p className="text-gray-600 text-lg">
+          <p className="text-lg text-gray-600">
             Hover vào sản phẩm để xem hiệu ứng Add to Cart từ trái sang phải
           </p>
         </div>
 
         {/* Product Grid */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 mb-12">
+        <div className="mb-12 grid grid-cols-1 gap-8 md:grid-cols-2 lg:grid-cols-4">
           {products.map((product) => (
             <div
               key={product.id}
-              className="group relative bg-white rounded-2xl shadow-lg hover:shadow-2xl transition-all duration-300 overflow-hidden transform hover:scale-105"
+              className="group relative transform overflow-hidden rounded-2xl bg-white shadow-lg transition-all duration-300 hover:scale-105 hover:shadow-2xl"
             >
               {/* Badge */}
               {product.badge && (
                 <div
-                  className={`absolute top-4 left-4 z-10 px-3 py-1 text-xs font-bold text-white rounded-full ${
+                  className={`absolute top-4 left-4 z-10 rounded-full px-3 py-1 text-xs font-bold text-white ${
                     product.badge === "Sale"
                       ? "bg-red-500"
                       : product.badge === "New"
-                      ? "bg-green-500"
-                      : product.badge === "Hot"
-                      ? "bg-orange-500"
-                      : "bg-blue-500"
+                        ? "bg-green-500"
+                        : product.badge === "Hot"
+                          ? "bg-orange-500"
+                          : "bg-blue-500"
                   }`}
                 >
                   {product.badge}
@@ -105,27 +105,27 @@ export default function ProductCard() {
 
               {/* Wishlist Button */}
               <div className="absolute top-4 right-4 z-10">
-                <button className="w-10 h-10 bg-white/80 backdrop-blur-xs rounded-full flex items-center justify-center hover:bg-white transition-all duration-200 shadow-lg">
-                  <Heart className="w-5 h-5 text-gray-600 hover:text-red-500 transition-colors" />
+                <button className="flex h-10 w-10 items-center justify-center rounded-full bg-white/80 shadow-lg backdrop-blur-xs transition-all duration-200 hover:bg-white">
+                  <Heart className="h-5 w-5 text-gray-600 transition-colors hover:text-red-500" />
                 </button>
               </div>
 
               {/* Product Image */}
-              <div className="relative h-64 bg-linear-to-br from-gray-100 to-gray-200 overflow-hidden">
+              <div className="relative h-64 overflow-hidden bg-linear-to-br from-gray-100 to-gray-200">
                 {/* Placeholder for actual image */}
-                <div className="w-full h-full flex items-center justify-center">
+                <div className="flex h-full w-full items-center justify-center">
                   <div className="text-center text-gray-400">
-                    <div className="w-20 h-20 mx-auto mb-3 bg-gray-300 rounded-lg flex items-center justify-center">
-                      <Eye className="w-8 h-8" />
+                    <div className="mx-auto mb-3 flex h-20 w-20 items-center justify-center rounded-lg bg-gray-300">
+                      <Eye className="h-8 w-8" />
                     </div>
                     <p className="text-sm font-medium">Product Image</p>
                   </div>
                 </div>
 
                 {/* Quick View Button - Fade in on hover */}
-                <div className="absolute inset-0 bg-black/0 group-hover:bg-black/20 transition-all duration-300 flex items-center justify-center">
-                  <button className="transform translate-y-4 opacity-0 group-hover:translate-y-0 group-hover:opacity-100 transition-all duration-300 bg-white/90 backdrop-blur-xs px-4 py-2 rounded-lg font-medium text-gray-900 hover:bg-white">
-                    <Eye className="w-4 h-4 inline mr-2" />
+                <div className="absolute inset-0 flex items-center justify-center bg-black/0 transition-all duration-300 group-hover:bg-black/20">
+                  <button className="translate-y-4 transform rounded-lg bg-white/90 px-4 py-2 font-medium text-gray-900 opacity-0 backdrop-blur-xs transition-all duration-300 group-hover:translate-y-0 group-hover:opacity-100 hover:bg-white">
+                    <Eye className="mr-2 inline h-4 w-4" />
                     Quick View
                   </button>
                 </div>
@@ -134,45 +134,45 @@ export default function ProductCard() {
               {/* Product Info */}
               <div className="p-6">
                 {/* Rating */}
-                <div className="flex items-center mb-2">
+                <div className="mb-2 flex items-center">
                   <div className="flex items-center">
                     {[...Array(5)].map((_, i) => (
                       <Star
                         key={i}
-                        className={`w-4 h-4 ${
+                        className={`h-4 w-4 ${
                           i < Math.floor(product.rating)
-                            ? "text-yellow-400 fill-current"
+                            ? "fill-current text-yellow-400"
                             : "text-gray-300"
                         }`}
                       />
                     ))}
                   </div>
-                  <span className="text-sm text-gray-600 ml-2">
+                  <span className="ml-2 text-sm text-gray-600">
                     ({product.reviews})
                   </span>
                 </div>
 
                 {/* Product Name */}
-                <h3 className="text-lg font-semibold text-gray-900 mb-2 line-clamp-2 group-hover:text-blue-600 transition-colors">
+                <h3 className="mb-2 line-clamp-2 text-lg font-semibold text-gray-900 transition-colors group-hover:text-blue-600">
                   {product.name}
                 </h3>
 
                 {/* Price */}
-                <div className="flex items-center mb-4">
+                <div className="mb-4 flex items-center">
                   <span className="text-2xl font-bold text-gray-900">
                     ${product.price}
                   </span>
                   {product.originalPrice && (
-                    <span className="text-lg text-gray-500 line-through ml-2">
+                    <span className="ml-2 text-lg text-gray-500 line-through">
                       ${product.originalPrice}
                     </span>
                   )}
                 </div>
 
                 {/* Add to Cart Button Container */}
-                <div className="relative h-12 rounded-xl overflow-hidden">
+                <div className="relative h-12 overflow-hidden rounded-xl">
                   {/* Default State Button - Luôn ở đó làm nền */}
-                  <button className="w-full h-full bg-gray-100 hover:bg-gray-200 text-gray-700 font-medium rounded-xl transition-colors duration-200">
+                  <button className="h-full w-full rounded-xl bg-gray-100 font-medium text-gray-700 transition-colors duration-200 hover:bg-gray-200">
                     View Details
                   </button>
 
@@ -181,26 +181,26 @@ export default function ProductCard() {
                     className={`absolute inset-0 transform transition-all duration-1000 ease-out ${
                       isInCart(product.id)
                         ? "translate-x-0 opacity-100"
-                        : "translate-x-full  group-hover:translate-x-0 "
+                        : "translate-x-full group-hover:translate-x-0"
                     }`}
                   >
                     <button
                       onClick={() => addToCart(product.id)}
                       disabled={isInCart(product.id)}
-                      className={`w-full h-full font-medium rounded-xl transition-all duration-200 flex items-center justify-center ${
+                      className={`flex h-full w-full items-center justify-center rounded-xl font-medium transition-all duration-200 ${
                         isInCart(product.id)
-                          ? "bg-green-500 text-white cursor-not-allowed"
-                          : "bg-blue-600 hover:bg-blue-700 text-white hover:shadow-lg"
+                          ? "cursor-not-allowed bg-green-500 text-white"
+                          : "bg-blue-600 text-white hover:bg-blue-700 hover:shadow-lg"
                       }`}
                     >
                       {isInCart(product.id) ? (
                         <>
-                          <div className="w-5 h-5 border-2 border-white border-t-transparent rounded-full animate-spin mr-2"></div>
+                          <div className="mr-2 h-5 w-5 animate-spin rounded-full border-2 border-white border-t-transparent"></div>
                           Added to Cart!
                         </>
                       ) : (
                         <>
-                          <ShoppingCart className="w-5 h-5 mr-2" />
+                          <ShoppingCart className="mr-2 h-5 w-5" />
                           Add to Cart
                         </>
                       )}
@@ -213,59 +213,59 @@ export default function ProductCard() {
         </div>
 
         {/* Variants Demo */}
-        <div className="bg-white rounded-2xl shadow-lg p-8">
-          <h2 className="text-2xl font-bold text-gray-900 mb-6">
+        <div className="rounded-2xl bg-white p-8 shadow-lg">
+          <h2 className="mb-6 text-2xl font-bold text-gray-900">
             🎨 Các biến thể khác
           </h2>
 
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+          <div className="grid grid-cols-1 gap-6 md:grid-cols-3">
             {/* Variant 1: Overlay từ center */}
-            <div className="group relative bg-linear-to-br from-purple-50 to-purple-100 rounded-xl p-6 hover:shadow-lg transition-all duration-300">
-              <h3 className="font-semibold text-gray-900 mb-4">
+            <div className="group relative rounded-xl bg-linear-to-br from-purple-50 to-purple-100 p-6 transition-all duration-300 hover:shadow-lg">
+              <h3 className="mb-4 font-semibold text-gray-900">
                 Overlay from Center
               </h3>
               <div className="relative h-12 rounded-lg">
                 {/* Background button */}
-                <button className="w-full h-full bg-gray-200 text-gray-600 font-medium rounded-lg">
+                <button className="h-full w-full rounded-lg bg-gray-200 font-medium text-gray-600">
                   Hover me
                 </button>
                 {/* Overlay button */}
-                <div className="absolute inset-0 bg-blue-600 transform scale-x-0 group-hover:scale-x-100 transition-transform duration-500 origin-center flex items-center justify-center rounded-lg">
-                  <span className="text-white font-medium">Add to Cart</span>
+                <div className="absolute inset-0 flex origin-center scale-x-0 transform items-center justify-center rounded-lg bg-blue-600 transition-transform duration-500 group-hover:scale-x-100">
+                  <span className="font-medium text-white">Add to Cart</span>
                 </div>
               </div>
             </div>
 
             {/* Variant 2: Overlay từ bottom */}
-            <div className="group relative bg-linear-to-br from-green-50 to-green-100 rounded-xl p-6 hover:shadow-lg transition-all duration-300">
-              <h3 className="font-semibold text-gray-900 mb-4">
+            <div className="group relative rounded-xl bg-linear-to-br from-green-50 to-green-100 p-6 transition-all duration-300 hover:shadow-lg">
+              <h3 className="mb-4 font-semibold text-gray-900">
                 Overlay from Bottom
               </h3>
               <div className="relative h-12 rounded-lg">
                 {/* Background button */}
-                <button className="w-full h-full bg-gray-200 text-gray-600 font-medium rounded-lg">
+                <button className="h-full w-full rounded-lg bg-gray-200 font-medium text-gray-600">
                   Hover me
                 </button>
                 {/* Overlay button */}
-                <div className="absolute inset-0 bg-green-600 translate-y-full group-hover:translate-y-0 transition-transform duration-500 flex items-center justify-center rounded-lg">
-                  <span className="text-white font-medium">Add to Cart</span>
+                <div className="absolute inset-0 flex translate-y-full items-center justify-center rounded-lg bg-green-600 transition-transform duration-500 group-hover:translate-y-0">
+                  <span className="font-medium text-white">Add to Cart</span>
                 </div>
               </div>
             </div>
 
             {/* Variant 3: Fade In từ trái */}
-            <div className="group relative bg-linear-to-br from-orange-50 to-orange-100 rounded-xl p-6 hover:shadow-lg transition-all duration-300">
-              <h3 className="font-semibold text-gray-900 mb-4">
+            <div className="group relative rounded-xl bg-linear-to-br from-orange-50 to-orange-100 p-6 transition-all duration-300 hover:shadow-lg">
+              <h3 className="mb-4 font-semibold text-gray-900">
                 Fade In từ trái
               </h3>
               <div className="relative h-12 rounded-lg">
                 {/* Background button */}
-                <button className="w-full h-full bg-gray-200 text-gray-600 font-medium rounded-lg transition-colors duration-200">
+                <button className="h-full w-full rounded-lg bg-gray-200 font-medium text-gray-600 transition-colors duration-200">
                   Hover me
                 </button>
                 {/* Fade in button */}
-                <div className="absolute inset-0 bg-orange-600 -translate-x-full opacity-0 group-hover:translate-x-0 group-hover:opacity-100 transition-all duration-800 flex items-center justify-center rounded-lg">
-                  <span className="text-white font-medium">Add to Cart</span>
+                <div className="absolute inset-0 flex -translate-x-full items-center justify-center rounded-lg bg-orange-600 opacity-0 transition-all duration-800 group-hover:translate-x-0 group-hover:opacity-100">
+                  <span className="font-medium text-white">Add to Cart</span>
                 </div>
               </div>
             </div>
@@ -273,12 +273,12 @@ export default function ProductCard() {
         </div>
 
         {/* Code Examples */}
-        <div className="mt-8 bg-gray-900 rounded-2xl p-6">
-          <h3 className="text-xl font-bold text-white mb-4">
+        <div className="mt-8 rounded-2xl bg-gray-900 p-6">
+          <h3 className="mb-4 text-xl font-bold text-white">
             💻 Code chính (Fade In Pattern):
           </h3>
-          <div className="bg-black/50 rounded-lg p-4 overflow-x-auto">
-            <pre className="text-green-400 text-sm">
+          <div className="overflow-x-auto rounded-lg bg-black/50 p-4">
+            <pre className="text-sm text-green-400">
               {`<!-- Container -->
 <div className="relative h-12 rounded-xl">
   

@@ -56,7 +56,7 @@ export default function SellerRow({ offer }: { offer: SellerOffer }) {
     .includes("restricted");
 
   return (
-    <div className="bg-midnight-750 flex w-full items-center justify-between rounded-sm px-[20px] py-[15px] transition-colors duration-300 hover:bg-gray-700/70">
+    <div className="flex w-full items-center justify-between rounded-sm bg-midnight-750 px-[20px] py-[15px] transition-colors duration-300 hover:bg-gray-700/70">
       {/* 1. Seller Info Section */}
       <div className="flex w-[250px] shrink-0 items-center gap-x-3">
         <OptimizedAvatar
@@ -157,7 +157,7 @@ export default function SellerRow({ offer }: { offer: SellerOffer }) {
       <Separator orientation="vertical" className="h-[50px] bg-gray-600" />
 
       {/* 6. Actions Section */}
-      <div className="text-steel-500 flex shrink-0 items-center gap-x-6">
+      <div className="flex shrink-0 items-center gap-x-6 text-steel-500">
         <MdOutlineRemoveRedEye
           size={24}
           className="cursor-pointer transition-colors hover:text-white"
@@ -168,7 +168,7 @@ export default function SellerRow({ offer }: { offer: SellerOffer }) {
           className="cursor-pointer transition-colors hover:text-white"
         />
         <Separator orientation="vertical" className="h-[50px] bg-gray-600" />
-        <div className="bg-midnight-500 flex h-[60px] w-[60px] cursor-pointer items-center justify-center rounded-lg transition-colors hover:bg-gray-500">
+        <div className="flex h-[60px] w-[60px] cursor-pointer items-center justify-center rounded-lg bg-midnight-500 transition-colors hover:bg-gray-500">
           <FaCartShopping size={24} />
         </div>
       </div>

@@ -13,10 +13,13 @@ interface CarouselProductProps {
   className?: string;
 }
 
-export default function CarouselProduct({ children, className = "" }: CarouselProductProps) {
+export default function CarouselProduct({
+  children,
+  className = "",
+}: CarouselProductProps) {
   const [api, setApi] = useState<CarouselApi>();
   const [current, setCurrent] = useState(0);
-  
+
   // Sử dụng children.length thay vì items cố định
   const itemsLength = children.length;
 
@@ -32,7 +35,6 @@ export default function CarouselProduct({ children, className = "" }: CarouselPr
     api.on("select", () => {
       setCurrent(api.selectedScrollSnap());
     });
-
   }, [api, itemsLength]);
 
   return (
@@ -70,12 +72,12 @@ export default function CarouselProduct({ children, className = "" }: CarouselPr
         >
           <CarouselContent className="mx-10 overflow-visible">
             {children.map((child, index) => (
-              <CarouselItem 
+              <CarouselItem
                 key={index}
-                className={`pl-2 md:pl-4 basis-auto overflow-visible transition-all duration-200 ease-out ${
-                  current === index 
-                    ? 'transform scale-105 opacity-100' 
-                    : 'transform scale-95 opacity-70'
+                className={`basis-auto overflow-visible pl-2 transition-all duration-200 ease-out md:pl-4 ${
+                  current === index
+                    ? "scale-105 transform opacity-100"
+                    : "scale-95 transform opacity-70"
                 }`}
               >
                 {child}
@@ -86,4 +88,4 @@ export default function CarouselProduct({ children, className = "" }: CarouselPr
       </Carousel>
     </div>
   );
-} 
+}

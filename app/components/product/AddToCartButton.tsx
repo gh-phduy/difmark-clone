@@ -86,9 +86,9 @@ export default function AddToCartCard({
   }, [onAddToCart]);
 
   return (
-    <article className="relative w-[360px] h-[300px]">
+    <article className="relative h-[300px] w-[360px]">
       <div
-        className="w-full cursor-pointer absolute top-1/2 -translate-y-1/2 left-1/2 -translate-x-1/2 hover:h-[300px] group transition-all duration-700 h-[275px] rounded-lg overflow-hidden bg-surface-base flex flex-col"
+        className="group absolute top-1/2 left-1/2 flex h-[275px] w-full -translate-x-1/2 -translate-y-1/2 cursor-pointer flex-col overflow-hidden rounded-lg bg-surface-base transition-all duration-700 hover:h-[300px]"
         onMouseEnter={handleMouseEnter}
         onMouseLeave={handleMouseLeave}
         tabIndex={0}
@@ -100,8 +100,9 @@ export default function AddToCartCard({
         <div className="relative flex-1">
           {/* Cover Image */}
           <div
-            className={`absolute inset-0 w-full h-full transition-opacity duration-300 ${isHovered ? "opacity-0" : "opacity-100"
-              }`}
+            className={`absolute inset-0 h-full w-full transition-opacity duration-300 ${
+              isHovered ? "opacity-0" : "opacity-100"
+            }`}
           >
             <Image
               src={coverImage}
@@ -115,8 +116,9 @@ export default function AddToCartCard({
           {/* Preview Video */}
           <video
             ref={videoRef}
-            className={`absolute inset-0 w-full h-full object-cover transition-opacity duration-300 ${isHovered ? "opacity-100" : "opacity-0"
-              }`}
+            className={`absolute inset-0 h-full w-full object-cover transition-opacity duration-300 ${
+              isHovered ? "opacity-100" : "opacity-0"
+            }`}
             src={previewVideo}
             muted
             loop
@@ -126,7 +128,7 @@ export default function AddToCartCard({
 
           {/* Seller Info Overlay */}
           <div className="absolute bottom-0 w-full">
-            <div className="w-full relative gap-x-2 backdrop-blur-xs bg-surface-card/30 h-[65px] flex items-center px-4">
+            <div className="relative flex h-[65px] w-full items-center gap-x-2 bg-surface-card/30 px-4 backdrop-blur-xs">
               {/* Seller Avatar */}
               <Image
                 src={sellerAvatar}
@@ -138,27 +140,27 @@ export default function AddToCartCard({
 
               {/* Seller Details */}
               <div className="flex flex-col">
-                <div className="flex text-dm-text-primary gap-x-1 items-center">
+                <div className="flex items-center gap-x-1 text-dm-text-primary">
                   <span className="text-[12px]">{sellerName}</span>
                   <BsPersonFillCheck size={15} aria-label="Verified seller" />
                 </div>
-                <span className="text-dm-text-muted text-[10px]">
+                <span className="text-[10px] text-dm-text-muted">
                   Rank: {sellerRank}
                 </span>
               </div>
 
               {/* Add to Cart Button (slides in on hover) */}
-              <div className="absolute inset-0 -translate-x-full w-[200px] duration-1000 transition group-hover:translate-x-0">
+              <div className="absolute inset-0 w-[200px] -translate-x-full transition duration-1000 group-hover:translate-x-0">
                 <button
                   onClick={handleAddToCart}
-                  className="w-full h-full bg-dm-accent-green hover:bg-dm-accent-green-hover transition-colors flex items-center justify-center gap-x-3 px-5"
+                  className="flex h-full w-full items-center justify-center gap-x-3 bg-dm-accent-green px-5 transition-colors hover:bg-dm-accent-green-hover"
                   aria-label={`Add ${title} to cart`}
                 >
                   <BsBasket3Fill
                     className="text-dm-text-primary"
                     aria-hidden="true"
                   />
-                  <span className="text-dm-text-primary text-[14px] font-bold">
+                  <span className="text-[14px] font-bold text-dm-text-primary">
                     ADD TO CART
                   </span>
                 </button>
@@ -168,11 +170,11 @@ export default function AddToCartCard({
         </div>
 
         {/* Footer */}
-        <div className="w-full h-[57px] bg-surface-card flex px-2 justify-between items-center">
-          <h3 className="text-dm-text-primary text-xl font-semibold truncate">
+        <div className="flex h-[57px] w-full items-center justify-between bg-surface-card px-2">
+          <h3 className="truncate text-xl font-semibold text-dm-text-primary">
             {title}
           </h3>
-          <span className="text-dm-text-primary text-xl font-semibold">
+          <span className="text-xl font-semibold text-dm-text-primary">
             {price}
           </span>
         </div>
