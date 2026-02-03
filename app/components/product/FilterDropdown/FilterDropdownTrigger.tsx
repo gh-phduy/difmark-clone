@@ -28,7 +28,7 @@ export function FilterDropdownTrigger({
             className={cn(
                 "h-[44px] w-full border-none bg-surface-card text-dm-text-primary rounded-lg",
                 "hover:bg-surface-overlay hover:ring-1 hover:ring-dm-border-strong",
-                "transition-all duration-300 focus:ring-0 focus:outline-none px-4",
+                "transition-all duration-300 focus:ring-0 focus:outline-hidden px-4",
                 "flex items-center justify-between"
             )}
             aria-haspopup="listbox"

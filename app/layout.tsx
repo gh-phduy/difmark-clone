@@ -30,7 +30,7 @@ export default function RootLayout({
     return (
         <html lang="en" className="dark">
             <body
-                className={`${inter.variable} antialiased bg-surface-base text-dm-text-primary min-h-screen flex flex-col`}
+                className={`${inter.variable} antialiased bg-midnight-850 text-dm-text-primary min-h-screen flex flex-col`}
             >
                 <AuthProvider>
                     <QueryProvider>

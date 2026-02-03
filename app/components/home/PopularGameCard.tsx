@@ -199,7 +199,7 @@ export default function PopularGameItem({
 
           {/* Seller Info Overlay */}
           <div className="absolute bottom-0 w-full">
-            <div className="w-full relative gap-x-2 backdrop-blur-sm bg-surface-card/30 h-[65px] flex items-center px-4">
+            <div className="w-full relative gap-x-2 backdrop-blur-xs bg-surface-card/30 h-[65px] flex items-center px-4">
               {/* Seller Avatar */}
               <Image
                 src={sellerAvatar}

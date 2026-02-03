@@ -1,89 +1,236 @@
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
+@import "tailwindcss";
 
+@plugin 'tailwindcss-animate';
+
+@custom-variant dark (&:is(.dark *));
+
+@theme {
+  /* Steel Colors */
+  --color-steel-50: #f6f6f6;
+  --color-steel-300: #c0c3c9;
+  --color-steel-500: #9ba1ab;
+  --color-steel-white-glass: #ffffff4d;
+
+  /* Midnight Colors */
+  --color-midnight-950: #12151a;
+  --color-midnight-900: #141b24;
+  --color-midnight-850: #171f2a;
+  --color-midnight-800: #212734;
+  --color-midnight-750: #222936;
+  --color-midnight-700: #2d3544;
+  --color-midnight-650: #37404f;
+  --color-midnight-600: #374050;
+
+  /* Brand Colors */
+  --color-brand: hsl(var(--brand-primary));
+  --color-brand-light: hsl(var(--brand-primary-light));
+  --color-brand-dark: hsl(var(--brand-primary-dark));
+  --color-brand-accent: hsl(var(--brand-accent));
+
+  /* Surface Colors */
+  --color-surface-base: hsl(var(--surface-base));
+  --color-surface-elevated: hsl(var(--surface-elevated));
+  --color-surface-overlay: hsl(var(--surface-overlay));
+  --color-surface-card: hsl(var(--surface-card));
+
+  /* Text Colors */
+  --color-dm-text-primary: hsl(var(--text-primary));
+  --color-dm-text-secondary: hsl(var(--text-secondary));
+  --color-dm-text-tertiary: hsl(var(--text-tertiary));
+  --color-dm-text-muted: hsl(var(--text-muted));
+  --color-dm-text-disabled: hsl(var(--text-disabled));
+
+  /* Border Colors */
+  --color-dm-border-subtle: hsl(var(--border-subtle));
+  --color-dm-border: hsl(var(--border-default));
+  --color-dm-border-strong: hsl(var(--border-strong));
+
+  /* State Colors */
+  --color-state-hover: hsl(var(--state-hover));
+  --color-state-active: hsl(var(--state-active));
+  --color-state-focus: hsl(var(--state-focus));
+
+  /* Accent Colors */
+  --color-dm-accent-green: hsl(var(--accent-green));
+  --color-dm-accent-green-hover: hsl(var(--accent-green-hover));
+  --color-dm-accent-yellow: hsl(var(--accent-yellow));
+  --color-dm-accent-blue: hsl(var(--accent-blue));
+  --color-dm-accent-red: hsl(var(--accent-red));
+  --color-dm-accent-orange: hsl(var(--accent-orange));
+
+  /* Rating Colors */
+  --color-rating-star: hsl(var(--rating-star));
+  --color-rating-empty: hsl(var(--rating-empty));
+
+  /* Shadcn UI Colors */
+  --color-background: hsl(var(--background));
+  --color-foreground: hsl(var(--foreground));
+  --color-card: hsl(var(--card));
+  --color-card-foreground: hsl(var(--card-foreground));
+  --color-popover: hsl(var(--popover));
+  --color-popover-foreground: hsl(var(--popover-foreground));
+  --color-primary: hsl(var(--primary));
+  --color-primary-foreground: hsl(var(--primary-foreground));
+  --color-secondary: hsl(var(--secondary));
+  --color-secondary-foreground: hsl(var(--secondary-foreground));
+  --color-muted: hsl(var(--muted));
+  --color-muted-foreground: hsl(var(--muted-foreground));
+  --color-accent: hsl(var(--accent));
+  --color-accent-foreground: hsl(var(--accent-foreground));
+  --color-destructive: hsl(var(--destructive));
+  --color-destructive-foreground: hsl(var(--destructive-foreground));
+  --color-border: hsl(var(--border));
+  --color-input: hsl(var(--input));
+  --color-ring: hsl(var(--ring));
+  --color-chart-1: hsl(var(--chart-1));
+  --color-chart-2: hsl(var(--chart-2));
+  --color-chart-3: hsl(var(--chart-3));
+  --color-chart-4: hsl(var(--chart-4));
+  --color-chart-5: hsl(var(--chart-5));
+
+  /* Breakpoints */
+  --breakpoint-1: 1px;
+  --breakpoint-770: 770px;
+  --breakpoint-800: 800px;
+  --breakpoint-970: 970px;
+  --breakpoint-990: 990px;
+  --breakpoint-1000: 1000px;
+  --breakpoint-1025: 1025px;
+  --breakpoint-1100: 1100px;
+  --breakpoint-1200: 1200px;
+  --breakpoint-1280: 1280px;
+  --breakpoint-1300: 1300px;
+  --breakpoint-1440: 1440px;
+  --breakpoint-1640: 1640px;
+  --breakpoint-1800: 1800px;
+  --breakpoint-1920: 1920px;
+
+  /* Radius */
+  --radius-lg: var(--radius);
+  --radius-md: calc(var(--radius) - 2px);
+  --radius-sm: calc(var(--radius) - 4px);
+
+  /* Animation Variables */
+  --animate-fade-in: fadeIn 0.3s ease-out;
+  --animate-fade-out: fadeOut 0.3s ease-out;
+  --animate-slide-up: slideUp 0.3s ease-out;
+  --animate-slide-down: slideDown 0.3s ease-out;
+  --animate-scale-in: scaleIn 0.2s ease-out;
+  --animate-pulse: pulse 2s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+  --animate-shimmer: shimmer 2s infinite;
+
+  @keyframes fadeIn {
+    0% {
+      opacity: 0;
+    }
+    100% {
+      opacity: 1;
+    }
+  }
+  @keyframes fadeOut {
+    0% {
+      opacity: 1;
+    }
+    100% {
+      opacity: 0;
+    }
+  }
+  @keyframes slideUp {
+    0% {
+      opacity: 0;
+      transform: translateY(10px);
+    }
+    100% {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+  @keyframes slideDown {
+    0% {
+      opacity: 0;
+      transform: translateY(-10px);
+    }
+    100% {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+  @keyframes scaleIn {
+    0% {
+      opacity: 0;
+      transform: scale(0.95);
+    }
+    100% {
+      opacity: 1;
+      transform: scale(1);
+    }
+  }
+  @keyframes pulse {
+    0%,
+    100% {
+      opacity: 1;
+    }
+    50% {
+      opacity: 0.5;
+    }
+  }
+  @keyframes shimmer {
+    0% {
+      transform: translateX(-100%);
+    }
+    100% {
+      transform: translateX(100%);
+    }
+  }
+}
+
+/* Base Variables (Required for Shadcn Dynamic Theming) */
 @layer base {
   :root {
-    /* ============================================
-       DIFMARK DESIGN SYSTEM - CSS Custom Properties
-       ============================================ */
+    /* Brand & Surface */
+    --brand-primary: 212 28% 17%;
+    --brand-primary-light: 213 23% 22%;
+    --brand-primary-dark: 212 30% 12%;
+    --brand-accent: 142 71% 45%;
+    --surface-base: 212 30% 12%;
+    --surface-elevated: 213 21% 19%;
+    --surface-overlay: 213 18% 26%;
+    --surface-card: 213 22% 18%;
 
-    /* Brand Colors */
-    --brand-primary: 212 28% 17%; /* #202835 - Main dark blue */
-    --brand-primary-light: 213 23% 22%; /* #2b3545 - Lighter blue */
-    --brand-primary-dark: 212 30% 12%; /* #171f2a - Darker blue */
-    --brand-accent: 142 71% 45%; /* #46ca43 - Green accent */
+    /* Text */
+    --text-primary: 0 0% 96%;
+    --text-secondary: 218 9% 64%;
+    --text-tertiary: 218 10% 47%;
+    --text-muted: 217 10% 75%;
+    --text-disabled: 217 6% 54%;
 
-    /* Surface Colors */
-    --surface-base: 212 30% 12%; /* #171f2a - Page background */
-    --surface-elevated: 213 21% 19%; /* #262c3a - Cards, modals */
-    --surface-overlay: 213 18% 26%; /* #354051 - Input backgrounds */
-    --surface-card: 213 22% 18%; /* #212937 - Card backgrounds */
+    /* Borders & State */
+    --border-subtle: 217 12% 25%;
+    --border-default: 213 18% 26%;
+    --border-strong: 213 15% 35%;
+    --state-hover: 213 20% 28%;
+    --state-active: 213 22% 23%;
+    --state-focus: 210 100% 50%;
 
-    /* Text Colors */
-    --text-primary: 0 0% 96%; /* #f6f6f6 - Primary text */
-    --text-secondary: 218 9% 64%; /* #9ba1ab - Secondary text */
-    --text-tertiary: 218 10% 47%; /* #636b79 - Muted text */
-    --text-muted: 217 10% 75%; /* #c0c3c9 - Light gray text */
-    --text-disabled: 217 6% 54%; /* #888a8d - Disabled text */
+    /* Accents & Rating */
+    --accent-green: 119 52% 53%;
+    --accent-green-hover: 119 52% 45%;
+    --accent-yellow: 52 95% 73%;
+    --accent-blue: 210 100% 50%;
+    --accent-red: 0 84% 60%;
+    --accent-orange: 25 95% 53%;
+    --rating-star: 45 93% 47%;
+    --rating-empty: 217 10% 65%;
 
-    /* Border Colors */
-    --border-subtle: 217 12% 25%; /* #373d4a - Subtle borders */
-    --border-default: 213 18% 26%; /* #354051 - Default borders */
-    --border-strong: 213 15% 35%; /* Stronger borders */
-
-    /* State Colors */
-    --state-hover: 213 20% 28%; /* #3d4855 - Hover state */
-    --state-active: 213 22% 23%; /* #3f4a5a - Active state */
-    --state-focus: 210 100% 50%; /* Blue focus ring */
-
-    /* Accent Colors */
-    --accent-green: 119 52% 53%; /* #46ca43 - Success, CTA */
-    --accent-green-hover: 119 52% 45%; /* Darker green for hover */
-    --accent-yellow: 52 95% 73%; /* #FCE97A - Highlights */
-    --accent-blue: 210 100% 50%; /* Blue accent */
-    --accent-red: 0 84% 60%; /* Error, destructive */
-    --accent-orange: 25 95% 53%; /* Warnings */
-
-    /* Rating Colors */
-    --rating-star: 45 93% 47%; /* Gold star color */
-    --rating-empty: 217 10% 65%; /* Empty star */
-
-    /* Gradient Overlays */
-    --gradient-card-overlay: rgba(33, 41, 55, 0.3); /* Card overlay */
-    --gradient-backdrop: rgba(38, 44, 58, 0.9); /* Backdrop blur */
-
-    /* Spacing Scale (for reference) */
-    --spacing-xs: 0.25rem; /* 4px */
-    --spacing-sm: 0.5rem; /* 8px */
-    --spacing-md: 1rem; /* 16px */
-    --spacing-lg: 1.5rem; /* 24px */
-    --spacing-xl: 2rem; /* 32px */
-    --spacing-2xl: 3rem; /* 48px */
-    --spacing-3xl: 4rem; /* 64px */
-
-    /* Border Radius */
-    --radius-sm: 0.25rem; /* 4px */
-    --radius-md: 0.5rem; /* 8px */
-    --radius-lg: 0.75rem; /* 12px */
-    --radius-xl: 1rem; /* 16px */
-    --radius-full: 9999px;
-
-    /* Shadows */
-    --shadow-sm: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
-    --shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
-    --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
-
-    /* Transitions */
+    /* Misc */
+    --gradient-card-overlay: rgba(33, 41, 55, 0.3);
+    --gradient-backdrop: rgba(38, 44, 58, 0.9);
     --transition-fast: 150ms;
     --transition-normal: 300ms;
     --transition-slow: 500ms;
     --transition-slower: 700ms;
 
-    /* ============================================
-       SHADCN/UI Default Variables
-       ============================================ */
-    --background: 0 0% 100%;
+    /* Shadcn/UI Defaults */
     --foreground: 0 0% 3.9%;
     --card: 0 0% 100%;
     --card-foreground: 0 0% 3.9%;
@@ -136,214 +283,137 @@
     --chart-4: 280 65% 60%;
     --chart-5: 340 75% 55%;
   }
-}
 
-/* ============================================
-   Custom Shadows
-   ============================================ */
-.shadow-custom {
-  box-shadow: -0.5px -0.5px 4px 0.1px #bebebe;
-}
-
-.shadow-nav-cate {
-  box-shadow: -0.5px -0.5px 1px 0.1px #706e6e;
-}
-
-/* ============================================
-   Responsive Utilities
-   ============================================ */
-@layer utilities {
-  /* Container widths */
-  .responsive {
-    @apply max-w-[720px] 990:max-w-[940px] 1200:max-w-[1140px] 1640:max-w-[1310px] 1920:max-w-[1590px];
+  *,
+  ::after,
+  ::before,
+  ::backdrop,
+  ::file-selector-button {
+    border-color: var(--color-gray-200, currentcolor);
   }
 
-  .responsive-nav {
-    @apply max-w-[752px] 990:max-w-[972px] 1200:max-w-[1172px] 1640:max-w-[1342px] 1920:max-w-[1622px];
-  }
-
-  .w-nav {
-    @apply 990:w-[972px] 1200:w-[1172px] 1640:w-[1342px] 1920:w-[1622px];
-  }
-
-  /* Platform section */
-  .responsive-platforms-item-bg {
-    @apply h-[205px] w-[345px] 990:h-[263px] 990:w-[293px] 1200:h-[316px] 1200:w-[360px] 1640:h-[351px] 1640:w-[416px] 1920:h-[355px] 1920:w-[509px];
-  }
-
-  .responsive-platforms-item-content {
-    @apply h-[166px] w-[155px] 990:h-[226px] 990:w-[210px] 1280:h-[264px] 1280:w-[245px] 1920:h-[312px] 1920:w-[290px];
-  }
-}
-
-/* ============================================
-   Base Styles
-   ============================================ */
-@layer base {
-  * {
-    @apply border-border outline-ring/50;
-  }
   html {
-    background-color: #181f29; /* Color for scrollbar gutter area */
+    background-color: #181f29;
   }
 
-  /* Custom Browser Scrollbar */
+  body {
+    background-color: hsl(var(--background));
+    color: hsl(var(--foreground));
+  }
+
+  /* Custom Scrollbar */
   ::-webkit-scrollbar {
     width: 8px;
   }
-
   ::-webkit-scrollbar-track {
     background: transparent;
     background-color: #181f29;
   }
-
   ::-webkit-scrollbar-thumb {
     background-color: #374050;
     border-radius: 9999px;
   }
-
   ::-webkit-scrollbar-thumb:hover {
     background-color: rgba(255, 255, 255, 0.2);
   }
 
-  body {
-    @apply bg-background text-foreground;
-  }
-
-  /* Fix: Radix UI adds padding/margin to body when scroll is locked */
-
-  /* Selection styles */
   ::selection {
     background-color: hsl(var(--accent-blue) / 0.3);
     color: hsl(var(--text-primary));
   }
-
-  /* Screen reader only utility - for accessibility */
-  /* .sr-only {
-    position: absolute;
-    width: 1px;
-    height: 1px;
-    padding: 0;
-    margin: -1px;
-    overflow: hidden;
-    clip: rect(0, 0, 0, 0);
-    white-space: nowrap;
-    border-width: 0;
-  }
-
-  .not-sr-only {
-    position: static;
-    width: auto;
-    height: auto;
-    padding: 0;
-    margin: 0;
-    overflow: visible;
-    clip: auto;
-    white-space: normal;
-  } */
 }
 
-/* ============================================
-   Component Classes (Semantic)
-   ============================================ */
-@layer components {
-  /* Surface backgrounds */
-  .surface-base {
-    background-color: hsl(var(--surface-base));
-  }
+/* Custom Utilities */
+@utility responsive {
+  @apply 990:max-w-[940px] 1200:max-w-[1140px] 1640:max-w-[1310px] 1920:max-w-[1590px] max-w-[720px];
+}
+@utility responsive-nav {
+  @apply 990:max-w-[972px] 1200:max-w-[1172px] 1640:max-w-[1342px] 1920:max-w-[1622px] max-w-[752px];
+}
+@utility w-nav {
+  @apply 990:w-[972px] 1200:w-[1172px] 1640:w-[1342px] 1920:w-[1622px];
+}
+@utility responsive-platforms-item-bg {
+  @apply 990:h-[263px] 990:w-[293px] 1200:h-[316px] 1200:w-[360px] 1640:h-[351px] 1640:w-[416px] 1920:h-[355px] 1920:w-[509px] h-[205px] w-[345px];
+}
+@utility responsive-platforms-item-content {
+  @apply 990:h-[226px] 990:w-[210px] 1280:h-[264px] 1280:w-[245px] 1920:h-[312px] 1920:w-[290px] h-[166px] w-[155px];
+}
 
-  .surface-elevated {
-    background-color: hsl(var(--surface-elevated));
-  }
-
-  .surface-overlay {
-    background-color: hsl(var(--surface-overlay));
-  }
-
-  .surface-card {
-    background-color: hsl(var(--surface-card));
-  }
-
-  /* Brand backgrounds */
-  .bg-brand-primary {
-    background-color: hsl(var(--brand-primary));
-  }
-
-  .bg-brand-primary-light {
-    background-color: hsl(var(--brand-primary-light));
-  }
-
-  .bg-brand-primary-dark {
-    background-color: hsl(var(--brand-primary-dark));
-  }
-
-  /* Text colors */
-  .text-primary {
-    color: hsl(var(--text-primary));
-  }
-
-  .text-secondary {
-    color: hsl(var(--text-secondary));
-  }
-
-  .text-tertiary {
-    color: hsl(var(--text-tertiary));
-  }
-
-  .text-muted {
-    color: hsl(var(--text-muted));
-  }
-
-  /* Accent colors */
-  .bg-accent-green {
-    background-color: hsl(var(--accent-green));
-  }
-
-  .text-accent-yellow {
-    color: hsl(var(--accent-yellow));
-  }
-
-  /* Border colors */
-  .border-subtle {
-    border-color: hsl(var(--border-subtle));
-  }
-
-  .border-default {
-    border-color: hsl(var(--border-default));
-  }
-
-  /* Hover states */
-  .hover-surface:hover {
+/* Semantic Component Utilities */
+@utility surface-base {
+  background-color: hsl(var(--surface-base));
+}
+@utility surface-elevated {
+  background-color: hsl(var(--surface-elevated));
+}
+@utility surface-overlay {
+  background-color: hsl(var(--surface-overlay));
+}
+@utility surface-card {
+  background-color: hsl(var(--surface-card));
+}
+@utility bg-brand-primary {
+  background-color: hsl(var(--brand-primary));
+}
+@utility bg-brand-primary-light {
+  background-color: hsl(var(--brand-primary-light));
+}
+@utility bg-brand-primary-dark {
+  background-color: hsl(var(--brand-primary-dark));
+}
+@utility text-primary {
+  color: hsl(var(--text-primary));
+}
+@utility text-secondary {
+  color: hsl(var(--text-secondary));
+}
+@utility text-tertiary {
+  color: hsl(var(--text-tertiary));
+}
+@utility text-muted {
+  color: hsl(var(--text-muted));
+}
+@utility bg-accent-green {
+  background-color: hsl(var(--accent-green));
+}
+@utility text-accent-yellow {
+  color: hsl(var(--accent-yellow));
+}
+@utility border-subtle {
+  border-color: hsl(var(--border-subtle));
+}
+@utility border-default {
+  border-color: hsl(var(--border-default));
+}
+@utility hover-surface {
+  &:hover {
     background-color: hsl(var(--state-hover));
   }
-
-  /* Interactive card with hover effect */
-  .card-interactive {
-    @apply transition-all duration-300;
-  }
-
-  .card-interactive:hover {
+}
+@utility card-interactive {
+  @apply transition-all duration-300;
+  &:hover {
     @apply shadow-lg;
     transform: translateY(-2px);
   }
-
-  /* Backdrop blur with brand colors */
-  .backdrop-brand {
-    background-color: hsl(var(--gradient-backdrop));
-    backdrop-filter: blur(12px);
-  }
-
-  /* Button base styles */
-  .btn-primary {
-    @apply bg-accent-green rounded-lg font-medium text-white transition-colors;
-  }
-
-  .btn-primary:hover {
+}
+@utility backdrop-brand {
+  background-color: hsl(var(--gradient-backdrop));
+  backdrop-filter: blur(12px);
+}
+@utility btn-primary {
+  @apply bg-accent-green rounded-lg font-medium text-white transition-colors;
+  &:hover {
     background-color: hsl(var(--accent-green-hover));
   }
-
-  /* Skip to content link (accessibility) */
-  .skip-link {
-    @apply focus:bg-accent-green sr-only focus:not-sr-only focus:absolute focus:left-4 focus:top-4 focus:z-50 focus:rounded-lg focus:px-4 focus:py-2 focus:text-white;
-  }
+}
+@utility skip-link {
+  @apply focus:bg-accent-green sr-only focus:not-sr-only focus:absolute focus:top-4 focus:left-4 focus:z-50 focus:rounded-lg focus:px-4 focus:py-2 focus:text-white;
+}
+@utility shadow-custom {
+  box-shadow: -0.5px -0.5px 4px 0.1px #bebebe;
+}
+@utility shadow-nav-cate {
+  box-shadow: -0.5px -0.5px 1px 0.1px #706e6e;
 }

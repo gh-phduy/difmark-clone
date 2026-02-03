@@ -76,7 +76,7 @@ export default function UserMenu({ user }: UserMenuProps) {
 
     return (
         <Popover open={isOpen} onOpenChange={setIsOpen}>
-            <PopoverTrigger className="flex items-center gap-2 outline-none">
+            <PopoverTrigger className="flex items-center gap-2 outline-hidden">
                 <div className="relative h-9 w-9 overflow-hidden rounded-full ring-2 ring-brand-light transition-all hover:ring-brand-primary">
                     <Image
                         src={user.picture}

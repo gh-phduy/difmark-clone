@@ -66,7 +66,7 @@ function NavSearch({ value, onChange, onFocus, onBlur }: NavSearchProps) {
         onChange={handleInputChange}
         onFocus={onFocus}
         onBlur={onBlur}
-        className="w-full cursor-text bg-surface-overlay px-4 py-2 text-dm-text-primary caret-white focus:outline-none focus-visible:ring-2 focus-visible:ring-state-focus"
+        className="w-full cursor-text bg-surface-overlay px-4 py-2 text-dm-text-primary caret-white focus:outline-hidden focus-visible:ring-2 focus-visible:ring-state-focus"
         aria-label="Search products"
         placeholder=""
       />
@@ -95,7 +95,7 @@ function CategoriesDropdown({ isOpen, onOpenChange }: CategoriesDropdownProps) {
   return (
     <Popover modal={true} open={isOpen} onOpenChange={onOpenChange}>
       <PopoverTrigger
-        className="flex flex-shrink-0 items-center gap-x-2 rounded-lg bg-brand-light px-4 py-1 text-[16px] text-dm-text-secondary transition-all duration-500 hover:text-dm-text-primary"
+        className="flex shrink-0 items-center gap-x-2 rounded-lg bg-brand-light px-4 py-1 text-[16px] text-dm-text-secondary transition-all duration-500 hover:text-dm-text-primary"
         aria-expanded={isOpen}
         aria-haspopup="menu"
         aria-label="Open categories menu"
@@ -117,7 +117,7 @@ function CategoriesDropdown({ isOpen, onOpenChange }: CategoriesDropdownProps) {
         />
       </PopoverTrigger>
       <PopoverContent
-        className="w-auto rounded-lg border-none bg-surface-elevated/90 p-0 backdrop-blur-sm"
+        className="w-auto rounded-lg border-none bg-surface-elevated/90 p-0 backdrop-blur-xs"
         align="start"
         sideOffset={20}
         alignOffset={-4}
@@ -135,7 +135,7 @@ function CategoriesDropdown({ isOpen, onOpenChange }: CategoriesDropdownProps) {
 function SearchButton() {
   return (
     <button
-      className="flex flex-shrink-0 items-center rounded-lg bg-brand-light px-5 py-1 font-bold text-dm-text-tertiary transition-colors hover:text-dm-text-secondary"
+      className="flex shrink-0 items-center rounded-lg bg-brand-light px-5 py-1 font-bold text-dm-text-tertiary transition-colors hover:text-dm-text-secondary"
       aria-label="Search"
     >
       <IoSearch size={20} aria-hidden="true" />
@@ -233,7 +233,7 @@ export default function NavBar() {
       >
         <div className="responsive-nav flex h-10 w-full items-center justify-between px-8 py-10 770:justify-center 800:px-4">
           {/* Logo */}
-          <Link href={ROUTES.HOME} className="flex-shrink-0">
+          <Link href={ROUTES.HOME} className="shrink-0">
             <Image
               src="/Difmark-logo.png"
               alt="Difmark - Digital Game Marketplace"

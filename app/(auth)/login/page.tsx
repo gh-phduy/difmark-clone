@@ -13,7 +13,7 @@ export default function SignUpPage() {
             <div className="mt-2 w-full w-[418px] p-5 h-[55px] bg-[#354051] flex justify-between items-center rounded-md" >
             <TfiEmail size={20} className="text-[#9ba1ab]" />
             <Input
-            className=" w-full border-none focus:outline-none caret-[#9ba1ab] text-white"
+            className=" w-full border-none focus:outline-hidden caret-[#9ba1ab] text-white"
             type="email"
             placeholder="Your Username / E-mail"
              />
@@ -25,7 +25,7 @@ export default function SignUpPage() {
             <div className="mt-2 w-full w-[418px] p-5 h-[55px] bg-[#354051] flex justify-between items-center rounded-md" >
             <GoShieldLock size={20} className="text-[#9ba1ab]" />
             <Input
-            className=" w-full border-none focus:outline-none caret-[#9ba1ab] text-white"
+            className=" w-full border-none focus:outline-hidden caret-[#9ba1ab] text-white"
             placeholder="Password"
             type="password"
              />

@@ -91,6 +91,6 @@ export interface ImageProps {
   width?: number;
   height?: number;
   priority?: boolean;
-  placeholder?: "blur" | "empty";
+  placeholder?: "blur-sm" | "empty";
   blurDataURL?: string;
 }

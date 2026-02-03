@@ -68,7 +68,7 @@ export default function ProductCard() {
   const isInCart = (productId: number) => cartItems.includes(productId);
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-gray-50 to-gray-100 p-8">
+    <div className="min-h-screen bg-linear-to-br from-gray-50 to-gray-100 p-8">
       <div className="max-w-7xl mx-auto">
         <div className="text-center mb-12">
           <h1 className="text-4xl font-bold text-gray-900 mb-4">
@@ -105,13 +105,13 @@ export default function ProductCard() {
 
               {/* Wishlist Button */}
               <div className="absolute top-4 right-4 z-10">
-                <button className="w-10 h-10 bg-white/80 backdrop-blur-sm rounded-full flex items-center justify-center hover:bg-white transition-all duration-200 shadow-lg">
+                <button className="w-10 h-10 bg-white/80 backdrop-blur-xs rounded-full flex items-center justify-center hover:bg-white transition-all duration-200 shadow-lg">
                   <Heart className="w-5 h-5 text-gray-600 hover:text-red-500 transition-colors" />
                 </button>
               </div>
 
               {/* Product Image */}
-              <div className="relative h-64 bg-gradient-to-br from-gray-100 to-gray-200 overflow-hidden">
+              <div className="relative h-64 bg-linear-to-br from-gray-100 to-gray-200 overflow-hidden">
                 {/* Placeholder for actual image */}
                 <div className="w-full h-full flex items-center justify-center">
                   <div className="text-center text-gray-400">
@@ -124,7 +124,7 @@ export default function ProductCard() {
 
                 {/* Quick View Button - Fade in on hover */}
                 <div className="absolute inset-0 bg-black/0 group-hover:bg-black/20 transition-all duration-300 flex items-center justify-center">
-                  <button className="transform translate-y-4 opacity-0 group-hover:translate-y-0 group-hover:opacity-100 transition-all duration-300 bg-white/90 backdrop-blur-sm px-4 py-2 rounded-lg font-medium text-gray-900 hover:bg-white">
+                  <button className="transform translate-y-4 opacity-0 group-hover:translate-y-0 group-hover:opacity-100 transition-all duration-300 bg-white/90 backdrop-blur-xs px-4 py-2 rounded-lg font-medium text-gray-900 hover:bg-white">
                     <Eye className="w-4 h-4 inline mr-2" />
                     Quick View
                   </button>
@@ -220,7 +220,7 @@ export default function ProductCard() {
 
           <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
             {/* Variant 1: Overlay từ center */}
-            <div className="group relative bg-gradient-to-br from-purple-50 to-purple-100 rounded-xl p-6 hover:shadow-lg transition-all duration-300">
+            <div className="group relative bg-linear-to-br from-purple-50 to-purple-100 rounded-xl p-6 hover:shadow-lg transition-all duration-300">
               <h3 className="font-semibold text-gray-900 mb-4">
                 Overlay from Center
               </h3>
@@ -237,7 +237,7 @@ export default function ProductCard() {
             </div>
 
             {/* Variant 2: Overlay từ bottom */}
-            <div className="group relative bg-gradient-to-br from-green-50 to-green-100 rounded-xl p-6 hover:shadow-lg transition-all duration-300">
+            <div className="group relative bg-linear-to-br from-green-50 to-green-100 rounded-xl p-6 hover:shadow-lg transition-all duration-300">
               <h3 className="font-semibold text-gray-900 mb-4">
                 Overlay from Bottom
               </h3>
@@ -254,7 +254,7 @@ export default function ProductCard() {
             </div>
 
             {/* Variant 3: Fade In từ trái */}
-            <div className="group relative bg-gradient-to-br from-orange-50 to-orange-100 rounded-xl p-6 hover:shadow-lg transition-all duration-300">
+            <div className="group relative bg-linear-to-br from-orange-50 to-orange-100 rounded-xl p-6 hover:shadow-lg transition-all duration-300">
               <h3 className="font-semibold text-gray-900 mb-4">
                 Fade In từ trái
               </h3>

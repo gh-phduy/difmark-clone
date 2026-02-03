@@ -182,7 +182,7 @@ function PaymentIcon({ icon: Icon, label, size }: PaymentIconProps) {
 function Divider({ className = "" }: { className?: string }) {
   return (
     <div
-      className={`h-[1px] bg-dm-border-subtle ${className}`}
+      className={`h-px bg-dm-border-subtle ${className}`}
       aria-hidden="true"
     />
   );

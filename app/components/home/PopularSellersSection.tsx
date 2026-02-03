@@ -229,7 +229,7 @@ export default function PopularSellers() {
         <Button
           variant="outline"
           size="icon"
-          className={`absolute rounded-full -left-16 top-1/2 800:flex hidden items-center -translate-y-1/2 bg-slate-700/90 border-slate-600 text-white hover:bg-slate-600 hover:scale-110 transition-all duration-200 shadow-lg backdrop-blur-sm z-20 h-10 w-10 ${!canScrollPrev ? "opacity-50 cursor-not-allowed" : ""
+          className={`absolute rounded-full -left-16 top-1/2 800:flex hidden items-center -translate-y-1/2 bg-slate-700/90 border-slate-600 text-white hover:bg-slate-600 hover:scale-110 transition-all duration-200 shadow-lg backdrop-blur-xs z-20 h-10 w-10 ${!canScrollPrev ? "opacity-50 cursor-not-allowed" : ""
             }`}
           onClick={scrollPrev}
           disabled={!canScrollPrev}
@@ -241,7 +241,7 @@ export default function PopularSellers() {
         <Button
           variant="outline"
           size="icon"
-          className={`absolute -right-16 top-1/2 rounded-full 800:flex hidden items-center -translate-y-1/2 bg-slate-700/90 border-slate-600 text-white hover:bg-slate-600 hover:scale-110 transition-all duration-200 shadow-lg backdrop-blur-sm z-20 h-10 w-10 ${!canScrollNext ? "opacity-50 cursor-not-allowed" : ""
+          className={`absolute -right-16 top-1/2 rounded-full 800:flex hidden items-center -translate-y-1/2 bg-slate-700/90 border-slate-600 text-white hover:bg-slate-600 hover:scale-110 transition-all duration-200 shadow-lg backdrop-blur-xs z-20 h-10 w-10 ${!canScrollNext ? "opacity-50 cursor-not-allowed" : ""
             }`}
           onClick={scrollNext}
           disabled={!canScrollNext}

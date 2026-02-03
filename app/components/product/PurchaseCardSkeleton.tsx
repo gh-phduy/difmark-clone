@@ -14,7 +14,7 @@ export function PurchaseCardSkeleton() {
                 <div className="flex items-start justify-between">
                     <div className="flex items-center gap-3">
                         {/* Seller Avatar */}
-                        <div className="relative w-12 h-12 flex-shrink-0">
+                        <div className="relative w-12 h-12 shrink-0">
                             <Skeleton className="w-12 h-12 rounded-full" />
                         </div>
 

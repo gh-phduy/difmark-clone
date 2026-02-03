@@ -194,7 +194,7 @@ export default function PurchaseCard({
 
                 {/* Activation Info */}
                 <div className="flex items-center gap-2 text-sm">
-                    <IoMdCheckmarkCircle className="w-5 h-5 text-green-500 flex-shrink-0" />
+                    <IoMdCheckmarkCircle className="w-5 h-5 text-green-500 shrink-0" />
                     <span className="text-gray-300">Can be activated from <span className="text-white font-medium">{product.activationRegion}</span></span>
                     <Button variant="ghost" size="icon" className="ml-auto text-gray-400 hover:text-white hover:bg-transparent">
                         <MdInfo className="w-5 h-5" />

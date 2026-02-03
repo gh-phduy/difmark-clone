@@ -16,7 +16,7 @@ export function FilterDropdownItem({ option, isSelected, onSelect }: ItemProps) 
             onClick={() => onSelect(option.id)}
             className={cn(
                 "relative flex cursor-pointer items-center w-full px-4 py-[10px]",
-                "outline-none transition-colors border-none text-left",
+                "outline-hidden transition-colors border-none text-left",
                 "hover:bg-state-hover focus:bg-state-hover",
                 isSelected && "bg-state-active"
             )}
@@ -30,7 +30,7 @@ export function FilterDropdownItem({ option, isSelected, onSelect }: ItemProps) 
 
             <div className="flex items-center gap-3 w-full">
                 {/* Icon / Flag */}
-                <div className="flex h-[18px] w-[26px] shrink-0 items-center justify-center overflow-hidden rounded-[2px] shadow-sm bg-black/10">
+                <div className="flex h-[18px] w-[26px] shrink-0 items-center justify-center overflow-hidden rounded-[2px] shadow-xs bg-black/10">
                     {option.flagCode ? (
                         <img
                             src={`https://flagcdn.com/w80/${option.flagCode}.png`}

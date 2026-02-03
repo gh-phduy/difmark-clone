@@ -13,8 +13,9 @@ import { FaCartShopping } from "react-icons/fa6";
 import { BsShieldFillCheck } from "react-icons/bs";
 import { TiStarFullOutline } from "react-icons/ti";
 import { IoBanSharp } from "react-icons/io5";
-import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger, TooltipArrow } from "@/components/ui/tooltip";
+import { TooltipProvider } from "@/components/ui/tooltip";
 import { SiPlaystation, SiNintendo } from "react-icons/si";
+import SellerInfoTooltip from "./SellerInfoTooltip";
 
 export interface SellerOffer {
   data: {
@@ -53,7 +54,7 @@ export default function SellerRow({ offer }: { offer: SellerOffer }) {
   const isBanStatus = offer.data.activationRegion?.toLowerCase().includes("restricted");
 
   return (
-    <div className="flex w-full items-center transition-colors duration-300 hover:bg-gray-700/70 rounded-sm justify-between bg-[#222936] px-[20px] py-[15px]">
+    <div className="flex w-full items-center transition-colors duration-300 hover:bg-gray-700/70 rounded-sm justify-between bg-midnight-750 px-[20px] py-[15px]">
       {/* 1. Seller Info Section */}
       <div className="flex w-[250px] items-center gap-x-3 shrink-0">
         <OptimizedAvatar
@@ -85,39 +86,18 @@ export default function SellerRow({ offer }: { offer: SellerOffer }) {
       {/* 2. Platform Icons Section */}
       <div className="flex w-[120px] justify-center items-center gap-x-3 shrink-0">
         <TooltipProvider delayDuration={200}>
-          <Tooltip disableHoverableContent={true}>
-            <TooltipTrigger asChild>
-              <div className="cursor-pointer w-[24px] rounded-full bg-[#3a475d] flex h-[24px] items-center justify-center">
-                <IoKey />
-              </div>
-            </TooltipTrigger>
-            <TooltipContent side="top" align="start" className="bg-[#3a475d] text-white text-base border-none" >
-              <p>The seller will send you a {offer.data.type?.toLowerCase() || 'key'} that you can activate</p>
-              <TooltipArrow className="fill-[#3a475d]" />
-            </TooltipContent>
-          </Tooltip>
-          <Tooltip disableHoverableContent={true}>
-            <TooltipTrigger asChild>
-              <div className="cursor-pointer h-[24px] w-[24px] rounded-full bg-[#3a475d] flex items-center justify-center">
-                {getPlatformIcon(offer.data.platform)}
-              </div>
-            </TooltipTrigger>
-            <TooltipContent side="top" align="start" className="bg-[#3a475d] text-white text-base border-none" >
-              <p>Platform: {offer.data.platform}</p>
-              <TooltipArrow className="fill-[#3a475d]" />
-            </TooltipContent>
-          </Tooltip>
-          <Tooltip disableHoverableContent={true}>
-            <TooltipTrigger asChild>
-              <div className="cursor-pointer h-[24px] w-[24px] rounded-full bg-[#3a475d] flex items-center justify-center">
-                <RiGlobalLine />
-              </div>
-            </TooltipTrigger>
-            <TooltipContent side="top" align="start" className="bg-[#3a475d] text-white text-base border-none" >
-              <p>Region: {offer.data.activationRegion}</p>
-              <TooltipArrow className="fill-[#3a475d]" />
-            </TooltipContent>
-          </Tooltip>
+          <SellerInfoTooltip
+            icon={<IoKey />}
+            content={<p>The seller will send you a {offer.data.type?.toLowerCase() || 'key'} that you can activate</p>}
+          />
+          <SellerInfoTooltip
+            icon={getPlatformIcon(offer.data.platform)}
+            content={<p>Platform: {offer.data.platform}</p>}
+          />
+          <SellerInfoTooltip
+            icon={<RiGlobalLine />}
+            content={<p>Region: {offer.data.activationRegion}</p>}
+          />
         </TooltipProvider>
       </div>
 

@@ -15,20 +15,20 @@ export default function ProductGallery() {
                     priority
                 />
                 {/* Gradient overlay for better text/UI visibility */}
-                <div className="absolute inset-0 bg-gradient-to-b from-black/20 via-transparent to-black/60" />
+                <div className="absolute inset-0 bg-linear-to-b from-black/20 via-transparent to-black/60" />
             </div>
 
             {/* Bottom Navigation Bar - Transparent without blur */}
-            <div className="absolute bottom-0 left-0 right-0 flex h-[60px] items-center justify-center gap-3 border-t border-white/[0.08] bg-black/30 px-6">
+            <div className="absolute bottom-0 left-0 right-0 flex h-[60px] items-center justify-center gap-3 border-t border-white/8 bg-black/30 px-6">
                 {/* Platform Selection */}
                 <div className="flex items-center gap-2">
                     {/* PC Button */}
-                    <button className="flex h-9 w-11 items-center justify-center rounded-lg bg-white/[0.05] transition-all hover:bg-white/[0.1] active:scale-90">
+                    <button className="flex h-9 w-11 items-center justify-center rounded-lg bg-white/5 transition-all hover:bg-white/10 active:scale-90">
                         <Monitor className="h-4.5 w-4.5 text-gray-400" />
                     </button>
 
                     {/* Xbox Pill - Styled to match the active chip in image */}
-                    <div className="flex items-center gap-2 rounded-full border border-white/[0.1] bg-white/[0.08] p-1 pr-4">
+                    <div className="flex items-center gap-2 rounded-full border border-white/10 bg-white/8 p-1 pr-4">
                         <div className="flex h-7 w-7 items-center justify-center rounded-full bg-[#107C10] shadow-[0_0_12px_rgba(16,124,16,0.3)]">
                             <FaXbox className="h-4 w-4 text-white" />
                         </div>

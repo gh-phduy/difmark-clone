@@ -30,7 +30,7 @@ export default function HomePage() {
     <main id="main-content" className="w-full flex flex-col items-center gap-y-16">
       {/* Hero Section */}
       {/* <HeroCarousel /> */}
-      <div className="w-full h-[400px] bg-gradient-to-r from-brand to-brand-light flex items-center justify-center">
+      <div className="w-full h-[400px] bg-linear-to-r from-brand to-brand-light flex items-center justify-center">
         <h1 className="text-4xl font-bold text-white">Hero Carousel Placeholder</h1>
       </div>
 

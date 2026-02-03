@@ -18,7 +18,7 @@ import { Button } from "@/components/ui/button";
 export default function SignIn() {
     return (
         <Dialog modal={true}>
-            <DialogTrigger className="flex cursor-pointer items-center gap-x-2 px-2 py-4 text-dm-text-secondary transition-colors duration-500 hover:text-dm-text-primary outline-none cursor-pointer bg-transparent border-none">
+            <DialogTrigger className="flex cursor-pointer items-center gap-x-2 px-2 py-4 text-dm-text-secondary transition-colors duration-500 hover:text-dm-text-primary outline-hidden cursor-pointer bg-transparent border-none">
                 <PiSignInBold size={24} aria-hidden="true" />
                 <span className="hidden 770:block">SIGN IN</span>
             </DialogTrigger>
@@ -53,7 +53,7 @@ export default function SignIn() {
                         />
 
                         {/* Gradient Overlay */}
-                        <div className="absolute inset-0 bg-gradient-to-t from-surface-base/80 to-transparent z-20" />
+                        <div className="absolute inset-0 bg-linear-to-t from-surface-base/80 to-transparent z-20" />
 
                         {/* Cashback Card Overlay */}
                         <div className="absolute bottom-12 left-8 right-8 z-30 bg-surface-base/40 backdrop-blur-md border border-white/10 p-6 rounded-2xl">
@@ -90,7 +90,7 @@ export default function SignIn() {
                         </Button>
 
                         {/* Divider */}
-                        <div className="w-full h-[1px] bg-white/10 mb-8" />
+                        <div className="w-full h-px bg-white/10 mb-8" />
 
                         {/* Social Grid */}
                         <div className="grid grid-cols-2 gap-4">
