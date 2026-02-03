@@ -20,6 +20,7 @@
   --color-midnight-700: #2d3544;
   --color-midnight-650: #37404f;
   --color-midnight-600: #374050;
+  --color-midnight-500: #3a475d;
 
   /* Brand Colors */
   --color-brand: hsl(var(--brand-primary));

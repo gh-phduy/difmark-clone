@@ -9,13 +9,13 @@ export default function SellerInfoTooltip({ icon, content }: SellerInfoTooltipPr
     return (
         <Tooltip disableHoverableContent={true}>
             <TooltipTrigger asChild>
-                <div className="cursor-pointer w-[24px] h-[24px] rounded-full bg-[#3a475d] flex items-center justify-center">
+                <div className="cursor-pointer w-[24px] h-[24px] text-steel-500 rounded-full bg-midnight-500 flex items-center justify-center">
                     {icon}
                 </div>
             </TooltipTrigger>
-            <TooltipContent side="top" align="start" className="bg-[#3a475d] text-white text-base border-none">
+            <TooltipContent side="top" align="start" className="bg-midnight-500 text-white text-base border-none">
                 {content}
-                <TooltipArrow className="fill-[#3a475d]" />
+                <TooltipArrow className="fill-midnight-500" />
             </TooltipContent>
         </Tooltip>
     );

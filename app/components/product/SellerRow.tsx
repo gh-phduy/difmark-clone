@@ -1,4 +1,4 @@
-"use client"
+"use client";
 
 import OptimizedAvatar from "../shared/OptimizedAvatar";
 import { Separator } from "@/components/ui/separator";
@@ -51,12 +51,14 @@ export default function SellerRow({ offer }: { offer: SellerOffer }) {
 
   // Simple heuristic for demo: if region is 'None' or contains 'Restricted' (simulation)
   // In real app, this would be a boolean from backend
-  const isBanStatus = offer.data.activationRegion?.toLowerCase().includes("restricted");
+  const isBanStatus = offer.data.activationRegion
+    ?.toLowerCase()
+    .includes("restricted");
 
   return (
-    <div className="flex w-full items-center transition-colors duration-300 hover:bg-gray-700/70 rounded-sm justify-between bg-midnight-750 px-[20px] py-[15px]">
+    <div className="bg-midnight-750 flex w-full items-center justify-between rounded-sm px-[20px] py-[15px] transition-colors duration-300 hover:bg-gray-700/70">
       {/* 1. Seller Info Section */}
-      <div className="flex w-[250px] items-center gap-x-3 shrink-0">
+      <div className="flex w-[250px] shrink-0 items-center gap-x-3">
         <OptimizedAvatar
           className=""
           src={offer.seller.avatar || "/avt.jpg"}
@@ -67,12 +69,19 @@ export default function SellerRow({ offer }: { offer: SellerOffer }) {
         />
         <div className="min-w-0">
           <div className="flex items-center gap-x-2">
-            <span className="text-lg font-semibold truncate max-w-[120px]">{offer.seller.name}</span>
+            <span className="max-w-[120px] truncate text-lg font-semibold">
+              {offer.seller.name}
+            </span>
             <BsShieldFillCheck className="shrink-0" color="#f8c944" size={16} />
           </div>
           <div className="flex items-center gap-x-3">
-            <span className="text-sm whitespace-nowrap" >🏆 {offer.seller.tier}</span>
-            <Separator orientation="vertical" className="h-[16px] bg-gray-600" />
+            <span className="text-sm whitespace-nowrap">
+              🏆 {offer.seller.tier}
+            </span>
+            <Separator
+              orientation="vertical"
+              className="h-[16px] bg-gray-600"
+            />
             <div className="flex items-center gap-x-1 whitespace-nowrap">
               <TiStarFullOutline color="#f8c944" size={16} />
               <span>{offer.seller.rating.toFixed(1)}</span>
@@ -84,11 +93,16 @@ export default function SellerRow({ offer }: { offer: SellerOffer }) {
       <Separator orientation="vertical" className="h-[50px] bg-gray-600" />
 
       {/* 2. Platform Icons Section */}
-      <div className="flex w-[120px] justify-center items-center gap-x-3 shrink-0">
+      <div className="flex w-[120px] shrink-0 items-center justify-center gap-x-3">
         <TooltipProvider delayDuration={200}>
           <SellerInfoTooltip
             icon={<IoKey />}
-            content={<p>The seller will send you a {offer.data.type?.toLowerCase() || 'key'} that you can activate</p>}
+            content={
+              <p>
+                The seller will send you a{" "}
+                {offer.data.type?.toLowerCase() || "key"} that you can activate
+              </p>
+            }
           />
           <SellerInfoTooltip
             icon={getPlatformIcon(offer.data.platform)}
@@ -104,49 +118,60 @@ export default function SellerRow({ offer }: { offer: SellerOffer }) {
       <Separator orientation="vertical" className="h-[50px] bg-gray-600" />
 
       {/* 3. Edition Section */}
-      <div className="flex w-[180px] gap-x-2 justify-start items-center shrink-0">
+      <div className="flex w-[180px] shrink-0 items-center justify-start gap-x-2">
         <FaMedal className="text-gray-400" />
-        <span className="text-[#9ba1ab] whitespace-nowrap" >Edition:</span>
-        <span className="font-medium truncate">{offer.data.edition}</span>
+        <span className="whitespace-nowrap text-steel-500">Edition:</span>
+        <span className="truncate font-medium">{offer.data.edition}</span>
       </div>
 
       <Separator orientation="vertical" className="h-[50px] bg-gray-600" />
 
       {/* 4. Activation Section */}
-      <div className="flex w-[320px] items-center gap-x-2 shrink-0">
+      <div className="flex w-[320px] shrink-0 items-center gap-x-2">
         {isBanStatus ? (
           <IoBanSharp color="#f87171" size={24} className="shrink-0" />
         ) : (
           <SlCheck color="#65c756" size={24} className="shrink-0" />
         )}
-        <span className={`text-sm flex-1`} >
+        <span className={`flex-1 text-sm`}>
           {isBanStatus
             ? "Can't be activated in your region"
             : `Can be activated from ${offer.data.activationRegion}`}
         </span>
-        <LuInfo className="text-[#9ba1ab] ml-1 shrink-0 cursor-pointer" size={20} />
+        <LuInfo
+          className="ml-1 shrink-0 cursor-pointer text-steel-500"
+          size={20}
+        />
       </div>
 
       <Separator orientation="vertical" className="h-[50px] bg-gray-600" />
 
       {/* 5. Price Section */}
-      <div className="flex flex-col w-[150px] justify-center items-center shrink-0">
-        <span className="text-[#9ba1ab] text-sm" >Total amount:</span>
-        <span className="text-xl font-bold" >{offer.data.currency} {offer.data.price}</span>
+      <div className="flex w-[150px] shrink-0 flex-col items-center justify-center">
+        <span className="text-sm text-steel-500">Total amount:</span>
+        <span className="text-xl font-bold">
+          {offer.data.currency} {offer.data.price}
+        </span>
       </div>
 
       <Separator orientation="vertical" className="h-[50px] bg-gray-600" />
 
       {/* 6. Actions Section */}
-      <div className="flex items-center gap-x-6 shrink-0">
-        <MdOutlineRemoveRedEye color="#9ba1ab" size={24} className="cursor-pointer hover:text-white transition-colors" />
+      <div className="text-steel-500 flex shrink-0 items-center gap-x-6">
+        <MdOutlineRemoveRedEye
+          size={24}
+          className="cursor-pointer transition-colors hover:text-white"
+        />
         <Separator orientation="vertical" className="h-[50px] bg-gray-600" />
-        <BiDotsVerticalRounded color="#9ba1ab" size={24} className="cursor-pointer hover:text-white transition-colors" />
+        <BiDotsVerticalRounded
+          size={24}
+          className="cursor-pointer transition-colors hover:text-white"
+        />
         <Separator orientation="vertical" className="h-[50px] bg-gray-600" />
-        <div className="flex rounded-lg h-[60px] cursor-pointer w-[60px] bg-[#3a475d] hover:bg-gray-500 transition-colors justify-center items-center">
+        <div className="bg-midnight-500 flex h-[60px] w-[60px] cursor-pointer items-center justify-center rounded-lg transition-colors hover:bg-gray-500">
           <FaCartShopping size={24} />
         </div>
       </div>
-    </div >
+    </div>
   );
 }
