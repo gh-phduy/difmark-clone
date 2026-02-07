@@ -87,7 +87,7 @@ export default function CheckoutPage() {
   const [selectedMethod, setSelectedMethod] = useState("visa");
 
   return (
-    <div className="mx-auto grid w-full max-w-[1200px] grid-cols-1 gap-6 p-4 lg:grid-cols-3 lg:p-8">
+    <div className="mx-auto grid w-full max-w-[1200px] grid-cols-1 gap-6 lg:grid-cols-3">
       {/* Left Column - Payment Selection */}
       <div className="space-y-4 lg:col-span-2">
         {/* Filters */}

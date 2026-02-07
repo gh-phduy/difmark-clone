@@ -1,8 +1,10 @@
+import { Separator } from "@base-ui/react";
 import { Settings } from "lucide-react";
 
 export default function CheckoutNavSection() {
   return (
     <>
+      <Separator orientation="vertical" className="h-6 w-[1px] bg-gray-700" />
       {/* Checkout Stepper */}
       <div className="hidden flex-1 items-center justify-center gap-4 text-sm font-medium md:flex">
         {/* Step 1: Shopping Cart (Completed) */}
@@ -28,7 +30,7 @@ export default function CheckoutNavSection() {
         </div>
 
         {/* Connector */}
-        <div className="h-[2px] w-24 bg-[#46ca43]"></div>
+        <div className="h-[2px] w-1/3 bg-[#46ca43]"></div>
 
         {/* Step 2: Checkout (Active) */}
         <div className="flex items-center gap-2 text-white">
@@ -52,7 +54,7 @@ export default function CheckoutNavSection() {
         </div>
 
         {/* Connector */}
-        <div className="h-[2px] w-24 bg-[#2d3544]"></div>
+        <div className="h-[2px] w-1/3 bg-[#2d3544]"></div>
 
         {/* Step 3: Processing (Pending) */}
         <div className="flex items-center gap-2 text-[#8b949e]">
@@ -62,17 +64,17 @@ export default function CheckoutNavSection() {
           <span>Processing</span>
         </div>
       </div>
+      <Separator orientation="vertical" className="h-6 w-[1px] bg-gray-700" />
 
       {/* Checkout Right Actions */}
-      <div className="flex items-center gap-4 text-sm text-[#8b949e]">
-        <div className="flex cursor-pointer items-center gap-1 hover:text-white">
-          <Settings size={16} />
-          <span>Processing</span>
-        </div>
-        <div className="h-4 w-[1px] bg-[#30363d]"></div>
+      <div className="flex items-center gap-4 text-sm text-steel-500">
         <div className="flex items-center gap-4">
           <span className="cursor-pointer hover:text-white">USD</span>
-          <span className="cursor-pointer hover:text-white">LNG</span>
+          <Separator
+            orientation="vertical"
+            className="h-6 w-[1px] bg-gray-700"
+          />
+          <span className="cursor-pointer hover:text-white">ENG</span>
         </div>
       </div>
     </>

@@ -8,7 +8,7 @@ export default function CheckoutLayout({
   return (
     <div className="min-h-screen bg-midnight-850 font-sans text-slate-200">
       <NavBar />
-      <div className="flex flex-1 flex-col items-center">{children}</div>
+      <div className="flex flex-1 flex-col items-center pt-30">{children}</div>
       {/* No Footer here as per implementation plan for checkout */}
     </div>
   );

@@ -48,9 +48,7 @@ export default function NavBar() {
         className={`flex w-full translate-y-0 justify-center gap-x-3 bg-brand/80 backdrop-blur-xl transition-all duration-700 ease-out`}
       >
         <div
-          className={`flex h-10 w-full responsive-nav items-center justify-between gap-x-6 px-8 770:justify-center 800:px-4 ${
-            isCheckoutPage ? "py-5" : "py-10"
-          }`}
+          className={`flex h-10 w-full responsive-nav items-center justify-between gap-x-6 px-8 py-10 770:justify-center 800:px-4`}
         >
           {/* Logo - Always visible */}
           <Link href={ROUTES.HOME} className="shrink-0">
