@@ -1,54 +1,46 @@
 import type { Metadata, Viewport } from "next";
 import { Inter } from "next/font/google";
 import "./globals.css";
-import NavBar from "./components/layout/NavBar";
-import Footer from "./components/layout/Footer";
 import { QueryProvider } from "./providers/QueryProvider";
 import { AuthProvider } from "./context/AuthContext";
 
 const inter = Inter({
-    subsets: ["latin"],
-    variable: "--font-inter",
+  subsets: ["latin"],
+  variable: "--font-inter",
 });
 
 export const metadata: Metadata = {
-    title: "Difmark - Digital Game Marketplace",
-    description: "Buy cheap digital games, gift cards, and software keys",
-    keywords: ["games", "digital keys", "marketplace", "cheap games"],
+  title: "Difmark - Digital Game Marketplace",
+  description: "Buy cheap digital games, gift cards, and software keys",
+  keywords: ["games", "digital keys", "marketplace", "cheap games"],
 };
 
 export const viewport: Viewport = {
-    width: "device-width",
-    initialScale: 1,
+  width: "device-width",
+  initialScale: 1,
 };
 
 export default function RootLayout({
-    children,
+  children,
 }: Readonly<{
-    children: React.ReactNode;
+  children: React.ReactNode;
 }>) {
-    return (
-        <html lang="en" className="dark">
-            <body
-                className={`${inter.variable} antialiased bg-midnight-850 text-dm-text-primary min-h-screen flex flex-col`}
-            >
-                <AuthProvider>
-                    <QueryProvider>
-                        {/* Skip to main content link for accessibility */}
-                        <a href="#main-content" className="skip-link">
-                            Skip to main content
-                        </a>
+  return (
+    <html lang="en" className="dark">
+      <body
+        className={`${inter.variable} flex min-h-screen flex-col bg-midnight-850 text-dm-text-primary antialiased`}
+      >
+        <AuthProvider>
+          <QueryProvider>
+            {/* Skip to main content link for accessibility */}
+            <a href="#main-content" className="skip-link">
+              Skip to main content
+            </a>
 
-                        <NavBar />
-
-                        <div className="flex-1 flex flex-col items-center">
-                            {children}
-                        </div>
-
-                        <Footer />
-                    </QueryProvider>
-                </AuthProvider>
-            </body>
-        </html>
-    );
+            {children}
+          </QueryProvider>
+        </AuthProvider>
+      </body>
+    </html>
+  );
 }
