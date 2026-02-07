@@ -19,7 +19,7 @@ export default function CategoriesDropdown({
   return (
     <Popover modal={true} open={isOpen} onOpenChange={onOpenChange}>
       <PopoverTrigger
-        className="flex shrink-0 items-center gap-x-2 rounded-lg bg-brand-light px-4 py-1 text-[16px] text-dm-text-secondary transition-all duration-500 hover:text-dm-text-primary"
+        className="flex shrink-0 cursor-pointer items-center gap-x-2 rounded-lg bg-brand-light px-4 py-1 text-[16px] text-dm-text-secondary transition-all duration-500 hover:text-dm-text-primary"
         aria-expanded={isOpen}
         aria-haspopup="menu"
         aria-label="Open categories menu"

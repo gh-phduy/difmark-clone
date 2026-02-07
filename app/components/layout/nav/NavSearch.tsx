@@ -16,7 +16,7 @@ export default function NavSearch({
   };
 
   return (
-    <div className="relative flex-1 text-dm-text-secondary">
+    <div className="relative flex-1 cursor-pointer text-dm-text-secondary">
       <input
         type="text"
         value={value}
