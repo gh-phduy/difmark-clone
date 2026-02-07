@@ -54,7 +54,7 @@ export default function NavBar() {
         }`}
       >
         <div
-          className={`flex h-10 w-full responsive-nav items-center justify-between px-8 770:justify-center 800:px-4 ${
+          className={`flex h-10 w-full responsive-nav items-center justify-between gap-x-6 px-8 770:justify-center 800:px-4 ${
             isCheckoutPage ? "py-5" : "py-10"
           }`}
         >
