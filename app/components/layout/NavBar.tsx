@@ -45,7 +45,7 @@ export default function NavBar() {
     >
       {/* Main Container */}
       <div
-        className={`flex w-full translate-y-0 justify-center gap-x-3 bg-brand/80 backdrop-blur-xl transition-all duration-700 ease-out`}
+        className={`flex w-full translate-y-0 justify-center gap-x-3 bg-brand/80 shadow-lg backdrop-blur-xl transition-all duration-700 ease-out`}
       >
         <div
           className={`flex h-10 w-full responsive-nav items-center justify-between gap-x-6 px-8 py-10 770:justify-center 800:px-4`}
