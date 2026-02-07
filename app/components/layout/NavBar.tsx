@@ -45,13 +45,7 @@ export default function NavBar() {
     >
       {/* Main Container */}
       <div
-        className={`flex justify-center gap-x-3 transition-all duration-700 ease-out ${
-          isCheckoutPage
-            ? "w-full translate-y-0 border-b border-[#30363d] bg-[#161b22]"
-            : isScrolled
-              ? "w-full translate-y-0 bg-brand/80 backdrop-blur-xl"
-              : "w-full bg-brand 990:w-[972px] 990:translate-y-5 990:rounded-lg 1200:w-[1172px] 1640:w-[1342px] 1920:w-[1622px]"
-        }`}
+        className={`flex w-full translate-y-0 justify-center gap-x-3 bg-brand/80 backdrop-blur-xl transition-all duration-700 ease-out`}
       >
         <div
           className={`flex h-10 w-full responsive-nav items-center justify-between gap-x-6 px-8 770:justify-center 800:px-4 ${
