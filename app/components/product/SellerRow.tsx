@@ -80,7 +80,7 @@ export default function SellerRow({ offer }: { offer: SellerOffer }) {
             </span>
             <Separator
               orientation="vertical"
-              className="h-[16px] bg-gray-600"
+              className="h-[16px] w-[1px] bg-gray-600"
             />
             <div className="flex items-center gap-x-1 whitespace-nowrap">
               <TiStarFullOutline color="#f8c944" size={16} />
@@ -90,7 +90,10 @@ export default function SellerRow({ offer }: { offer: SellerOffer }) {
         </div>
       </div>
 
-      <Separator orientation="vertical" className="h-[50px] bg-gray-600" />
+      <Separator
+        orientation="vertical"
+        className="h-[50px] w-[1px] bg-gray-600"
+      />
 
       {/* 2. Platform Icons Section */}
       <div className="flex w-[120px] shrink-0 items-center justify-center gap-x-3">
@@ -115,7 +118,10 @@ export default function SellerRow({ offer }: { offer: SellerOffer }) {
         </TooltipProvider>
       </div>
 
-      <Separator orientation="vertical" className="h-[50px] bg-gray-600" />
+      <Separator
+        orientation="vertical"
+        className="h-[50px] w-[1px] bg-gray-600"
+      />
 
       {/* 3. Edition Section */}
       <div className="flex w-[180px] shrink-0 items-center justify-start gap-x-2">
@@ -124,7 +130,10 @@ export default function SellerRow({ offer }: { offer: SellerOffer }) {
         <span className="truncate font-medium">{offer.data.edition}</span>
       </div>
 
-      <Separator orientation="vertical" className="h-[50px] bg-gray-600" />
+      <Separator
+        orientation="vertical"
+        className="h-[50px] w-[1px] bg-gray-600"
+      />
 
       {/* 4. Activation Section */}
       <div className="flex w-[320px] shrink-0 items-center gap-x-2">
@@ -144,7 +153,10 @@ export default function SellerRow({ offer }: { offer: SellerOffer }) {
         />
       </div>
 
-      <Separator orientation="vertical" className="h-[50px] bg-gray-600" />
+      <Separator
+        orientation="vertical"
+        className="h-[50px] w-[1px] bg-gray-600"
+      />
 
       {/* 5. Price Section */}
       <div className="flex w-[150px] shrink-0 flex-col items-center justify-center">
@@ -154,7 +166,10 @@ export default function SellerRow({ offer }: { offer: SellerOffer }) {
         </span>
       </div>
 
-      <Separator orientation="vertical" className="h-[50px] bg-gray-600" />
+      <Separator
+        orientation="vertical"
+        className="h-[50px] w-[1px] bg-gray-600"
+      />
 
       {/* 6. Actions Section */}
       <div className="flex shrink-0 items-center gap-x-6 text-steel-500">
@@ -162,12 +177,18 @@ export default function SellerRow({ offer }: { offer: SellerOffer }) {
           size={24}
           className="cursor-pointer transition-colors hover:text-white"
         />
-        <Separator orientation="vertical" className="h-[50px] bg-gray-600" />
+        <Separator
+          orientation="vertical"
+          className="h-[50px] w-[1px] bg-gray-600"
+        />
         <BiDotsVerticalRounded
           size={24}
           className="cursor-pointer transition-colors hover:text-white"
         />
-        <Separator orientation="vertical" className="h-[50px] bg-gray-600" />
+        <Separator
+          orientation="vertical"
+          className="h-[50px] w-[1px] bg-gray-600"
+        />
         <div className="flex h-[60px] w-[60px] cursor-pointer items-center justify-center rounded-lg bg-midnight-500 transition-colors hover:bg-gray-500">
           <FaCartShopping size={24} />
         </div>
