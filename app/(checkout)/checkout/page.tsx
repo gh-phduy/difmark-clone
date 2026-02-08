@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import Image from "next/image";
 import {
   Search,
@@ -12,6 +12,16 @@ import {
 } from "lucide-react";
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
+import { loadStripe } from "@stripe/stripe-js";
+import { Elements } from "@stripe/react-stripe-js";
+import CheckoutForm from "@/app/components/checkout/CheckoutForm";
+
+// Make sure to call loadStripe outside of a component’s render to avoid
+// recreating the Stripe object on every render.
+// This is your test publishable API key.
+const stripePromise = loadStripe(
+  process.env.NEXT_PUBLIC_STRIPE_PUBLISHABLE_KEY!,
+);
 
 const paymentMethods = [
   {
@@ -23,68 +33,24 @@ const paymentMethods = [
     icon: "/icons/visa.png", // Placeholder path
     color: "bg-white",
   },
-  {
-    id: "apple_pay",
-    name: "Apple Pay",
-    tag: "Recommended",
-    price: 107.47,
-    fee: 7.5,
-    icon: "/icons/apple-pay.png",
-    color: "bg-white",
-  },
-  {
-    id: "google_pay",
-    name: "Google Pay",
-    tag: "Recommended",
-    price: 107.47,
-    fee: 7.5,
-    icon: "/icons/google-pay.png",
-    color: "bg-white",
-  },
-  {
-    id: "crypto",
-    name: "Crypto ewallet",
-    price: 103.47,
-    fee: 3.5,
-    icon: "/icons/crypto.png",
-    color: "bg-white",
-  },
-  {
-    id: "paydo",
-    name: "PayDo Checkout",
-    price: 104.87,
-    fee: 4.9,
-    icon: "/icons/paydo.png",
-    color: "bg-white",
-  },
-  {
-    id: "skrill",
-    name: "Skrill - Ewallet",
-    price: 105.77,
-    fee: 5.8,
-    icon: "/icons/skrill.png",
-    color: "bg-white",
-  },
-  {
-    id: "volet",
-    name: "Volet",
-    price: 101.47,
-    fee: 1.5,
-    icon: "/icons/volet.png",
-    color: "bg-white",
-  },
-  {
-    id: "neteller",
-    name: "Neteller - Ewallet",
-    price: 105.77,
-    fee: 5.8,
-    icon: "/icons/neteller.png",
-    color: "bg-white",
-  },
+  // ... (keep other methods if needed, but for now we focus on Stripe)
 ];
 
 export default function CheckoutPage() {
   const [selectedMethod, setSelectedMethod] = useState("visa");
+  const [clientSecret, setClientSecret] = useState("");
+  const amount = 99.97; // Example amount
+
+  useEffect(() => {
+    // Create PaymentIntent as soon as the page loads
+    fetch("/api/create-payment-intent", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ amount: Math.round(amount * 100) }), // Amount in cents
+    })
+      .then((res) => res.json())
+      .then((data) => setClientSecret(data.clientSecret));
+  }, []);
 
   return (
     <div className="mx-auto grid w-full max-w-[1200px] grid-cols-1 gap-6 lg:grid-cols-3">
@@ -123,74 +89,17 @@ export default function CheckoutPage() {
 
         {/* Payment Methods List */}
         <div className="space-y-3">
-          {paymentMethods.map((method) => {
-            const isSelected = selectedMethod === method.id;
-            return (
-              <div
-                key={method.id}
-                onClick={() => setSelectedMethod(method.id)}
-                className={`group relative flex cursor-pointer items-center justify-between rounded-lg border p-4 transition-all ${
-                  isSelected
-                    ? "border-[#eac54f] bg-[#1f242c] shadow-[0_0_0_1px_#eac54f]"
-                    : "border-[#30363d] bg-midnight-750 hover:border-[#8b949e]"
-                }`}
-              >
-                {/* Left Side: Radio & Info */}
-                <div className="flex items-center gap-4">
-                  {/* Custom Radio */}
-                  <div
-                    className={`flex h-5 w-5 items-center justify-center rounded-full border transition-colors ${
-                      isSelected
-                        ? "border-[#eac54f]"
-                        : "border-gray-500 group-hover:border-gray-400"
-                    }`}
-                  >
-                    {isSelected && (
-                      <div className="h-2.5 w-2.5 rounded-full bg-[#eac54f]" />
-                    )}
-                  </div>
-
-                  {/* Icon Placeholder */}
-                  <div className="flex h-9 w-14 shrink-0 items-center justify-center overflow-hidden rounded bg-white">
-                    {/* Placeholder Text or Image */}
-                    {/* Ideally use Next/Image here if icons available */}
-                    <span className="text-[10px] font-bold tracking-wider text-black">
-                      {method.id.slice(0, 4).toUpperCase()}
-                    </span>
-                  </div>
-
-                  {/* Name & Tag */}
-                  <div className="flex flex-col">
-                    <span
-                      className={`text-sm font-medium transition-colors ${isSelected ? "text-white" : "text-gray-300"}`}
-                    >
-                      {method.name}
-                    </span>
-                    {method.tag && (
-                      <span className="mt-0.5 text-xs text-[#eac54f]">
-                        {method.tag}
-                      </span>
-                    )}
-                  </div>
-                </div>
-
-                {/* Right Side: Price */}
-                <div className="shrink-0 text-right">
-                  <div className="text-lg font-bold tracking-wide text-white tabular-nums">
-                    $ {method.price.toFixed(2)}
-                  </div>
-                  <div className="text-xs text-gray-500 tabular-nums">
-                    Included fee: $ {method.fee.toFixed(2)}
-                  </div>
-                </div>
-
-                {/* Vertical Accent Line for Selected */}
-                {isSelected && (
-                  <div className="absolute top-0 bottom-0 left-0 w-1 rounded-l-lg bg-[#eac54f]"></div>
-                )}
-              </div>
-            );
-          })}
+          {clientSecret && (
+            <Elements
+              options={{
+                clientSecret,
+                appearance: { theme: "night", labels: "floating" },
+              }}
+              stripe={stripePromise}
+            >
+              <CheckoutForm amount={amount} />
+            </Elements>
+          )}
         </div>
       </div>
 
@@ -223,7 +132,7 @@ export default function CheckoutPage() {
 
           <div className="flex items-center justify-between border-t border-[#30363d] pt-4">
             <span className="text-[#58a6ff]">Total:</span>
-            <span className="text-2xl font-bold text-white">$ 99.97</span>
+            <span className="text-2xl font-bold text-white">$ {amount}</span>
           </div>
 
           {/* Discount Code */}
@@ -236,25 +145,6 @@ export default function CheckoutPage() {
               Apply
             </button>
           </div>
-
-          {/* Quick Pay Buttons */}
-          <div className="space-y-3">
-            <button className="flex w-full items-center justify-center gap-2 rounded bg-white py-2.5 font-semibold text-black transition-colors hover:bg-gray-100">
-              {/* G Pay Logo Placeholder */}
-              <span className="font-sans text-lg font-bold">
-                <span className="text-blue-500">G</span> Pay
-              </span>
-            </button>
-            <button className="flex w-full items-center justify-center gap-2 rounded bg-white py-2.5 font-semibold text-black transition-colors hover:bg-gray-100">
-              {/* Apple Pay Logo Placeholder */}
-              <span className="font-sans text-lg font-bold"> Pay</span>
-            </button>
-          </div>
-
-          {/* Main Action Button */}
-          <Button className="w-full rounded bg-[#9daec2] py-6 text-base font-bold text-[#161b22] shadow-none transition-colors hover:bg-[#b0c0d4]">
-            CONFIRM AND PAY
-          </Button>
         </div>
 
         {/* Product Card */}
