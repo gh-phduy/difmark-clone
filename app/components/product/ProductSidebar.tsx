@@ -75,7 +75,7 @@ export default function ProductSidebar() {
             </span>
             <Input
               type="number"
-              value="0.00"
+              defaultValue="0.00"
               className="h-9 border-[#30363d] bg-midnight-750 pl-6"
             />
           </div>
@@ -86,7 +86,7 @@ export default function ProductSidebar() {
             </span>
             <Input
               type="number"
-              value="15.00"
+              defaultValue="15.00"
               className="h-9 border-[#30363d] bg-midnight-750 pl-6"
             />
           </div>

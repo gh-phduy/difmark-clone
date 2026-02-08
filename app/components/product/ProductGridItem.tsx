@@ -1,65 +1,99 @@
 "use client";
 
 import Image from "next/image";
-import { Monitor, Gamepad2, Heart } from "lucide-react";
-import { Button } from "@/components/ui/button";
+import { Monitor, Gamepad2 } from "lucide-react";
+import { BiSolidKey } from "react-icons/bi";
 
-interface ProductProps {
+/* ============================================
+   TYPES
+   ============================================ */
+
+interface ProductGridItemProps {
+  /** Product title */
   title: string;
-  price: number;
-  image: string;
-  platform: "pc" | "xbox" | "ps";
+  /** Product price as number */
+  price?: number;
+  /** Formatted price as string (optional fallback) */
+  formattedPrice?: string;
+  /** Image URL */
+  image?: string;
+  /** Platform identifier */
+  platform?: "pc" | "xbox" | "playstation";
 }
 
+/* ============================================
+   CONSTANTS
+   ============================================ */
+
+const DEFAULTS = {
+  title: "Deliver At All Costs",
+  price: 38.3,
+  image: "/battlefield_6.jpg",
+  platform: "pc" as const,
+} as const;
+
+/* ============================================
+   MAIN COMPONENT
+   ============================================ */
+
+/**
+ * ProductGridItem Component
+ *
+ * Simplified product card without video and complex animations
+ */
 export default function ProductGridItem({
-  title,
+  title = DEFAULTS.title,
   price,
-  image,
-  platform,
-}: ProductProps) {
+  formattedPrice,
+  image = DEFAULTS.image,
+  platform = DEFAULTS.platform,
+}: ProductGridItemProps) {
+  const displayPrice =
+    formattedPrice || (price ? `$${price.toFixed(2)}` : "$0.00");
+
   return (
-    <div className="group relative overflow-hidden rounded-lg border border-[#30363d] bg-midnight-750 transition-all hover:border-gray-500">
+    <div className="group relative flex flex-col overflow-hidden rounded-lg border border-[#30363d] bg-midnight-750 transition-all hover:border-dm-accent-yellow/50 hover:shadow-lg">
       {/* Image Container */}
-      <div className="relative aspect-video w-full overflow-hidden">
+      <div className="relative aspect-video w-full overflow-hidden bg-midnight-800">
         <Image
           src={image}
           alt={title}
           fill
-          className="object-cover transition-transform duration-300 group-hover:scale-105"
+          className="object-cover transition-transform duration-500 group-hover:scale-105"
+          sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 25vw"
         />
-        {/* Pin Icon / Wishlist */}
-        <div className="absolute top-2 left-2">
-          <div className="rounded bg-black/50 p-1 text-gray-400 backdrop-blur-sm">
-            📌
-          </div>
+
+        {/* Product Type/Key Badge */}
+        <div className="absolute top-0 left-0 z-10 flex h-10 w-10 items-start justify-start bg-black/40 p-1.5 backdrop-blur-md [clip-path:polygon(0_0,100%_0,0_100%)]">
+          <BiSolidKey className="text-gray-300" size={12} />
         </div>
 
-        {/* Hover Action Overlay (Optional based on screenshot usually implied) */}
+        {/* Price Overlay on Image (Marketplace Style) */}
+        <div className="absolute right-0 bottom-0 left-0 bg-linear-to-t from-black/80 to-transparent p-3">
+          <div className="flex items-center justify-between">
+            <div className="text-dm-text-secondary">
+              {platform === "pc" && <Monitor className="h-4 w-4" />}
+              {platform === "xbox" && <Gamepad2 className="h-4 w-4" />}
+              {platform === "playstation" && <Gamepad2 className="h-4 w-4" />}
+            </div>
+            <div className="text-right">
+              <span className="block text-[10px] text-dm-text-tertiary">
+                from
+              </span>
+              <span className="text-lg font-bold text-white">
+                {displayPrice}
+              </span>
+            </div>
+          </div>
+        </div>
       </div>
 
-      {/* Content */}
-      <div className="p-3">
-        {/* Platform Icons */}
-        <div className="mb-2 flex items-center gap-2 text-gray-400">
-          {platform === "pc" && <Monitor className="h-4 w-4" />}
-          {platform === "xbox" && <Gamepad2 className="h-4 w-4" />}
-          {platform === "ps" && <Gamepad2 className="h-4 w-4" />}{" "}
-          {/* Placeholder for PS */}
-        </div>
-
-        {/* Title */}
-        <h3 className="mb-1 truncate text-base font-medium text-white transition-colors group-hover:text-[#58a6ff]">
+      {/* Footer Content */}
+      <div className="bg-midnight-750 p-3">
+        <h3 className="line-clamp-1 text-sm font-semibold text-dm-text-primary transition-colors group-hover:text-dm-accent-yellow">
           {title}
         </h3>
-
-        {/* Footer: Platform Name & Price */}
-        <div className="mt-3 flex items-center justify-between border-t border-[#30363d] pt-3 text-xs sm:text-sm">
-          <span className="text-gray-500">{title} (PC)</span>
-          <div className="text-right">
-            <span className="block text-[10px] text-gray-500">from</span>
-            <span className="font-bold text-white">${price.toFixed(2)}</span>
-          </div>
-        </div>
+        <p className="mt-1 text-xs text-dm-text-tertiary">{title} (PC)</p>
       </div>
     </div>
   );
