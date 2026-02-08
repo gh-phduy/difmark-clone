@@ -14,6 +14,14 @@ import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
 import { loadStripe } from "@stripe/stripe-js";
 import { Elements } from "@stripe/react-stripe-js";
+import {
+  Select,
+  SelectContent,
+  SelectGroup,
+  SelectItem,
+  SelectTrigger,
+  SelectValue,
+} from "@/components/ui/select";
 import CheckoutForm from "@/app/components/checkout/CheckoutForm";
 
 // Make sure to call loadStripe outside of a component’s render to avoid
@@ -65,12 +73,30 @@ export default function CheckoutPage() {
               className="h-10 rounded-md border-[#30363d] bg-midnight-750 pl-10 text-gray-300 placeholder:text-gray-500 focus-visible:ring-1 focus-visible:ring-[#58a6ff]"
             />
           </div>
-          <button className="flex h-10 min-w-[160px] items-center justify-between gap-2 rounded-md border border-[#30363d] bg-midnight-750 px-4 py-2 text-gray-300 transition-colors hover:border-gray-500">
-            <span className="flex items-center gap-2 text-sm font-medium">
-              <span className="text-xl">🇻🇳</span> Viet Nam
-            </span>
-            <ChevronDown className="h-4 w-4 text-gray-500" />
-          </button>
+          <Select defaultValue="vn">
+            <SelectTrigger className="min-w-[180px]">
+              <SelectValue placeholder="Select country" />
+            </SelectTrigger>
+            <SelectContent>
+              <SelectGroup>
+                <SelectItem value="vn">
+                  <span className="flex items-center gap-2">
+                    <span className="text-xl">🇻🇳</span> Viet Nam
+                  </span>
+                </SelectItem>
+                <SelectItem value="us">
+                  <span className="flex items-center gap-2">
+                    <span className="text-xl">🇺🇸</span> USA
+                  </span>
+                </SelectItem>
+                <SelectItem value="gb">
+                  <span className="flex items-center gap-2">
+                    <span className="text-xl">🇬🇧</span> UK
+                  </span>
+                </SelectItem>
+              </SelectGroup>
+            </SelectContent>
+          </Select>
         </div>
 
         {/* Warning Banner */}

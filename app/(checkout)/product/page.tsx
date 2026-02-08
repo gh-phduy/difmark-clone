@@ -15,7 +15,9 @@ import { Button } from "@/components/ui/button";
 import {
   Select,
   SelectContent,
+  SelectGroup,
   SelectItem,
+  SelectLabel,
   SelectTrigger,
   SelectValue,
 } from "@/components/ui/select";
@@ -111,14 +113,17 @@ export default function ProductPage() {
           </div>
           <div className="flex gap-2">
             <Select defaultValue="popular">
-              <SelectTrigger className="w-[180px] border-[#30363d] bg-[#161b22]">
+              <SelectTrigger className="w-[200px]" size="default">
                 <SelectValue placeholder="Sort by" />
               </SelectTrigger>
-              <SelectContent className="border-[#30363d] bg-[#161b22]">
-                <SelectItem value="popular">Most popular</SelectItem>
-                <SelectItem value="price-asc">Price: Low to High</SelectItem>
-                <SelectItem value="price-desc">Price: High to Low</SelectItem>
-                <SelectItem value="newest">Newest</SelectItem>
+              <SelectContent>
+                <SelectGroup>
+                  <SelectLabel>Sort by</SelectLabel>
+                  <SelectItem value="popular">Most popular</SelectItem>
+                  <SelectItem value="price-asc">Price: Low to High</SelectItem>
+                  <SelectItem value="price-desc">Price: High to Low</SelectItem>
+                  <SelectItem value="newest">Newest</SelectItem>
+                </SelectGroup>
               </SelectContent>
             </Select>
             <Button
