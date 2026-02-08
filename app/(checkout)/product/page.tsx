@@ -116,7 +116,7 @@ export default function ProductPage() {
               <SelectTrigger className="w-[200px]" size="default">
                 <SelectValue placeholder="Sort by" />
               </SelectTrigger>
-              <SelectContent>
+              <SelectContent alignItemWithTrigger={false}>
                 <SelectGroup>
                   <SelectLabel>Sort by</SelectLabel>
                   <SelectItem value="popular">Most popular</SelectItem>
