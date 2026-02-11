@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useMemo } from "react";
+import { useState, useMemo, useEffect } from "react";
 import { Search } from "lucide-react";
 import { Input } from "@/components/ui/input";
 import { GoTriangleUp } from "react-icons/go";
@@ -9,11 +9,26 @@ import { motion, AnimatePresence, LayoutGroup } from "motion/react";
 import { Separator } from "@base-ui/react";
 import { PRODUCT_TYPES_DATA } from "./filter-data";
 import { FilterItemRow } from "./FilterItemRow";
+import { useProductFilter } from "@/app/contexts/ProductFilterContext";
+
+const PLATFORM_IDS = ["pc", "xbox", "playstation", "nintendo"];
 
 export default function SidebarProductTypeFilter() {
   const [isOpen, setIsOpen] = useState(true);
-  const [expandedItems, setExpandedItems] = useState<string[]>(["game-keys"]);
+  const [expandedItems, setExpandedItems] = useState<string[]>([
+    "console-games",
+  ]);
   const [checkedIds, setCheckedIds] = useState<string[]>([]);
+
+  const { setSelectedPlatforms } = useProductFilter();
+
+  // Sync platform selections to context
+  useEffect(() => {
+    const platformSelections = checkedIds.filter((id) =>
+      PLATFORM_IDS.includes(id),
+    );
+    setSelectedPlatforms(platformSelections);
+  }, [checkedIds, setSelectedPlatforms]);
 
   const toggleExpand = (id: string) => {
     setExpandedItems((prev) =>

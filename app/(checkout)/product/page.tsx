@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useState, useRef, useEffect } from "react";
+import React, { useState, useRef, useEffect, useMemo } from "react";
 import {
   Search,
   List,
@@ -26,70 +26,34 @@ import ProductSidebar from "@/app/components/product/ProductSidebar";
 import ProductGridItem from "@/app/components/product/ProductGridItem";
 import { IoMdHome } from "react-icons/io";
 import { FaChevronRight } from "react-icons/fa";
+import { SiNintendoswitch } from "react-icons/si";
+import { FaPlaystation } from "react-icons/fa";
+import { BsXbox } from "react-icons/bs";
 import { IoSearch } from "react-icons/io5";
 import { BsSortDown } from "react-icons/bs";
 import { IoCloseSharp } from "react-icons/io5";
 import Pagination from "@/app/components/shared/Pagination";
 import LoadMoreButton from "@/app/components/shared/LoadMoreButton";
+import { useQuery } from "@tanstack/react-query";
+import {
+  ProductFilterProvider,
+  useProductFilter,
+} from "@/app/contexts/ProductFilterContext";
 
-const products = [
-  {
-    id: 1,
-    title: "Fallout 76",
-    price: 0.59,
-    image: "/battlefield_6.jpg",
-    platform: "xbox" as const,
-  },
-  {
-    id: 2,
-    title: "Harold Halibut",
-    price: 0.82,
-    image: "/battlefield_6.jpg",
-    platform: "pc" as const,
-  },
-  {
-    id: 3,
-    title: "Settlement Survival",
-    price: 0.65,
-    image: "/battlefield_6.jpg",
-    platform: "pc" as const,
-  },
-  {
-    id: 4,
-    title: "Beholder Conductor",
-    price: 0.65,
-    image: "/battlefield_6.jpg",
-    platform: "pc" as const,
-  },
-  {
-    id: 5,
-    title: "Nidhogg 2",
-    price: 0.58,
-    image: "/battlefield_6.jpg",
-    platform: "pc" as const,
-  },
-  {
-    id: 6,
-    title: "Escape from Ever After",
-    price: 9.16,
-    image: "/battlefield_6.jpg",
-    platform: "pc" as const,
-  },
-  {
-    id: 7,
-    title: "Caravan SandWitch",
-    price: 1.0,
-    image: "/battlefield_6.jpg",
-    platform: "pc" as const,
-  },
-  {
-    id: 8,
-    title: "Batman Arkham Origins",
-    price: 1.66,
-    image: "/battlefield_6.jpg",
-    platform: "pc" as const,
-  },
-];
+interface Product {
+  id: number;
+  title: string;
+  price: number;
+  image: string;
+  platform: string | string[];
+}
+
+const fetchListingProducts = async (): Promise<Product[]> => {
+  const response = await fetch("http://localhost:5000/api/listing-products");
+  if (!response.ok) throw new Error("Failed to fetch products");
+  const data = await response.json();
+  return data.products;
+};
 
 const CHOSEN_FILTERS = [
   { id: 1, label: "Most popular" },
@@ -130,7 +94,13 @@ const CHOSEN_FILTERS = [
 
 const FILTERS_COLLAPSED_HEIGHT = 36; // ~1 row height in px
 
-export default function ProductPage() {
+function ProductPageContent() {
+  const { data: products = [], isLoading } = useQuery({
+    queryKey: ["listing-products"],
+    queryFn: fetchListingProducts,
+  });
+
+  const { priceRange, selectedPlatforms } = useProductFilter();
   const [showAllFilters, setShowAllFilters] = useState(false);
   const [isOverflowing, setIsOverflowing] = useState(false);
   const filtersRef = useRef<HTMLDivElement>(null);
@@ -141,7 +111,28 @@ export default function ProductPage() {
         filtersRef.current.scrollHeight > FILTERS_COLLAPSED_HEIGHT + 4,
       );
     }
-  }, []);
+  }, [products]);
+
+  // Filter products based on price range and platforms
+  const filteredProducts = useMemo(() => {
+    return products.filter((product) => {
+      // Price filter
+      const matchesPrice =
+        product.price >= priceRange.min && product.price <= priceRange.max;
+
+      // Platform filter
+      const matchesPlatform =
+        selectedPlatforms.length === 0 ||
+        (Array.isArray(product.platform)
+          ? product.platform.some((p) =>
+              selectedPlatforms.includes(p.toLowerCase()),
+            )
+          : selectedPlatforms.includes(product.platform.toLowerCase()));
+
+      return matchesPrice && matchesPlatform;
+    });
+  }, [products, priceRange, selectedPlatforms]);
+
   return (
     <div className="flex min-h-screen w-full justify-between bg-[#0d1117] font-sans text-white">
       {/* We assume NavBar is in layout, but based on screenshot there's a specific header look */}
@@ -247,21 +238,47 @@ export default function ProductPage() {
         </div>
         {/* Product Grid */}
         <div className="flex-1">
-          <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-4">
-            {products.map((product) => (
-              <ProductGridItem
-                key={product.id}
-                title={product.title}
-                price={product.price}
-                image={product.image}
-                platform={product.platform}
-              />
-            ))}
-          </div>
+          {isLoading ? (
+            <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-4">
+              {[...Array(8)].map((_, i) => (
+                <div
+                  key={i}
+                  className="h-[250px] animate-pulse rounded-lg bg-midnight-750"
+                />
+              ))}
+            </div>
+          ) : (
+            <>
+              <div className="mb-4 text-sm text-gray-400">
+                Showing {filteredProducts.length} of {products.length} products
+                (${priceRange.min.toFixed(2)} - ${priceRange.max.toFixed(2)})
+              </div>
+              <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-4">
+                {filteredProducts.map((product) => (
+                  <ProductGridItem
+                    key={product.id}
+                    id={product.id}
+                    title={product.title}
+                    price={product.price}
+                    image={product.image}
+                    platform={product.platform}
+                  />
+                ))}
+              </div>
+            </>
+          )}
         </div>
         <LoadMoreButton />
         <Pagination />
       </div>
     </div>
+  );
+}
+
+export default function ProductPage() {
+  return (
+    <ProductFilterProvider>
+      <ProductPageContent />
+    </ProductFilterProvider>
   );
 }

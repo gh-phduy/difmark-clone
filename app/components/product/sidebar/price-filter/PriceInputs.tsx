@@ -30,7 +30,7 @@ export default function PriceInputs({ min, max, onChange }: PriceInputsProps) {
           type="number"
           value={min}
           onChange={(e) => handleInputChange("min", e.target.value)}
-          className="h-10 border-none bg-[#2f3642] pl-7 text-sm font-medium text-white shadow-none focus-visible:ring-1 focus-visible:ring-gray-500"
+          className="no-spinner h-10 border-none bg-midnight-600 pl-7 text-sm font-medium text-white shadow-none focus-visible:ring-0 focus-visible:outline-none"
         />
       </div>
       <span className="text-gray-500">-</span>
@@ -42,7 +42,7 @@ export default function PriceInputs({ min, max, onChange }: PriceInputsProps) {
           type="number"
           value={max}
           onChange={(e) => handleInputChange("max", e.target.value)}
-          className="h-10 border-none bg-[#2f3642] pl-7 text-sm font-medium text-white shadow-none focus-visible:ring-1 focus-visible:ring-gray-500"
+          className="no-spinner h-10 border-none bg-midnight-600 pl-7 text-sm font-medium text-white shadow-none focus-visible:ring-0 focus-visible:outline-none"
         />
       </div>
     </div>

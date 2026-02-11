@@ -1,12 +1,11 @@
 "use client";
 
-import { useState } from "react";
-import { Separator } from "@base-ui/react";
+import { useProductFilter } from "@/app/contexts/ProductFilterContext";
 import PriceChartSlider from "./price-filter/PriceChartSlider";
 import PriceInputs from "./price-filter/PriceInputs";
 import PriceRangeList from "./price-filter/PriceRangeRadioList";
 
-const SLIDER_MAX = 400;
+const SLIDER_MAX = 1450;
 
 const PRICE_RANGES = [
   { min: 0, max: 6, label: "$ 0 - $ 6", count: 14727 },
@@ -16,12 +15,10 @@ const PRICE_RANGES = [
 ];
 
 export default function SidebarPriceFilter() {
-  const [minPrice, setMinPrice] = useState(0);
-  const [maxPrice, setMaxPrice] = useState(15);
+  const { priceRange, setPriceRange } = useProductFilter();
 
   const handlePriceChange = (min: number, max: number) => {
-    setMinPrice(min);
-    setMaxPrice(max);
+    setPriceRange({ min, max });
   };
 
   return (
@@ -29,18 +26,22 @@ export default function SidebarPriceFilter() {
       <h3 className="text-xl font-bold text-white">Price</h3>
 
       <PriceChartSlider
-        minPrice={minPrice}
-        maxPrice={maxPrice}
+        minPrice={priceRange.min}
+        maxPrice={priceRange.max}
         sliderMax={SLIDER_MAX}
         onPriceChange={handlePriceChange}
       />
 
-      <PriceInputs min={minPrice} max={maxPrice} onChange={handlePriceChange} />
+      <PriceInputs
+        min={priceRange.min}
+        max={priceRange.max}
+        onChange={handlePriceChange}
+      />
 
       <PriceRangeList
         ranges={PRICE_RANGES}
-        minPrice={minPrice}
-        maxPrice={maxPrice}
+        minPrice={priceRange.min}
+        maxPrice={priceRange.max}
         onRangeSelect={handlePriceChange}
       />
     </div>

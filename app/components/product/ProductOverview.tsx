@@ -30,7 +30,11 @@ export default function ProductOverview({ data }: ProductOverviewProps) {
 
   return (
     <div className="flex w-full justify-between">
-      <ProductGallery />
+      <ProductGallery
+        images={data.data.images}
+        name={data.data.name}
+        platform={data.data.platform}
+      />
       <PurchaseCard
         product={data.data}
         seller={data.seller}

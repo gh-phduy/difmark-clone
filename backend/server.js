@@ -3,7 +3,7 @@ import express from "express";
 import cors from "cors";
 import { OAuth2Client } from "google-auth-library";
 import jwt from "jsonwebtoken";
-import { mockProducts } from "./data.js";
+import { mockProducts, listingProducts } from "./data.js";
 
 const app = express();
 const PORT = process.env.PORT || 5000;
@@ -99,6 +99,14 @@ app.get("/api/products", async (req, res) => {
   res.json({
     products,
     total: products.length,
+  });
+});
+
+// Get listing products (for the search/category page)
+app.get("/api/listing-products", (req, res) => {
+  res.json({
+    products: listingProducts,
+    total: listingProducts.length,
   });
 });
 

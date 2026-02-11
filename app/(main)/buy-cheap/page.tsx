@@ -46,9 +46,14 @@ async function getProduct(id: string): Promise<ProductApiResponse | null> {
   }
 }
 
-export default async function BuyCheapPage() {
+export default async function BuyCheapPage({
+  searchParams,
+}: {
+  searchParams: Promise<{ id?: string }>;
+}) {
+  const { id } = await searchParams;
   // Fetch product data on the server
-  const productData = await getProduct("1");
+  const productData = await getProduct(id || "1");
 
   return (
     <main

@@ -8,11 +8,15 @@ import {
 } from "react-icons/si";
 import { FaWindows } from "react-icons/fa";
 import { MdUpcoming } from "react-icons/md";
+import { HiComputerDesktop } from "react-icons/hi2";
+import { SiNintendoswitch } from "react-icons/si";
+import { FaPlaystation } from "react-icons/fa";
+import { BsXbox } from "react-icons/bs";
 
 export interface FilterSubItem {
   id: string;
   label: string;
-  count: number;
+  count?: number;
   icon?: React.ReactNode;
 }
 
@@ -43,6 +47,17 @@ const COMMON_SUB_ITEMS: FilterSubItem[] = [
   },
   { id: "microsoft", label: "Microsoft", count: 11, icon: <FaWindows /> },
 ];
+const COMMON_PLATFORMS: FilterSubItem[] = [
+  { id: "pc", label: "PC", count: 151, icon: <HiComputerDesktop /> },
+  { id: "xbox", label: "Xbox", count: 93, icon: <BsXbox /> },
+  {
+    id: "playstation",
+    label: "Playstation",
+    count: 79,
+    icon: <FaPlaystation />,
+  },
+  { id: "nintendo", label: "Nintendo", count: 61, icon: <SiNintendoswitch /> },
+];
 
 export const PRODUCT_TYPES_DATA: FilterItem[] = [
   {
@@ -58,7 +73,7 @@ export const PRODUCT_TYPES_DATA: FilterItem[] = [
   {
     id: "console-games",
     label: "Console Games",
-    subItems: [],
+    subItems: COMMON_PLATFORMS,
   },
   {
     id: "gift-cards",

@@ -423,3 +423,14 @@
 @utility shadow-nav-cate {
   box-shadow: -0.5px -0.5px 1px 0.1px #706e6e;
 }
+
+/* Utility to hide number input spinners */
+.no-spinner::-webkit-outer-spin-button,
+.no-spinner::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+.no-spinner[type="number"] {
+  -moz-appearance: textfield;
+  appearance: textfield;
+}
