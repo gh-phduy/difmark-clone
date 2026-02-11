@@ -23,6 +23,9 @@ import {
 } from "@/components/ui/select";
 import ProductSidebar from "@/app/components/product/ProductSidebar";
 import ProductGridItem from "@/app/components/product/ProductGridItem";
+import { IoMdHome } from "react-icons/io";
+import { FaChevronRight } from "react-icons/fa";
+import { IoSearch } from "react-icons/io5";
 
 const products = [
   {
@@ -94,10 +97,10 @@ export default function ProductPage() {
       {/* Main Content Area */}
       <div className="w-full bg-midnight-850 px-4 py-6">
         {/* Breadcrumb */}
-        <div className="mb-4 flex items-center gap-2 text-sm text-gray-500">
-          <span>🏠</span>
-          <span>›</span>
-          <span className="text-gray-300">Products</span>
+        <div className="mb-4 flex items-center gap-2 text-steel-500">
+          <IoMdHome size={18} />
+          <FaChevronRight size={12} />
+          <span className="font-medium">Products</span>
         </div>
 
         <h1 className="mb-6 text-3xl font-bold">Products</h1>
@@ -105,10 +108,13 @@ export default function ProductPage() {
         {/* Top Controls */}
         <div className="mb-6 flex flex-col gap-4 md:flex-row">
           <div className="relative flex-1">
-            <Search className="absolute top-1/2 left-3 h-4 w-4 -translate-y-1/2 text-gray-500" />
+            <IoSearch
+              size={24}
+              className="absolute top-1/2 left-3 -translate-y-1/2 text-gray-500"
+            />
             <Input
               placeholder="Search by Product name"
-              className="h-10 border-[#30363d] bg-[#161b22] pl-10 text-gray-300 focus-visible:ring-[#238636]"
+              className="h-11 bg-midnight-750 pl-10 text-gray-300"
             />
           </div>
           <div className="flex gap-2">
