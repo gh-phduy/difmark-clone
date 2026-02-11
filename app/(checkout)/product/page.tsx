@@ -29,6 +29,8 @@ import { FaChevronRight } from "react-icons/fa";
 import { IoSearch } from "react-icons/io5";
 import { BsSortDown } from "react-icons/bs";
 import { IoCloseSharp } from "react-icons/io5";
+import Pagination from "@/app/components/shared/Pagination";
+import LoadMoreButton from "@/app/components/shared/LoadMoreButton";
 
 const products = [
   {
@@ -143,12 +145,12 @@ export default function ProductPage() {
   return (
     <div className="flex min-h-screen w-full justify-between bg-[#0d1117] font-sans text-white">
       {/* We assume NavBar is in layout, but based on screenshot there's a specific header look */}
-      <div className="flex flex-col gap-8 lg:flex-row">
+      <div className="flex flex-col lg:flex-row">
         {/* Sidebar */}
         <ProductSidebar />
       </div>
       {/* Main Content Area */}
-      <div className="w-full bg-midnight-850 px-4 py-6">
+      <div className="w-full space-y-8 bg-midnight-850 px-4 py-6">
         {/* Breadcrumb */}
         <div className="mb-4 flex items-center gap-2 text-steel-500">
           <IoMdHome size={18} />
@@ -257,6 +259,8 @@ export default function ProductPage() {
             ))}
           </div>
         </div>
+        <LoadMoreButton />
+        <Pagination />
       </div>
     </div>
   );

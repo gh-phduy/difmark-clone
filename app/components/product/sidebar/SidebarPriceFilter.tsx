@@ -25,7 +25,7 @@ export default function SidebarPriceFilter() {
   };
 
   return (
-    <div className="w-full space-y-5 px-5">
+    <div className="w-full space-y-5">
       <h3 className="text-xl font-bold text-white">Price</h3>
 
       <PriceChartSlider
@@ -42,11 +42,6 @@ export default function SidebarPriceFilter() {
         minPrice={minPrice}
         maxPrice={maxPrice}
         onRangeSelect={handlePriceChange}
-      />
-
-      <Separator
-        orientation="horizontal"
-        className="h-[1px] w-full bg-gray-800"
       />
     </div>
   );

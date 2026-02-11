@@ -1,8 +1,8 @@
 "use client";
 
 import Image from "next/image";
-import { Monitor, Gamepad2 } from "lucide-react";
 import { BiSolidKey } from "react-icons/bi";
+import { HiComputerDesktop } from "react-icons/hi2";
 
 /* ============================================
    TYPES
@@ -69,31 +69,20 @@ export default function ProductGridItem({
         </div>
 
         {/* Price Overlay on Image (Marketplace Style) */}
-        <div className="absolute right-0 bottom-0 left-0 bg-linear-to-t from-black/80 to-transparent p-3">
-          <div className="flex items-center justify-between">
-            <div className="text-dm-text-secondary">
-              {platform === "pc" && <Monitor className="h-4 w-4" />}
-              {platform === "xbox" && <Gamepad2 className="h-4 w-4" />}
-              {platform === "playstation" && <Gamepad2 className="h-4 w-4" />}
-            </div>
-            <div className="text-right">
-              <span className="block text-[10px] text-dm-text-tertiary">
-                from
-              </span>
-              <span className="text-lg font-bold text-white">
-                {displayPrice}
-              </span>
-            </div>
+        <div className="absolute right-0 bottom-0 left-0 flex items-center justify-between bg-black/50 p-2">
+          <HiComputerDesktop />
+          <div className="flex items-center gap-2">
+            <span className="text-sm text-steel-500">from</span>
+            <span>{displayPrice}</span>
           </div>
         </div>
       </div>
 
       {/* Footer Content */}
       <div className="bg-midnight-750 p-3">
-        <h3 className="line-clamp-1 text-sm font-semibold text-dm-text-primary transition-colors group-hover:text-dm-accent-yellow">
+        <h3 className="line-clamp-1 text-sm font-semibold text-dm-text-primary text-steel-500 transition-colors group-hover:text-dm-accent-yellow">
           {title}
         </h3>
-        <p className="mt-1 text-xs text-dm-text-tertiary">{title} (PC)</p>
       </div>
     </div>
   );
