@@ -3,7 +3,10 @@ import express from "express";
 import cors from "cors";
 import { OAuth2Client } from "google-auth-library";
 import jwt from "jsonwebtoken";
+import Stripe from "stripe";
 import { mockProducts, listingProducts } from "./data.js";
+
+const stripe = new Stripe(process.env.STRIPE_SECRET_KEY);
 
 const app = express();
 const PORT = process.env.PORT || 5000;
@@ -122,6 +125,28 @@ app.get("/api/products/:id", async (req, res) => {
   res.json(product);
 });
 
+// Create Payment Intent for Stripe
+app.post("/api/create-payment-intent", async (req, res) => {
+  const { amount } = req.body;
+
+  try {
+    const paymentIntent = await stripe.paymentIntents.create({
+      amount: amount, // Amount in cents
+      currency: "usd",
+      automatic_payment_methods: {
+        enabled: true,
+      },
+    });
+
+    res.json({
+      clientSecret: paymentIntent.client_secret,
+    });
+  } catch (error) {
+    console.error("Stripe error:", error);
+    res.status(500).json({ error: error.message });
+  }
+});
+
 // ============================================
 // START SERVER
 // ============================================
@@ -137,5 +162,6 @@ app.listen(PORT, () => {
      GET /api/products              - Get all products
      GET /api/products/:id          - Get product by ID
      GET /api/auth/google           - Google Login
+     POST /api/create-payment-intent - Create Stripe Payment Intent
   `);
 });

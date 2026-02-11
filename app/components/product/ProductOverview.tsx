@@ -1,6 +1,7 @@
 "use client";
 
 import { useCallback } from "react";
+import { useRouter } from "next/navigation";
 import ProductGallery from "./ProductGallery";
 import PurchaseCard from "./PurchaseCard";
 import { ProductApiResponse } from "@/app/types/product";
@@ -10,6 +11,8 @@ interface ProductOverviewProps {
 }
 
 export default function ProductOverview({ data }: ProductOverviewProps) {
+  const router = useRouter();
+
   const handleAddToCart = useCallback(() => {
     if (data?.data.id) {
       console.log("Add to cart:", data.data.id);
@@ -18,9 +21,9 @@ export default function ProductOverview({ data }: ProductOverviewProps) {
 
   const handleCheckout = useCallback(() => {
     if (data?.data.id) {
-      console.log("Checkout:", data.data.id);
+      router.push(`/checkout?id=${data.data.id}`);
     }
-  }, [data?.data.id]);
+  }, [data?.data.id, router]);
 
   const handleChat = useCallback(() => {
     if (data?.seller.name) {

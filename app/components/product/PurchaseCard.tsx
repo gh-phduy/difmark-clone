@@ -310,7 +310,7 @@ export default function PurchaseCard({
             ADD TO CART
           </Button>
           <Button
-            className="flex-1 bg-[#4ade80] font-semibold text-white hover:bg-[#3bc66d]"
+            className="flex-1 cursor-pointer bg-[#4ade80] font-semibold text-white hover:bg-[#3bc66d]"
             onClick={onCheckout}
           >
             GO TO CHECKOUT

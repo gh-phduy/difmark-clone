@@ -1,15 +1,9 @@
 "use client";
 
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, Suspense } from "react";
 import Image from "next/image";
-import {
-  Search,
-  ChevronRight,
-  ChevronLeft,
-  AlertCircle,
-  CheckCircle2,
-  ChevronDown,
-} from "lucide-react";
+import { useSearchParams } from "next/navigation";
+import { Search, ChevronRight, AlertCircle, CheckCircle2 } from "lucide-react";
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
 import { loadStripe } from "@stripe/stripe-js";
@@ -23,45 +17,69 @@ import {
   SelectValue,
 } from "@/components/ui/select";
 import CheckoutForm from "@/app/components/checkout/CheckoutForm";
+import { ProductApiResponse } from "@/app/types/product";
 
-// Make sure to call loadStripe outside of a component’s render to avoid
-// recreating the Stripe object on every render.
-// This is your test publishable API key.
 const stripePromise = loadStripe(
   process.env.NEXT_PUBLIC_STRIPE_PUBLISHABLE_KEY!,
 );
 
-const paymentMethods = [
-  {
-    id: "visa",
-    name: "Visa/Mastercard - Cards International",
-    tag: "Recommended",
-    price: 107.47,
-    fee: 7.5,
-    icon: "/icons/visa.png", // Placeholder path
-    color: "bg-white",
-  },
-  // ... (keep other methods if needed, but for now we focus on Stripe)
-];
+function CheckoutContent() {
+  const searchParams = useSearchParams();
+  const productId = searchParams.get("id") || "1";
 
-export default function CheckoutPage() {
   const [selectedMethod, setSelectedMethod] = useState("visa");
   const [clientSecret, setClientSecret] = useState("");
-  const amount = 99.97; // Example amount
+  const [productData, setProductData] = useState<ProductApiResponse | null>(
+    null,
+  );
+  const [isLoading, setIsLoading] = useState(true);
+
+  // Fetch product data
+  useEffect(() => {
+    async function fetchProduct() {
+      try {
+        const apiUrl =
+          process.env.NEXT_PUBLIC_API_URL || "http://localhost:5000";
+        const res = await fetch(`${apiUrl}/api/products/${productId}`);
+        if (res.ok) {
+          const data = await res.json();
+          setProductData(data);
+        }
+      } catch (e) {
+        console.error("Failed to fetch product:", e);
+      } finally {
+        setIsLoading(false);
+      }
+    }
+    fetchProduct();
+  }, [productId]);
+
+  const amount = productData?.data.price || 99.97;
 
   useEffect(() => {
-    // Create PaymentIntent as soon as the page loads
-    fetch("/api/create-payment-intent", {
+    if (!productData) return;
+
+    // Create PaymentIntent as soon as the product data is available
+    const apiUrl = process.env.NEXT_PUBLIC_API_URL || "http://localhost:5000";
+    fetch(`${apiUrl}/api/create-payment-intent`, {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({ amount: Math.round(amount * 100) }), // Amount in cents
     })
       .then((res) => res.json())
       .then((data) => setClientSecret(data.clientSecret));
-  }, []);
+  }, [productData, amount]);
+
+  if (isLoading) {
+    return (
+      <div className="flex min-h-screen items-center justify-center text-white">
+        Loading checkout...
+      </div>
+    );
+  }
 
   return (
-    <div className="mx-auto grid w-full max-w-[1200px] grid-cols-1 gap-6 lg:grid-cols-3">
+    <div className="mx-auto grid w-full max-w-[1200px] grid-cols-1 gap-6 pt-8 lg:grid-cols-3">
       {/* Left Column - Payment Selection */}
       <div className="space-y-4 lg:col-span-2">
         {/* Filters */}
@@ -152,16 +170,19 @@ export default function CheckoutPage() {
               <span className="flex items-center gap-1">
                 <CheckCircle2 className="h-3 w-3" /> Cashback:
               </span>
-              <span className="font-medium">$ 3.00</span>
+              <span className="font-medium">
+                $ {(amount * 0.03).toFixed(2)}
+              </span>
             </div>
           </div>
 
           <div className="flex items-center justify-between border-t border-[#30363d] pt-4">
             <span className="text-[#58a6ff]">Total:</span>
-            <span className="text-2xl font-bold text-white">$ {amount}</span>
+            <span className="text-2xl font-bold text-white">
+              $ {amount.toFixed(2)}
+            </span>
           </div>
 
-          {/* Discount Code */}
           <div className="relative">
             <Input
               placeholder="DISCOUNT CODE"
@@ -174,43 +195,60 @@ export default function CheckoutPage() {
         </div>
 
         {/* Product Card */}
-        <div className="overflow-hidden rounded-lg border border-[#30363d] bg-midnight-750">
-          <div className="relative h-48 w-full bg-black/50">
-            {/* Product Image Placeholder */}
-            <div className="absolute inset-0 flex items-center justify-center">
-              <div className="text-center">
-                <div className="absolute inset-0 h-full w-full bg-gradient-to-t from-black/80 via-transparent to-transparent"></div>
-                {/* Actual Image will go here */}
-                <div className="relative z-10 p-4">
-                  <h3 className="text-3xl font-bold tracking-wider text-red-600 drop-shadow-md">
-                    NIOH
-                  </h3>
-                  <div className="absolute top-0 -right-4 rotate-12 text-xl font-bold text-white">
-                    2
+        {productData && (
+          <div className="overflow-hidden rounded-lg border border-[#30363d] bg-midnight-750">
+            <div className="relative h-48 w-full overflow-hidden bg-black/50">
+              {productData.data.images?.[0] && (
+                <Image
+                  src={productData.data.images[0]}
+                  alt={productData.data.name}
+                  fill
+                  className="object-cover opacity-60"
+                />
+              )}
+              {/* Seller Info Overlay */}
+              <div className="absolute right-0 bottom-0 left-0 flex items-end justify-between bg-gradient-to-t from-black/90 to-transparent p-3">
+                <div className="flex items-center gap-2">
+                  <div className="relative h-6 w-6 overflow-hidden rounded-full bg-purple-600">
+                    <Image
+                      src={productData.seller.avatar}
+                      alt={productData.seller.name}
+                      fill
+                      className="object-cover"
+                    />
                   </div>
+                  <span className="text-xs font-medium text-gray-300">
+                    {productData.seller.name}
+                  </span>
                 </div>
-              </div>
-            </div>
-
-            {/* Seller Info Overlay */}
-            <div className="absolute right-0 bottom-0 left-0 flex items-end justify-between bg-gradient-to-t from-black/90 to-transparent p-3">
-              <div className="flex items-center gap-2">
-                <div className="flex h-6 w-6 items-center justify-center rounded-full bg-purple-600 text-[10px] font-bold text-white">
-                  C
-                </div>
-                <span className="text-xs font-medium text-gray-300">
-                  CamoZoom
+                <span className="text-sm font-bold text-white">
+                  $ {productData.data.price.toFixed(2)}
                 </span>
               </div>
-              <span className="text-sm font-bold text-white">$ 99.97</span>
+            </div>
+
+            <div className="bg-[#1d232e] p-3 text-center">
+              <h3 className="text-sm font-medium text-gray-300">
+                {productData.data.name} ({productData.data.platform})
+              </h3>
             </div>
           </div>
-
-          <div className="bg-[#1d232e] p-3">
-            <h3 className="text-sm font-medium text-gray-300">Nioh 3 (PC)</h3>
-          </div>
-        </div>
+        )}
       </div>
     </div>
+  );
+}
+
+export default function CheckoutPage() {
+  return (
+    <Suspense
+      fallback={
+        <div className="flex min-h-screen items-center justify-center text-white">
+          Loading...
+        </div>
+      }
+    >
+      <CheckoutContent />
+    </Suspense>
   );
 }
