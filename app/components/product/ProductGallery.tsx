@@ -34,6 +34,7 @@ export default function ProductGallery({
           fill
           className="object-cover transition-all duration-500"
           priority
+          sizes="(max-width: 768px) 100vw, 780px"
         />
         {/* Gradient overlay for better text/UI visibility */}
         <div className="absolute inset-0 bg-linear-to-b from-black/20 via-transparent to-black/60" />

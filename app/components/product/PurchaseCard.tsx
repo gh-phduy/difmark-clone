@@ -9,6 +9,7 @@ import {
   FaEye,
   FaShareAlt,
   FaComments,
+  FaStar,
 } from "react-icons/fa";
 import { MdPerson, MdInfo } from "react-icons/md";
 import { IoMdCheckmarkCircle } from "react-icons/io";
@@ -69,16 +70,16 @@ export default function PurchaseCard({
                     variant="outline"
                     className="flex items-center gap-1 border-green-500/30 bg-green-500/10 text-xs text-gray-400 hover:bg-green-500/10"
                   >
-                    <span className="text-green-500"></span>
                     {seller.tier}
                   </Badge>
                   {/* Star Rating */}
                   <div className="flex items-center gap-0.5">
                     {[...Array(5)].map((_, i) => (
-                      <span
+                      <FaStar
                         key={i}
                         className={`text-sm ${i < seller.rating ? "text-yellow-500" : "text-gray-600"}`}
-                      ></span>
+                        aria-hidden="true"
+                      />
                     ))}
                   </div>
                 </div>
@@ -113,15 +114,15 @@ export default function PurchaseCard({
                       variant="outline"
                       className="flex items-center gap-1 border-green-500/30 bg-green-500/10 text-xs text-gray-400 hover:bg-green-500/10"
                     >
-                      <span className="text-green-500"></span>
                       {seller.tier}
                     </Badge>
                     <div className="flex items-center gap-0.5">
                       {[...Array(5)].map((_, i) => (
-                        <span
+                        <FaStar
                           key={i}
                           className={`text-xs ${i < seller.rating ? "text-yellow-500" : "text-gray-600"}`}
-                        ></span>
+                          aria-hidden="true"
+                        />
                       ))}
                     </div>
                   </div>
@@ -199,6 +200,7 @@ export default function PurchaseCard({
               variant="ghost"
               size="icon"
               className="text-gray-400 hover:bg-transparent hover:text-white"
+              aria-label="View product details"
             >
               <FaEye className="h-5 w-5" />
             </Button>
@@ -206,6 +208,7 @@ export default function PurchaseCard({
               variant="ghost"
               size="icon"
               className="text-gray-400 hover:bg-transparent hover:text-white"
+              aria-label="Share product"
             >
               <FaShareAlt className="h-5 w-5" />
             </Button>
