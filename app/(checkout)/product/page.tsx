@@ -1,6 +1,7 @@
 "use client";
 
 import React, { useState, useRef, useEffect, useMemo } from "react";
+import { usePathname, useRouter, useSearchParams } from "next/navigation";
 import {
   Search,
   List,
@@ -55,55 +56,47 @@ const fetchListingProducts = async (): Promise<Product[]> => {
   return data.products;
 };
 
-const CHOSEN_FILTERS = [
-  { id: 1, label: "Most popular" },
-  { id: 2, label: "Game Keys" },
-  { id: 3, label: "Steam" },
-  { id: 4, label: "DLC" },
-  { id: 5, label: "GOG" },
-  { id: 6, label: "Electronic arts" },
-  { id: 7, label: "Ubisoft" },
-  { id: 8, label: "Upcoming" },
-  { id: 9, label: "Epic Games" },
-  { id: 10, label: "Rockstar" },
-  { id: 11, label: "Microsoft" },
-  { id: 12, label: "Battle.Net" },
-  { id: 13, label: "Bethesda" },
-  { id: 14, label: "Random Keys" },
-  { id: 15, label: "Console Games" },
-  { id: 16, label: "Xbox Live" },
-  { id: 17, label: "Xbox Keys" },
-  { id: 18, label: "Xbox One" },
-  { id: 19, label: "Xbox Series X" },
-  { id: 20, label: "Xbox Accounts" },
-  { id: 21, label: "Action" },
-  { id: 22, label: "Adventure" },
-  { id: 23, label: "Simulator" },
-  { id: 24, label: "Shooter" },
-  { id: 25, label: "Strategy" },
-  { id: 26, label: "Quest" },
-  { id: 27, label: "RPG" },
-  { id: 28, label: "Racing" },
-  { id: 29, label: "Fighting" },
-  { id: 30, label: "Sport" },
-  { id: 31, label: "Survival" },
-  { id: 32, label: "Platformer" },
-  { id: 33, label: "Horror" },
-  { id: 34, label: "Puzzle" },
-];
+const CHOSEN_FILTERS = [{ id: 1, label: "Most popular" }];
 
 const FILTERS_COLLAPSED_HEIGHT = 36; // ~1 row height in px
 
 function ProductPageContent() {
+  const router = useRouter();
+  const pathname = usePathname();
+  const searchParams = useSearchParams();
   const { data: products = [], isLoading } = useQuery({
     queryKey: ["listing-products"],
     queryFn: fetchListingProducts,
   });
 
   const { priceRange, selectedPlatforms } = useProductFilter();
+  const [searchTerm, setSearchTerm] = useState("");
   const [showAllFilters, setShowAllFilters] = useState(false);
   const [isOverflowing, setIsOverflowing] = useState(false);
   const filtersRef = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    const initialSearch =
+      searchParams.get("name") || searchParams.get("search") || "";
+    setSearchTerm(initialSearch);
+  }, [searchParams]);
+
+  useEffect(() => {
+    const trimmedSearchTerm = searchTerm.trim();
+    const params = new URLSearchParams(searchParams.toString());
+
+    if (trimmedSearchTerm) {
+      params.set("name", trimmedSearchTerm);
+    } else {
+      params.delete("name");
+    }
+    params.delete("search");
+
+    const nextUrl = params.toString()
+      ? `${pathname}?${params.toString()}`
+      : pathname;
+    router.replace(nextUrl, { scroll: false });
+  }, [pathname, router, searchParams, searchTerm]);
 
   useEffect(() => {
     if (filtersRef.current) {
@@ -115,6 +108,8 @@ function ProductPageContent() {
 
   // Filter products based on price range and platforms
   const filteredProducts = useMemo(() => {
+    const normalizedSearchTerm = searchTerm.trim().toLowerCase();
+
     return products.filter((product) => {
       // Price filter
       const matchesPrice =
@@ -129,9 +124,18 @@ function ProductPageContent() {
             )
           : selectedPlatforms.includes(product.platform.toLowerCase()));
 
-      return matchesPrice && matchesPlatform;
+      const productTitle = product.title.toLowerCase();
+      const productPlatform = Array.isArray(product.platform)
+        ? product.platform.join(" ").toLowerCase()
+        : product.platform.toLowerCase();
+      const matchesSearch =
+        normalizedSearchTerm.length === 0 ||
+        productTitle.includes(normalizedSearchTerm) ||
+        productPlatform.includes(normalizedSearchTerm);
+
+      return matchesPrice && matchesPlatform && matchesSearch;
     });
-  }, [products, priceRange, selectedPlatforms]);
+  }, [products, priceRange, searchTerm, selectedPlatforms]);
 
   return (
     <div className="flex min-h-screen w-full justify-between bg-[#0d1117] font-sans text-white">
@@ -161,7 +165,19 @@ function ProductPageContent() {
             <Input
               placeholder="Search by Product name"
               className="h-11 bg-midnight-750 pl-10 text-gray-300"
+              value={searchTerm}
+              onChange={(event) => setSearchTerm(event.target.value)}
             />
+            {searchTerm && (
+              <button
+                type="button"
+                onClick={() => setSearchTerm("")}
+                className="absolute top-1/2 right-3 -translate-y-1/2 text-gray-500 transition-colors hover:text-white"
+                aria-label="Clear search"
+              >
+                <X className="h-4 w-4" />
+              </button>
+            )}
           </div>
           <div className="flex gap-2">
             <Select defaultValue="Most popular">
@@ -211,6 +227,15 @@ function ProductPageContent() {
               <span className="whitespace-nowrap text-gray-400">
                 Chosen filters :
               </span>
+              {searchTerm.trim() && (
+                <span className="inline-flex items-center gap-1 rounded-full bg-midnight-500 px-2 py-1 text-sm font-medium text-steel-300">
+                  "{searchTerm.trim()}"
+                  <IoCloseSharp
+                    className="cursor-pointer hover:text-white"
+                    onClick={() => setSearchTerm("")}
+                  />
+                </span>
+              )}
               {CHOSEN_FILTERS.map((filter) => (
                 <span
                   key={filter.id}
@@ -223,7 +248,11 @@ function ProductPageContent() {
             </div>
           </div>
           <div className="flex shrink-0 flex-col items-end gap-1">
-            <button className="flex items-center gap-1 whitespace-nowrap text-gray-400 hover:text-white">
+            <button
+              type="button"
+              onClick={() => setSearchTerm("")}
+              className="flex items-center gap-1 whitespace-nowrap text-gray-400 hover:text-white"
+            >
               Clear all <X className="h-4 w-4" />
             </button>
             {isOverflowing && (
