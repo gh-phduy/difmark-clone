@@ -3,6 +3,7 @@ import { Inter } from "next/font/google";
 import "./globals.css";
 import { QueryProvider } from "./providers/QueryProvider";
 import { AuthProvider } from "./context/AuthContext";
+import { CartProvider } from "./context/CartContext";
 
 const inter = Inter({
   subsets: ["latin"],
@@ -31,14 +32,16 @@ export default function RootLayout({
         className={`${inter.variable} flex min-h-screen flex-col bg-midnight-850 text-dm-text-primary antialiased`}
       >
         <AuthProvider>
-          <QueryProvider>
-            {/* Skip to main content link for accessibility */}
-            <a href="#main-content" className="skip-link">
-              Skip to main content
-            </a>
+          <CartProvider>
+            <QueryProvider>
+              {/* Skip to main content link for accessibility */}
+              <a href="#main-content" className="skip-link">
+                Skip to main content
+              </a>
 
-            {children}
-          </QueryProvider>
+              {children}
+            </QueryProvider>
+          </CartProvider>
         </AuthProvider>
       </body>
     </html>

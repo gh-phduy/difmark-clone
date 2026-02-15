@@ -5,6 +5,7 @@ import { useRouter } from "next/navigation";
 import ProductGallery from "./ProductGallery";
 import PurchaseCard from "./PurchaseCard";
 import { ProductApiResponse } from "@/app/types/product";
+import { useCart } from "@/app/context/CartContext";
 
 interface ProductOverviewProps {
   data: ProductApiResponse;
@@ -12,12 +13,21 @@ interface ProductOverviewProps {
 
 export default function ProductOverview({ data }: ProductOverviewProps) {
   const router = useRouter();
+  const { addToCart } = useCart();
 
   const handleAddToCart = useCallback(() => {
     if (data?.data.id) {
       console.log("Add to cart:", data.data.id);
+      addToCart({
+        id: data.data.id,
+        name: data.data.name,
+        platform: data.data.platform,
+        image: data.data.images[0] ?? "/battlefield_6.jpg",
+        price: data.data.price,
+        currency: data.data.currency,
+      });
     }
-  }, [data?.data.id]);
+  }, [addToCart, data?.data]);
 
   const handleCheckout = useCallback(() => {
     if (data?.data.id) {
