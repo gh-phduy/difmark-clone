@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useState, useEffect, Suspense } from "react";
+import React, { useState, useEffect, Suspense, useMemo } from "react";
 import Image from "next/image";
 import { useSearchParams } from "next/navigation";
 import { Search, ChevronRight, AlertCircle, CheckCircle2 } from "lucide-react";
@@ -18,6 +18,7 @@ import {
 } from "@/components/ui/select";
 import CheckoutForm from "@/app/components/checkout/CheckoutForm";
 import { ProductApiResponse } from "@/app/types/product";
+import { useCart } from "@/app/context/CartContext";
 
 const stripePromise = loadStripe(
   process.env.NEXT_PUBLIC_STRIPE_PUBLISHABLE_KEY!,
@@ -25,7 +26,8 @@ const stripePromise = loadStripe(
 
 function CheckoutContent() {
   const searchParams = useSearchParams();
-  const productId = searchParams.get("id") || "1";
+  const productId = searchParams.get("id");
+  const { cartItems } = useCart();
 
   const [selectedMethod, setSelectedMethod] = useState("visa");
   const [clientSecret, setClientSecret] = useState("");
@@ -34,8 +36,25 @@ function CheckoutContent() {
   );
   const [isLoading, setIsLoading] = useState(true);
 
+  const cartTotal = useMemo(
+    () =>
+      cartItems.reduce((total, item) => total + item.price * item.quantity, 0),
+    [cartItems],
+  );
+
+  const amount = useMemo(() => {
+    if (!productId && cartTotal > 0) return cartTotal;
+    if (productData?.data.price) return productData.data.price;
+    return 99.97;
+  }, [cartTotal, productData?.data.price, productId]);
+
   // Fetch product data
   useEffect(() => {
+    if (!productId) {
+      setIsLoading(false);
+      return;
+    }
+
     async function fetchProduct() {
       try {
         const apiUrl =
@@ -54,10 +73,11 @@ function CheckoutContent() {
     fetchProduct();
   }, [productId]);
 
-  const amount = productData?.data.price || 99.97;
-
   useEffect(() => {
-    if (!productData) return;
+    if (amount <= 0) {
+      setClientSecret("");
+      return;
+    }
 
     // Create PaymentIntent as soon as the product data is available
     const apiUrl = process.env.NEXT_PUBLIC_API_URL || "http://localhost:5000";
@@ -68,7 +88,7 @@ function CheckoutContent() {
     })
       .then((res) => res.json())
       .then((data) => setClientSecret(data.clientSecret));
-  }, [productData, amount]);
+  }, [amount]);
 
   if (isLoading) {
     return (
@@ -231,6 +251,29 @@ function CheckoutContent() {
               <h3 className="text-sm font-medium text-gray-300">
                 {productData.data.name} ({productData.data.platform})
               </h3>
+            </div>
+          </div>
+        )}
+
+        {!productData && cartItems.length > 0 && (
+          <div className="space-y-3 rounded-lg border border-[#30363d] bg-midnight-750 p-4">
+            <h3 className="text-sm font-semibold text-gray-300">
+              Cart summary
+            </h3>
+            <div className="space-y-2">
+              {cartItems.map((item) => (
+                <div
+                  key={item.id}
+                  className="flex items-center justify-between text-sm"
+                >
+                  <span className="max-w-[70%] truncate text-gray-400">
+                    {item.name} x{item.quantity}
+                  </span>
+                  <span className="font-medium text-white">
+                    {item.currency} {(item.price * item.quantity).toFixed(2)}
+                  </span>
+                </div>
+              ))}
             </div>
           </div>
         )}

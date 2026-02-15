@@ -5,27 +5,39 @@ import { useSearchParams } from "next/navigation";
 import { CheckCircle2, Loader2 } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import Link from "next/link";
+import { useCart } from "@/app/context/CartContext";
+
+const PROCESSED_PAYMENT_INTENT_KEY = "processed_payment_intent";
 
 export default function SuccessPage() {
   const searchParams = useSearchParams();
+  const { resetCart } = useCart();
   const [status, setStatus] = useState<string | null>(null);
 
   useEffect(() => {
     const paymentIntent = searchParams.get("payment_intent");
-    const clientSecret = searchParams.get("payment_intent_client_secret");
     const redirectStatus = searchParams.get("redirect_status");
 
-    if (!paymentIntent || !clientSecret) {
+    if (!paymentIntent) {
       setStatus("failed");
       return;
     }
 
     if (redirectStatus === "succeeded") {
       setStatus("succeeded");
+
+      const processedPaymentIntent = localStorage.getItem(
+        PROCESSED_PAYMENT_INTENT_KEY,
+      );
+
+      if (processedPaymentIntent !== paymentIntent) {
+        resetCart();
+        localStorage.setItem(PROCESSED_PAYMENT_INTENT_KEY, paymentIntent);
+      }
     } else {
       setStatus("failed");
     }
-  }, [searchParams]);
+  }, [resetCart, searchParams]);
 
   if (status === null) {
     return (

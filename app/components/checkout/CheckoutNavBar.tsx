@@ -1,15 +1,40 @@
+"use client";
+
 import Link from "next/link";
 import Image from "next/image";
-import { ChevronRight, Settings, CheckCircle2 } from "lucide-react";
+import { usePathname, useSearchParams } from "next/navigation";
+import { CreditCard, ShoppingCart, CheckCircle2, XCircle } from "lucide-react";
 
 export default function CheckoutNavBar() {
+  const pathname = usePathname();
+  const searchParams = useSearchParams();
+  const redirectStatus = searchParams.get("redirect_status");
+  const isSuccessPage = pathname?.startsWith("/checkout/success");
+  const isCompleted = isSuccessPage && redirectStatus === "succeeded";
+  const isFailed = isSuccessPage && redirectStatus !== "succeeded";
+  const isAfterCheckout = isCompleted || isFailed;
+
+  const checkoutStepClass = isAfterCheckout ? "text-[#46ca43]" : "text-white";
+  const checkoutIconClass = isAfterCheckout
+    ? "border-[#46ca43] bg-[#46ca43] text-black"
+    : "border-[#58a6ff] bg-[#374050] text-white";
+
+  const lastStepLabel = isCompleted
+    ? "Completed"
+    : isFailed
+      ? "Failed"
+      : "Processing";
+  const lastStepClass = isCompleted
+    ? "text-[#46ca43]"
+    : isFailed
+      ? "text-[#f85149]"
+      : "text-[#8b949e]";
+
   return (
     <nav className="sticky top-0 z-50 flex h-20 w-full items-center justify-center border-b border-[#2d3544] bg-[#161b22]">
       <div className="flex w-full max-w-[1622px] items-center justify-between px-4">
-        {/* Logo */}
         <Link href="/" className="flex items-center gap-2">
           <div className="relative h-[40px] w-[150px]">
-            {/* Using text fallback until image is ready, or use the public image if available */}
             <Image
               src="/Difmark-logo.png"
               alt="Difmark Logo"
@@ -21,77 +46,46 @@ export default function CheckoutNavBar() {
           </div>
         </Link>
 
-        {/* Stepper */}
         <div className="hidden items-center gap-4 text-sm font-medium md:flex">
-          {/* Step 1: Shopping Cart (Completed) */}
           <div className="flex items-center gap-2 text-[#46ca43]">
             <div className="flex h-6 w-6 items-center justify-center rounded-full bg-[#46ca43] text-black">
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                width="14"
-                height="14"
-                viewBox="0 0 24 24"
-                fill="none"
-                stroke="currentColor"
-                strokeWidth="3"
-                strokeLinecap="round"
-                strokeLinejoin="round"
-                className="lucide lucide-shopping-cart"
-              >
-                <circle cx="8" cy="21" r="1" />
-                <circle cx="19" cy="21" r="1" />
-                <path d="M2.05 2.05h2l2.66 12.42a2 2 0 0 0 2 1.58h9.78a2 2 0 0 0 1.95-1.57l1.65-7.43H5.12" />
-              </svg>
+              <ShoppingCart className="h-3.5 w-3.5" />
             </div>
             <span>Shopping Cart</span>
           </div>
 
-          {/* Connector */}
           <div className="h-[2px] w-24 bg-[#46ca43]"></div>
 
-          {/* Step 2: Checkout (Active) */}
-          <div className="flex items-center gap-2 text-white">
-            <div className="flex h-6 w-6 items-center justify-center rounded-full border-2 border-[#58a6ff] bg-[#374050] text-white">
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                width="14"
-                height="14"
-                viewBox="0 0 24 24"
-                fill="none"
-                stroke="currentColor"
-                strokeWidth="3"
-                strokeLinecap="round"
-                strokeLinejoin="round"
-                className="lucide lucide-credit-card"
-              >
-                <rect width="20" height="14" x="2" y="5" rx="2" />
-                <line x1="2" x2="22" y1="10" y2="10" />
-              </svg>
+          <div className={`flex items-center gap-2 ${checkoutStepClass}`}>
+            <div
+              className={`flex h-6 w-6 items-center justify-center rounded-full border-2 ${checkoutIconClass}`}
+            >
+              <CreditCard className="h-3.5 w-3.5" />
             </div>
             <span>Checkout</span>
           </div>
 
-          {/* Connector */}
-          <div className="h-[2px] w-24 bg-[#2d3544]"></div>
+          <div
+            className={`h-[2px] w-24 ${isCompleted ? "bg-[#46ca43]" : isFailed ? "bg-[#f85149]" : "bg-[#2d3544]"}`}
+          ></div>
 
-          {/* Step 3: Processing (Pending) */}
-          <div className="flex items-center gap-2 text-[#8b949e]">
-            <div className="flex h-6 w-6 items-center justify-center rounded-full bg-[#21262d]">
-              <div className="h-2 w-2 rounded-full bg-[#8b949e]"></div>
+          <div className={`flex items-center gap-2 ${lastStepClass}`}>
+            <div
+              className={`flex h-6 w-6 items-center justify-center rounded-full ${isCompleted ? "bg-[#46ca43] text-black" : isFailed ? "bg-[#f85149] text-white" : "bg-[#21262d]"}`}
+            >
+              {isCompleted ? (
+                <CheckCircle2 className="h-3.5 w-3.5" />
+              ) : isFailed ? (
+                <XCircle className="h-3.5 w-3.5" />
+              ) : (
+                <div className="h-2 w-2 rounded-full bg-[#8b949e]"></div>
+              )}
             </div>
-            <span>Processing</span>
+            <span>{lastStepLabel}</span>
           </div>
         </div>
 
-        {/* Right Actions */}
         <div className="flex items-center gap-4 text-sm text-[#8b949e]">
-          <div className="flex cursor-pointer items-center gap-1 hover:text-white">
-            <Settings size={16} />
-            <span>Processing</span>
-          </div>
-
-          <div className="h-4 w-[1px] bg-[#30363d]"></div>
-
           <div className="flex items-center gap-4">
             <span className="cursor-pointer hover:text-white">USD</span>
             <span className="cursor-pointer hover:text-white">LNG</span>
