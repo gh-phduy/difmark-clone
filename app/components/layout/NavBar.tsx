@@ -36,6 +36,7 @@ export default function NavBar() {
   const pathname = usePathname();
   const { isScrolled } = useScrollPosition(SCROLL_THRESHOLD);
   const isCheckoutPage = pathname?.startsWith("/checkout");
+  const isProductPage = pathname?.startsWith("/product");
 
   return (
     <nav
@@ -48,7 +49,7 @@ export default function NavBar() {
         className={`flex w-full translate-y-0 justify-center gap-x-3 bg-brand/80 shadow-lg backdrop-blur-xl transition-all duration-700 ease-out`}
       >
         <div
-          className={`flex h-10 w-full responsive-nav items-center justify-between gap-x-6 px-8 py-10 770:justify-center 800:px-4`}
+          className={`800:px-4, flex h-10 w-full items-center justify-between gap-x-6 py-10 770:justify-center ${isProductPage ? "px-12" : "responsive-nav px-8"}`}
         >
           {/* Logo - Always visible */}
           <Link href={ROUTES.HOME} className="shrink-0">

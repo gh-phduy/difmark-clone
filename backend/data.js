@@ -1,4 +1,4 @@
-const ALL_PRODUCTS = [
+const BASE_PRODUCTS = [
   {
     id: 1,
     name: "Fallout 76",
@@ -201,6 +201,78 @@ const ALL_PRODUCTS = [
     },
   },
 ];
+
+const EXTRA_PRODUCT_TITLES = [
+  "The Last Campfire",
+  "Risk of Rain 2",
+  "Hades II",
+  "Dead Cells Return",
+  "Noita Ultimate",
+  "Frostpunk Complete",
+  "Cuphead Deluxe",
+  "The Ascent",
+  "Celeste Gold",
+  "Stardew Valley Plus",
+  "Hollow Knight Silksong",
+  "Remnant II",
+  "Sea of Stars",
+  "Dave the Diver",
+  "Valheim",
+  "Astroneer",
+  "Grounded",
+  "A Plague Tale",
+  "Sifu",
+  "Tunic",
+  "Eiyuden Chronicle",
+  "Blasphemous II",
+  "Atlas Fallen",
+  "Dredge",
+  "Atomic Heart",
+  "Lords of the Fallen",
+  "Lies of P",
+  "Payday 3",
+  "Forza Horizon 5",
+  "Starfield",
+];
+
+const EXTRA_PLATFORMS = ["pc", "xbox", "playstation", "nintendo"];
+const EXTRA_PLATFORM_LABELS = {
+  pc: "Steam",
+  xbox: "Xbox Live",
+  playstation: "PlayStation Store",
+  nintendo: "Nintendo eShop",
+};
+
+const EXTRA_PRODUCTS = EXTRA_PRODUCT_TITLES.map((title, index) => {
+  const id = BASE_PRODUCTS.length + index + 1;
+  const platform = EXTRA_PLATFORMS[index % EXTRA_PLATFORMS.length];
+
+  return {
+    id,
+    name: title,
+    title,
+    price: Number((0.99 + (index % 12) * 0.45).toFixed(2)),
+    image: "/cyberpunk_2077.jpg",
+    images: ["/cyberpunk_2077.jpg"],
+    platform,
+    platformLabel: EXTRA_PLATFORM_LABELS[platform],
+    type: "Product key",
+    edition: index % 3 === 0 ? "Deluxe" : "Standard",
+    delivery: "Instant",
+    activationRegion: "Global",
+    currency: "$",
+    seller: {
+      id: `SX${(index % 4) + 1}`,
+      name: ["CodesMarket", "GameKeys Pro", "DigitalGames", "VoidKeys"][
+        index % 4
+      ],
+      avatar: "/avt.jpg",
+      isOnline: index % 2 === 0,
+    },
+  };
+});
+
+const ALL_PRODUCTS = [...BASE_PRODUCTS, ...EXTRA_PRODUCTS];
 
 // Transform internal data into the exported formats
 export const mockProducts = ALL_PRODUCTS.reduce((acc, product) => {

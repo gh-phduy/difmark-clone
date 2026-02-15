@@ -59,6 +59,7 @@ const fetchListingProducts = async (): Promise<Product[]> => {
 const CHOSEN_FILTERS = [{ id: 1, label: "Most popular" }];
 
 const FILTERS_COLLAPSED_HEIGHT = 36; // ~1 row height in px
+const ITEMS_PER_PAGE = 8;
 
 function ProductPageContent() {
   const router = useRouter();
@@ -71,6 +72,7 @@ function ProductPageContent() {
 
   const { priceRange, selectedPlatforms } = useProductFilter();
   const [searchTerm, setSearchTerm] = useState("");
+  const [currentPage, setCurrentPage] = useState(1);
   const [showAllFilters, setShowAllFilters] = useState(false);
   const [isOverflowing, setIsOverflowing] = useState(false);
   const filtersRef = useRef<HTMLDivElement>(null);
@@ -78,7 +80,9 @@ function ProductPageContent() {
   useEffect(() => {
     const initialSearch =
       searchParams.get("name") || searchParams.get("search") || "";
+    const initialPage = Number(searchParams.get("page") || "1");
     setSearchTerm(initialSearch);
+    setCurrentPage(Number.isFinite(initialPage) && initialPage > 0 ? initialPage : 1);
   }, [searchParams]);
 
   useEffect(() => {
@@ -92,11 +96,22 @@ function ProductPageContent() {
     }
     params.delete("search");
 
-    const nextUrl = params.toString()
-      ? `${pathname}?${params.toString()}`
-      : pathname;
+    if (currentPage > 1) {
+      params.set("page", String(currentPage));
+    } else {
+      params.delete("page");
+    }
+
+    const nextQuery = params.toString();
+    const currentQuery = searchParams.toString();
+
+    if (nextQuery === currentQuery) {
+      return;
+    }
+
+    const nextUrl = nextQuery ? `${pathname}?${nextQuery}` : pathname;
     router.replace(nextUrl, { scroll: false });
-  }, [pathname, router, searchParams, searchTerm]);
+  }, [currentPage, pathname, router, searchParams, searchTerm]);
 
   useEffect(() => {
     if (filtersRef.current) {
@@ -137,6 +152,22 @@ function ProductPageContent() {
     });
   }, [products, priceRange, searchTerm, selectedPlatforms]);
 
+  const totalPages = Math.max(
+    1,
+    Math.ceil(filteredProducts.length / ITEMS_PER_PAGE),
+  );
+
+  useEffect(() => {
+    if (currentPage > totalPages) {
+      setCurrentPage(totalPages);
+    }
+  }, [currentPage, totalPages]);
+
+  const paginatedProducts = useMemo(() => {
+    const start = (currentPage - 1) * ITEMS_PER_PAGE;
+    return filteredProducts.slice(start, start + ITEMS_PER_PAGE);
+  }, [currentPage, filteredProducts]);
+
   return (
     <div className="flex min-h-screen w-full justify-between bg-[#0d1117] font-sans text-white">
       {/* We assume NavBar is in layout, but based on screenshot there's a specific header look */}
@@ -166,12 +197,18 @@ function ProductPageContent() {
               placeholder="Search by Product name"
               className="h-11 bg-midnight-750 pl-10 text-gray-300"
               value={searchTerm}
-              onChange={(event) => setSearchTerm(event.target.value)}
+              onChange={(event) => {
+                setSearchTerm(event.target.value);
+                setCurrentPage(1);
+              }}
             />
             {searchTerm && (
               <button
                 type="button"
-                onClick={() => setSearchTerm("")}
+                onClick={() => {
+                  setSearchTerm("");
+                  setCurrentPage(1);
+                }}
                 className="absolute top-1/2 right-3 -translate-y-1/2 text-gray-500 transition-colors hover:text-white"
                 aria-label="Clear search"
               >
@@ -232,7 +269,10 @@ function ProductPageContent() {
                   "{searchTerm.trim()}"
                   <IoCloseSharp
                     className="cursor-pointer hover:text-white"
-                    onClick={() => setSearchTerm("")}
+                    onClick={() => {
+                      setSearchTerm("");
+                      setCurrentPage(1);
+                    }}
                   />
                 </span>
               )}
@@ -250,7 +290,10 @@ function ProductPageContent() {
           <div className="flex shrink-0 flex-col items-end gap-1">
             <button
               type="button"
-              onClick={() => setSearchTerm("")}
+              onClick={() => {
+                setSearchTerm("");
+                setCurrentPage(1);
+              }}
               className="flex items-center gap-1 whitespace-nowrap text-gray-400 hover:text-white"
             >
               Clear all <X className="h-4 w-4" />
@@ -279,11 +322,13 @@ function ProductPageContent() {
           ) : (
             <>
               <div className="mb-4 text-sm text-gray-400">
-                Showing {filteredProducts.length} of {products.length} products
+                Showing {filteredProducts.length === 0 ? 0 : (currentPage - 1) * ITEMS_PER_PAGE + 1}
+                -
+                {Math.min(currentPage * ITEMS_PER_PAGE, filteredProducts.length)} of {filteredProducts.length} products
                 (${priceRange.min.toFixed(2)} - ${priceRange.max.toFixed(2)})
               </div>
               <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-4">
-                {filteredProducts.map((product) => (
+                {paginatedProducts.map((product) => (
                   <ProductGridItem
                     key={product.id}
                     id={product.id}
@@ -298,7 +343,13 @@ function ProductPageContent() {
           )}
         </div>
         <LoadMoreButton />
-        <Pagination />
+        <Pagination
+          currentPage={currentPage}
+          totalPages={totalPages}
+          onPageChange={setCurrentPage}
+          previousLabel="Back"
+          nextLabel="Next"
+        />
       </div>
     </div>
   );
