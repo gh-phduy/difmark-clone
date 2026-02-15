@@ -12,7 +12,7 @@ import { ImStarFull } from "react-icons/im";
 import { IoIosArrowForward } from "react-icons/io";
 import { MdArrowBackIos, MdArrowForwardIos } from "react-icons/md";
 import { useCallback, useEffect, useState } from "react";
-import { CanvasTextImage } from "../shared/TextImageCanvas";
+import SectionHeader from "../shared/SectionHeader";
 
 // Types
 interface SellerItemProps {
@@ -32,8 +32,8 @@ function SellerItem({
   badge = "Legendary",
 }: SellerItemProps) {
   return (
-    <div className="w-[252px] overflow-hidden rounded-lg cursor-pointer transition-all duration-300 hover:brightness-125 hover:shadow-lg hover:shadow-white/10">
-      <div className="w-full h-[90px] bg-[#212937] px-4 flex items-center">
+    <div className="w-[252px] cursor-pointer overflow-hidden rounded-lg transition-all duration-300 hover:shadow-lg hover:shadow-white/10 hover:brightness-125">
+      <div className="flex h-[90px] w-full items-center bg-[#212937] px-4">
         <div className="relative">
           <Avatar className="">
             <AvatarImage
@@ -43,9 +43,12 @@ function SellerItem({
             />
           </Avatar>
           {verified && (
-            <div className="absolute bottom-0 right-0 w-4 h-4 bg-green-500 rounded-full flex items-center justify-center" aria-label="Verified seller">
+            <div
+              className="absolute right-0 bottom-0 flex h-4 w-4 items-center justify-center rounded-full bg-green-500"
+              aria-label="Verified seller"
+            >
               <svg
-                className="w-2 h-2 text-white"
+                className="h-2 w-2 text-white"
                 fill="currentColor"
                 viewBox="0 0 20 20"
                 aria-hidden="true"
@@ -61,21 +64,32 @@ function SellerItem({
         </div>
 
         <div className="pl-3">
-          <span className="text-[16px] text-white font-medium">{name}</span>
-          <div className="flex items-center gap-x-2" role="group" aria-label={`Rating: ${rating} out of 5 stars`}>
-            <span className="text-[#888A8D] text-[14px]">{rating}/5</span>
+          <span className="text-[16px] font-medium text-white">{name}</span>
+          <div
+            className="flex items-center gap-x-2"
+            role="group"
+            aria-label={`Rating: ${rating} out of 5 stars`}
+          >
+            <span className="text-[14px] text-[#888A8D]">{rating}/5</span>
             {[...Array(5)].map((_, i) => (
-              <ImStarFull key={i} className="text-yellow-300 text-xs" aria-hidden="true" />
+              <ImStarFull
+                key={i}
+                className="text-xs text-yellow-300"
+                aria-hidden="true"
+              />
             ))}
           </div>
         </div>
       </div>
-      <div className="w-full h-[44px] bg-[#2b3545] flex items-center justify-between px-4">
-        <div className="text-white text-[14px] flex items-center gap-2">
+      <div className="flex h-[44px] w-full items-center justify-between bg-[#2b3545] px-4">
+        <div className="flex items-center gap-2 text-[14px] text-white">
           <span className="text-cyan-400">⛲</span>
           {badge}
         </div>
-        <button className="flex text-[#C0C3C9] items-center gap-x-2 hover:text-white transition-colors" aria-label={`View ${name} profile`}>
+        <button
+          className="flex items-center gap-x-2 text-[#C0C3C9] transition-colors hover:text-white"
+          aria-label={`View ${name} profile`}
+        >
           <span className="text-[16px]">View</span>
           <IoIosArrowForward size={20} aria-hidden="true" />
         </button>
@@ -169,24 +183,21 @@ export default function PopularSellers() {
   }, [api]);
 
   return (
-    <section className="w-full 800:px-0 px-8  max-w-[720px] 990:max-w-[940px] 1200:max-w-[1140px] 1640:max-w-[1310px] 1920:max-w-[1590px] rounded-lg" aria-labelledby="popular-sellers-heading">
-      <div className="flex items-center justify-between mb-6">
-        <h2 id="popular-sellers-heading" className="sr-only">Popular Sellers</h2>
-        <CanvasTextImage
-          className="-translate-x-[22px]"
-          text="POPULAR SELLERS"
-          imageUrl="/text-img.svg"
-          size="24px"
-          aria-hidden="true"
-        />
-        <button className="text-[#C0C3C9] flex items-center justify-center gap-x-3 hover:text-white transition-colors" aria-label="View all popular sellers">
-          <span className="mr-2">View All</span>
-          <IoIosArrowForward aria-hidden="true" />
-        </button>
-      </div>
+    <section
+      className="w-full max-w-[720px] rounded-lg px-8 800:px-0 990:max-w-[940px] 1200:max-w-[1140px] 1640:max-w-[1310px] 1920:max-w-[1590px]"
+      aria-labelledby="popular-sellers-heading"
+    >
+      <SectionHeader
+        headingId="popular-sellers-heading"
+        headingText="Popular Sellers"
+        title="POPULAR SELLERS"
+        titleClassName="-translate-x-[22px]"
+        viewAllHref="/user/trusted-sellers"
+        viewAllAriaLabel="View all popular sellers"
+      />
 
       {/* Container với fade effect */}
-      <div className="relative ">
+      <div className="relative">
         <Carousel
           setApi={setApi}
           opts={{
@@ -217,7 +228,7 @@ export default function PopularSellers() {
           >
             <CarouselContent className="-ml-2 md:-ml-4">
               {sellers.map((seller, index) => (
-                <CarouselItem key={index} className="pl-2 md:pl-4 basis-auto">
+                <CarouselItem key={index} className="basis-auto pl-2 md:pl-4">
                   <SellerItem {...seller} />
                 </CarouselItem>
               ))}
@@ -229,20 +240,25 @@ export default function PopularSellers() {
         <Button
           variant="outline"
           size="icon"
-          className={`absolute rounded-full -left-16 top-1/2 800:flex hidden items-center -translate-y-1/2 bg-slate-700/90 border-slate-600 text-white hover:bg-slate-600 hover:scale-110 transition-all duration-200 shadow-lg backdrop-blur-xs z-20 h-10 w-10 ${!canScrollPrev ? "opacity-50 cursor-not-allowed" : ""
-            }`}
+          className={`absolute top-1/2 -left-16 z-20 hidden h-10 w-10 -translate-y-1/2 items-center rounded-full border-slate-600 bg-slate-700/90 text-white shadow-lg backdrop-blur-xs transition-all duration-200 hover:scale-110 hover:bg-slate-600 800:flex ${
+            !canScrollPrev ? "cursor-not-allowed opacity-50" : ""
+          }`}
           onClick={scrollPrev}
           disabled={!canScrollPrev}
           aria-label="Previous sellers"
         >
-          <MdArrowBackIos className="translate-x-1 h-4 w-4" aria-hidden="true" />
+          <MdArrowBackIos
+            className="h-4 w-4 translate-x-1"
+            aria-hidden="true"
+          />
         </Button>
 
         <Button
           variant="outline"
           size="icon"
-          className={`absolute -right-16 top-1/2 rounded-full 800:flex hidden items-center -translate-y-1/2 bg-slate-700/90 border-slate-600 text-white hover:bg-slate-600 hover:scale-110 transition-all duration-200 shadow-lg backdrop-blur-xs z-20 h-10 w-10 ${!canScrollNext ? "opacity-50 cursor-not-allowed" : ""
-            }`}
+          className={`absolute top-1/2 -right-16 z-20 hidden h-10 w-10 -translate-y-1/2 items-center rounded-full border-slate-600 bg-slate-700/90 text-white shadow-lg backdrop-blur-xs transition-all duration-200 hover:scale-110 hover:bg-slate-600 800:flex ${
+            !canScrollNext ? "cursor-not-allowed opacity-50" : ""
+          }`}
           onClick={scrollNext}
           disabled={!canScrollNext}
           aria-label="Next sellers"

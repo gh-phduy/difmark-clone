@@ -1,5 +1,6 @@
 "use client";
 
+import Link from "next/link";
 import OptimizedAvatar from "../shared/OptimizedAvatar";
 import { Separator } from "@/components/ui/separator";
 import { IoKey } from "react-icons/io5";
@@ -16,6 +17,7 @@ import { IoBanSharp } from "react-icons/io5";
 import { TooltipProvider } from "@/components/ui/tooltip";
 import { SiPlaystation, SiNintendo } from "react-icons/si";
 import SellerInfoTooltip from "./SellerInfoTooltip";
+import { getSellerProfilePath } from "../user/seller-profile.route";
 
 export interface SellerOffer {
   data: {
@@ -69,9 +71,12 @@ export default function SellerRow({ offer }: { offer: SellerOffer }) {
         />
         <div className="min-w-0">
           <div className="flex items-center gap-x-2">
-            <span className="max-w-[120px] truncate text-lg font-semibold">
+            <Link
+              href={getSellerProfilePath(offer.seller.name)}
+              className="hover:text-forest-400 max-w-[120px] truncate text-lg font-semibold transition-colors"
+            >
               {offer.seller.name}
-            </span>
+            </Link>
             <BsShieldFillCheck className="shrink-0" color="#f8c944" size={16} />
           </div>
           <div className="flex items-center gap-x-3">

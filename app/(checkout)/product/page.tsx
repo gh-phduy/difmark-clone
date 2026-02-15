@@ -82,7 +82,9 @@ function ProductPageContent() {
       searchParams.get("name") || searchParams.get("search") || "";
     const initialPage = Number(searchParams.get("page") || "1");
     setSearchTerm(initialSearch);
-    setCurrentPage(Number.isFinite(initialPage) && initialPage > 0 ? initialPage : 1);
+    setCurrentPage(
+      Number.isFinite(initialPage) && initialPage > 0 ? initialPage : 1,
+    );
   }, [searchParams]);
 
   useEffect(() => {
@@ -322,10 +324,17 @@ function ProductPageContent() {
           ) : (
             <>
               <div className="mb-4 text-sm text-gray-400">
-                Showing {filteredProducts.length === 0 ? 0 : (currentPage - 1) * ITEMS_PER_PAGE + 1}
+                Showing{" "}
+                {filteredProducts.length === 0
+                  ? 0
+                  : (currentPage - 1) * ITEMS_PER_PAGE + 1}
                 -
-                {Math.min(currentPage * ITEMS_PER_PAGE, filteredProducts.length)} of {filteredProducts.length} products
-                (${priceRange.min.toFixed(2)} - ${priceRange.max.toFixed(2)})
+                {Math.min(
+                  currentPage * ITEMS_PER_PAGE,
+                  filteredProducts.length,
+                )}{" "}
+                of {filteredProducts.length} products ($
+                {priceRange.min.toFixed(2)} - ${priceRange.max.toFixed(2)})
               </div>
               <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-4">
                 {paginatedProducts.map((product) => (
