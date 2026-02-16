@@ -229,12 +229,10 @@ export default function MainNavSection() {
       </div>
 
       {/* Right Side Actions */}
-      <div className="flex items-center space-x-4">
-        <Separator orientation="vertical" className="h-6 w-[1px] bg-gray-700" />
-        <CartButton />
-        <Separator orientation="vertical" className="h-6 w-[1px] bg-gray-700" />
-        <SignInButton />
-      </div>
+      <Separator orientation="vertical" className="h-6 w-[1px] bg-gray-700" />
+      <CartButton />
+      <Separator orientation="vertical" className="h-6 w-[1px] bg-gray-700" />
+      <SignInButton />
     </>
   );
 }
