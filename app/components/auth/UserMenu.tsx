@@ -53,11 +53,11 @@ export default function UserMenu({ user }: UserMenuProps) {
       <SheetContent
         side="right"
         showCloseButton={false}
-        className="w-[310px] gap-0 overflow-visible border-l border-white/5 bg-[#1c243a] p-0 shadow-2xl sm:max-w-[310px]"
+        className="w-[316px] gap-0 overflow-visible border-l border-white/10 p-0 shadow-2xl backdrop-blur-sm sm:max-w-[316px]"
       >
-        <div className="relative flex h-full flex-col bg-[#1c243a]">
+        <div className="relative flex h-full w-full flex-col bg-midnight-700/80">
           {/* Header Section */}
-          <div className="bg-[#242d48] px-5 pt-8 pb-3">
+          <div className="bg-midnight-600/60 px-5 pt-8 pb-3">
             <UserMenuHeader user={user} buyerRankText={t("buyerRank")} />
 
             {/* Language & Currency Selectors */}

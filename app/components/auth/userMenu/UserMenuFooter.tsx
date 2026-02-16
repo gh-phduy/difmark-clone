@@ -9,7 +9,7 @@ interface UserMenuFooterProps {
 
 export function UserMenuFooter({ onLogout, logoutText }: UserMenuFooterProps) {
   return (
-    <div className="bg-[#191f33] px-5 py-3">
+    <div className="bg-midnight-600/60 px-5 py-3">
       <button
         onClick={onLogout}
         className="flex w-full items-center gap-3 py-3 text-[14px] font-medium text-white/80 transition hover:text-white"
