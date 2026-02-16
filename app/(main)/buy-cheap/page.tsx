@@ -58,7 +58,7 @@ export default async function BuyCheapPage({
   return (
     <main
       id="main-content"
-      className="flex w-full max-w-[1590px] flex-col items-center gap-y-8 pt-40"
+      className="flex w-full max-w-[1590px] flex-col items-center gap-y-8"
     >
       <Breadcrumbs />
 

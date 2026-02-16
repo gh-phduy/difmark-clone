@@ -19,6 +19,7 @@ import GamesSection from "../components/shared/GamesSection";
 import FlashSaleSection from "../components/home/FlashSaleSection";
 import PlatformsSection from "../components/home/PlatformsSection";
 import LatestNewsSection from "../components/home/LatestNewsSection";
+import { HeroCarousel } from "../components/home/HeroCarousel";
 
 /**
  * HomePage Component
@@ -33,11 +34,7 @@ export default function HomePage() {
     >
       {/* Hero Section */}
       {/* <HeroCarousel /> */}
-      <div className="flex h-[400px] w-full items-center justify-center bg-linear-to-r from-brand to-brand-light">
-        <h1 className="text-4xl font-bold text-white">
-          Hero Carousel Placeholder
-        </h1>
-      </div>
+      <HeroCarousel />
 
       {/* Popular Games Section */}
       <PopularGamesSection />

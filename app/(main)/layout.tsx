@@ -9,7 +9,7 @@ export default function MainLayout({
   return (
     <>
       <NavBar />
-      <div className="flex flex-1 flex-col items-center">{children}</div>
+      <div className="flex flex-1 flex-col items-center pt-20">{children}</div>
       <Footer />
     </>
   );

@@ -1,7 +1,7 @@
 "use client";
 
 import Image from "next/image";
-import { MdChevronRight } from "react-icons/md";
+import { MdChevronLeft } from "react-icons/md";
 import { SheetClose } from "@/components/ui/sheet";
 import { FaTrophy } from "react-icons/fa";
 
@@ -18,7 +18,7 @@ export function UserMenuHeader({ user, buyerRankText }: UserMenuHeaderProps) {
     <>
       {/* Chevron Close Button */}
       <SheetClose className="absolute top-1/2 -left-3 z-50 flex h-7 w-7 -translate-y-1/2 items-center justify-center rounded-full bg-[#3c4761] text-white shadow-lg transition hover:bg-[#4a5676]">
-        <MdChevronRight className="text-xl" />
+        <MdChevronLeft className="text-xl" />
       </SheetClose>
 
       {/* User Info Section */}
