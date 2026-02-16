@@ -4,6 +4,7 @@ import "./globals.css";
 import { QueryProvider } from "./providers/QueryProvider";
 import { AuthProvider } from "./context/AuthContext";
 import { CartProvider } from "./context/CartContext";
+import { SettingsProvider } from "./context/SettingsContext";
 
 const inter = Inter({
   subsets: ["latin"],
@@ -32,16 +33,18 @@ export default function RootLayout({
         className={`${inter.variable} flex min-h-screen flex-col bg-midnight-850 text-dm-text-primary antialiased`}
       >
         <AuthProvider>
-          <CartProvider>
-            <QueryProvider>
-              {/* Skip to main content link for accessibility */}
-              <a href="#main-content" className="skip-link">
-                Skip to main content
-              </a>
+          <SettingsProvider>
+            <CartProvider>
+              <QueryProvider>
+                {/* Skip to main content link for accessibility */}
+                <a href="#main-content" className="skip-link">
+                  Skip to main content
+                </a>
 
-              {children}
-            </QueryProvider>
-          </CartProvider>
+                {children}
+              </QueryProvider>
+            </CartProvider>
+          </SettingsProvider>
         </AuthProvider>
       </body>
     </html>

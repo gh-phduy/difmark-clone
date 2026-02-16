@@ -1,0 +1,76 @@
+{
+  "common": {
+    "loading": "Đang tải...",
+    "error": "Lỗi",
+    "success": "Thành công",
+    "cancel": "Hủy",
+    "save": "Lưu",
+    "delete": "Xóa",
+    "edit": "Chỉnh sửa",
+    "close": "Đóng",
+    "search": "Tìm kiếm"
+  },
+  "nav": {
+    "home": "Trang chủ",
+    "shop": "Cửa hàng",
+    "about": "Về chúng tôi",
+    "contact": "Liên hệ",
+    "login": "Đăng nhập",
+    "signup": "Đăng ký",
+    "logout": "Đăng xuất",
+    "account": "Tài khoản"
+  },
+  "userMenu": {
+    "buyerRank": "Hạng người mua",
+    "mainSection": "Chính",
+    "dashboard": "Bảng điều khiển",
+    "myOrders": "Đơn hàng của tôi",
+    "financesSection": "Tài chính",
+    "wallet": "Ví",
+    "cashback": "Hoàn tiền",
+    "affiliateProgram": "Chương trình Affiliate",
+    "casesSection": "Trường hợp",
+    "myTickets": "Phiếu của tôi",
+    "generalSection": "Chung",
+    "accountSettings": "Cài đặt tài khoản",
+    "bookmarks": "Đánh dấu",
+    "verification": "Xác minh",
+    "contactUs": "Liên hệ chúng tôi",
+    "bugReport": "Báo lỗi",
+    "logout": "Đăng xuất"
+  },
+  "auth": {
+    "welcomeBack": "Chào mừng trở lại",
+    "loginSubtitle": "Đăng nhập để truy cập tài khoản của bạn",
+    "email": "Email",
+    "password": "Mật khẩu",
+    "rememberMe": "Ghi nhớ đăng nhập",
+    "forgotPassword": "Quên mật khẩu?",
+    "loginButton": "Đăng nhập",
+    "noAccount": "Chưa có tài khoản?",
+    "signupLink": "Đăng ký",
+    "orContinueWith": "Hoặc tiếp tục với",
+    "google": "Google",
+    "facebook": "Facebook",
+    "discord": "Discord",
+    "apple": "Apple"
+  },
+  "product": {
+    "addToCart": "Thêm vào giỏ",
+    "buyNow": "Mua ngay",
+    "inStock": "Còn hàng",
+    "outOfStock": "Hết hàng",
+    "price": "Giá",
+    "description": "Mô tả",
+    "features": "Tính năng",
+    "specifications": "Thông số kỹ thuật"
+  },
+  "cart": {
+    "title": "Giỏ hàng",
+    "empty": "Giỏ hàng trống",
+    "subtotal": "Tạm tính",
+    "total": "Tổng cộng",
+    "checkout": "Thanh toán",
+    "continueShopping": "Tiếp tục mua sắm"
+  }
+}

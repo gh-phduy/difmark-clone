@@ -1,0 +1,76 @@
+{
+  "common": {
+    "loading": "Chargement...",
+    "error": "Erreur",
+    "success": "Succès",
+    "cancel": "Annuler",
+    "save": "Enregistrer",
+    "delete": "Supprimer",
+    "edit": "Modifier",
+    "close": "Fermer",
+    "search": "Rechercher"
+  },
+  "nav": {
+    "home": "Accueil",
+    "shop": "Boutique",
+    "about": "À propos",
+    "contact": "Contact",
+    "login": "Connexion",
+    "signup": "S'inscrire",
+    "logout": "Déconnexion",
+    "account": "Compte"
+  },
+  "userMenu": {
+    "buyerRank": "Rang d'acheteur",
+    "mainSection": "Principal",
+    "dashboard": "Tableau de bord",
+    "myOrders": "Mes commandes",
+    "financesSection": "Finances",
+    "wallet": "Portefeuille",
+    "cashback": "Cashback",
+    "affiliateProgram": "Programme d'affiliation",
+    "casesSection": "Cas",
+    "myTickets": "Mes tickets",
+    "generalSection": "Général",
+    "accountSettings": "Paramètres du compte",
+    "bookmarks": "Favoris",
+    "verification": "Vérification",
+    "contactUs": "Nous contacter",
+    "bugReport": "Rapport de bug",
+    "logout": "Déconnexion"
+  },
+  "auth": {
+    "welcomeBack": "Bon retour",
+    "loginSubtitle": "Connectez-vous pour accéder à votre compte",
+    "email": "Email",
+    "password": "Mot de passe",
+    "rememberMe": "Se souvenir de moi",
+    "forgotPassword": "Mot de passe oublié?",
+    "loginButton": "Se connecter",
+    "noAccount": "Pas encore de compte?",
+    "signupLink": "S'inscrire",
+    "orContinueWith": "Ou continuer avec",
+    "google": "Google",
+    "facebook": "Facebook",
+    "discord": "Discord",
+    "apple": "Apple"
+  },
+  "product": {
+    "addToCart": "Ajouter au panier",
+    "buyNow": "Acheter maintenant",
+    "inStock": "En stock",
+    "outOfStock": "Rupture de stock",
+    "price": "Prix",
+    "description": "Description",
+    "features": "Caractéristiques",
+    "specifications": "Spécifications"
+  },
+  "cart": {
+    "title": "Panier",
+    "empty": "Votre panier est vide",
+    "subtotal": "Sous-total",
+    "total": "Total",
+    "checkout": "Passer la commande",
+    "continueShopping": "Continuer les achats"
+  }
+}

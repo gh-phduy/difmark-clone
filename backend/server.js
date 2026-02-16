@@ -32,7 +32,7 @@ app.use(express.json());
 // ============================================
 
 // 1. Redirect to Google
-app.get("/api/auth/google", (req, res) => {
+app.get(["/api/auth/google", "/auth/google"], (req, res) => {
   const authorizeUrl = client.generateAuthUrl({
     access_type: "offline",
     scope: [
@@ -44,48 +44,51 @@ app.get("/api/auth/google", (req, res) => {
 });
 
 // 2. Google Callback
-app.get("/api/auth/google/callback", async (req, res) => {
-  const { code } = req.query;
+app.get(
+  ["/api/auth/google/callback", "/auth/google/callback"],
+  async (req, res) => {
+    const { code } = req.query;
 
-  try {
-    // Exchange code for tokens
-    const { tokens } = await client.getToken(code);
-    client.setCredentials(tokens);
+    try {
+      // Exchange code for tokens
+      const { tokens } = await client.getToken(code);
+      client.setCredentials(tokens);
 
-    // Get User Info
-    const ticket = await client.verifyIdToken({
-      idToken: tokens.id_token,
-      audience: process.env.GOOGLE_CLIENT_ID,
-    });
-    const payload = ticket.getPayload();
+      // Get User Info
+      const ticket = await client.verifyIdToken({
+        idToken: tokens.id_token,
+        audience: process.env.GOOGLE_CLIENT_ID,
+      });
+      const payload = ticket.getPayload();
 
-    // Mock Database Logic: Find or Create User
-    const user = {
-      id: payload.sub,
-      email: payload.email,
-      name: payload.name,
-      picture: payload.picture,
-    };
+      // Mock Database Logic: Find or Create User
+      const user = {
+        id: payload.sub,
+        email: payload.email,
+        name: payload.name,
+        picture: payload.picture,
+      };
 
-    console.log("User authenticated:", user);
+      console.log("User authenticated:", user);
 
-    // Generate JWT Token
-    const token = jwt.sign(user, process.env.JWT_SECRET || "default_secret", {
-      expiresIn: "1d",
-    });
+      // Generate JWT Token
+      const token = jwt.sign(user, process.env.JWT_SECRET || "default_secret", {
+        expiresIn: "1d",
+      });
 
-    // Redirect to Frontend with Token
-    // In a real app, you might set a secure cookie or pass token in URL
-    res.redirect(
-      `${process.env.FRONTEND_URL || "http://localhost:3000"}?token=${token}`,
-    );
-  } catch (error) {
-    console.error("Google Auth Error:", error);
-    res.redirect(
-      `${process.env.FRONTEND_URL || "http://localhost:3000"}?error=auth_failed`,
-    );
-  }
-});
+      // Redirect to Frontend with Token
+      // In a real app, you might set a secure cookie or pass token in URL
+      res.redirect(
+        `${process.env.FRONTEND_URL || "http://localhost:3000"}?token=${token}`,
+      );
+    } catch (error) {
+      console.error("Google Auth Error:", error);
+      res.redirect(
+        `${process.env.FRONTEND_URL || "http://localhost:3000"}?error=auth_failed`,
+      );
+    }
+  },
+);
 
 // ============================================
 // EXISTING ROUTES

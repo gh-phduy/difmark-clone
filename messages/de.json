@@ -1,0 +1,76 @@
+{
+  "common": {
+    "loading": "Laden...",
+    "error": "Fehler",
+    "success": "Erfolg",
+    "cancel": "Abbrechen",
+    "save": "Speichern",
+    "delete": "Löschen",
+    "edit": "Bearbeiten",
+    "close": "Schließen",
+    "search": "Suchen"
+  },
+  "nav": {
+    "home": "Startseite",
+    "shop": "Shop",
+    "about": "Über uns",
+    "contact": "Kontakt",
+    "login": "Anmelden",
+    "signup": "Registrieren",
+    "logout": "Abmelden",
+    "account": "Konto"
+  },
+  "userMenu": {
+    "buyerRank": "Käufer-Rang",
+    "mainSection": "Haupt",
+    "dashboard": "Dashboard",
+    "myOrders": "Meine Bestellungen",
+    "financesSection": "Finanzen",
+    "wallet": "Geldbörse",
+    "cashback": "Cashback",
+    "affiliateProgram": "Partner-Programm",
+    "casesSection": "Fälle",
+    "myTickets": "Meine Tickets",
+    "generalSection": "Allgemein",
+    "accountSettings": "Kontoeinstellungen",
+    "bookmarks": "Lesezeichen",
+    "verification": "Verifizierung",
+    "contactUs": "Kontaktieren Sie uns",
+    "bugReport": "Fehlerbericht",
+    "logout": "Abmelden"
+  },
+  "auth": {
+    "welcomeBack": "Willkommen zurück",
+    "loginSubtitle": "Melden Sie sich an, um auf Ihr Konto zuzugreifen",
+    "email": "E-Mail",
+    "password": "Passwort",
+    "rememberMe": "Angemeldet bleiben",
+    "forgotPassword": "Passwort vergessen?",
+    "loginButton": "Anmelden",
+    "noAccount": "Noch kein Konto?",
+    "signupLink": "Registrieren",
+    "orContinueWith": "Oder weiter mit",
+    "google": "Google",
+    "facebook": "Facebook",
+    "discord": "Discord",
+    "apple": "Apple"
+  },
+  "product": {
+    "addToCart": "In den Warenkorb",
+    "buyNow": "Jetzt kaufen",
+    "inStock": "Auf Lager",
+    "outOfStock": "Ausverkauft",
+    "price": "Preis",
+    "description": "Beschreibung",
+    "features": "Funktionen",
+    "specifications": "Spezifikationen"
+  },
+  "cart": {
+    "title": "Warenkorb",
+    "empty": "Ihr Warenkorb ist leer",
+    "subtotal": "Zwischensumme",
+    "total": "Gesamt",
+    "checkout": "Zur Kasse",
+    "continueShopping": "Weiter einkaufen"
+  }
+}

@@ -1,0 +1,76 @@
+{
+  "common": {
+    "loading": "Loading...",
+    "error": "Error",
+    "success": "Success",
+    "cancel": "Cancel",
+    "save": "Save",
+    "delete": "Delete",
+    "edit": "Edit",
+    "close": "Close",
+    "search": "Search"
+  },
+  "nav": {
+    "home": "Home",
+    "shop": "Shop",
+    "about": "About",
+    "contact": "Contact",
+    "login": "Login",
+    "signup": "Sign Up",
+    "logout": "Logout",
+    "account": "Account"
+  },
+  "userMenu": {
+    "buyerRank": "Buyer rank",
+    "mainSection": "Main",
+    "dashboard": "Dashboard",
+    "myOrders": "My Orders",
+    "financesSection": "Finances",
+    "wallet": "Wallet",
+    "cashback": "Cashback",
+    "affiliateProgram": "Affiliate Program",
+    "casesSection": "Cases",
+    "myTickets": "My Tickets",
+    "generalSection": "General",
+    "accountSettings": "Account Settings",
+    "bookmarks": "Bookmarks",
+    "verification": "Verification",
+    "contactUs": "Contact Us",
+    "bugReport": "Bug Report",
+    "logout": "Logout"
+  },
+  "auth": {
+    "welcomeBack": "Welcome Back",
+    "loginSubtitle": "Sign in to access your account",
+    "email": "Email",
+    "password": "Password",
+    "rememberMe": "Remember me",
+    "forgotPassword": "Forgot password?",
+    "loginButton": "Sign In",
+    "noAccount": "Don't have an account?",
+    "signupLink": "Sign up",
+    "orContinueWith": "Or continue with",
+    "google": "Google",
+    "facebook": "Facebook",
+    "discord": "Discord",
+    "apple": "Apple"
+  },
+  "product": {
+    "addToCart": "Add to Cart",
+    "buyNow": "Buy Now",
+    "inStock": "In Stock",
+    "outOfStock": "Out of Stock",
+    "price": "Price",
+    "description": "Description",
+    "features": "Features",
+    "specifications": "Specifications"
+  },
+  "cart": {
+    "title": "Shopping Cart",
+    "empty": "Your cart is empty",
+    "subtotal": "Subtotal",
+    "total": "Total",
+    "checkout": "Checkout",
+    "continueShopping": "Continue Shopping"
+  }
+}

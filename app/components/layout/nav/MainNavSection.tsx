@@ -11,6 +11,9 @@ import SearchButton from "./SearchButton";
 import CartButton from "./CartButton";
 import SignInButton from "./SignInButton";
 import { Separator } from "@base-ui/react";
+import { FaRegBell } from "react-icons/fa";
+import { BiChat } from "react-icons/bi";
+import { useAuth } from "@/app/context/AuthContext";
 
 interface ListingProduct {
   id: number;
@@ -25,6 +28,7 @@ const API_BASE_URL = process.env.NEXT_PUBLIC_API_URL || "http://localhost:5000";
 export default function MainNavSection() {
   const router = useRouter();
   const searchContainerRef = useRef<HTMLDivElement | null>(null);
+  const { user } = useAuth();
 
   const [isCategoriesOpen, setIsCategoriesOpen] = useState(false);
   const [searchValue, setSearchValue] = useState("");
@@ -230,6 +234,12 @@ export default function MainNavSection() {
 
       {/* Right Side Actions */}
       <Separator orientation="vertical" className="h-6 w-[1px] bg-gray-700" />
+      {user && (
+        <>
+          <FaRegBell size={24} className="text-steel-500" />
+          <BiChat size={24} className="text-steel-500" />
+        </>
+      )}
       <CartButton />
       <Separator orientation="vertical" className="h-6 w-[1px] bg-gray-700" />
       <SignInButton />
