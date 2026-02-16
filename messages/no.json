@@ -1,0 +1,76 @@
+{
+  "common": {
+    "loading": "Laster...",
+    "error": "Feil",
+    "success": "Suksess",
+    "cancel": "Avbryt",
+    "save": "Lagre",
+    "delete": "Slett",
+    "edit": "Rediger",
+    "close": "Lukk",
+    "search": "Søk"
+  },
+  "nav": {
+    "home": "Hjem",
+    "shop": "Butikk",
+    "about": "Om oss",
+    "contact": "Kontakt",
+    "login": "Logg inn",
+    "signup": "Registrer deg",
+    "logout": "Logg ut",
+    "account": "Konto"
+  },
+  "userMenu": {
+    "buyerRank": "Kjøperrangering",
+    "mainSection": "Hoved",
+    "dashboard": "Dashbord",
+    "myOrders": "Mine bestillinger",
+    "financesSection": "Finans",
+    "wallet": "Lommebok",
+    "cashback": "Cashback",
+    "affiliateProgram": "Tilknyttet program",
+    "casesSection": "Saker",
+    "myTickets": "Mine billetter",
+    "generalSection": "Generelt",
+    "accountSettings": "Kontoinnstillinger",
+    "bookmarks": "Bokmerker",
+    "verification": "Verifisering",
+    "contactUs": "Kontakt oss",
+    "bugReport": "Feilrapport",
+    "logout": "Logg ut"
+  },
+  "auth": {
+    "welcomeBack": "Velkommen tilbake",
+    "loginSubtitle": "Logg inn for å få tilgang til kontoen din",
+    "email": "E-post",
+    "password": "Passord",
+    "rememberMe": "Husk meg",
+    "forgotPassword": "Glemt passord?",
+    "loginButton": "Logg inn",
+    "noAccount": "Har du ikke en konto?",
+    "signupLink": "Registrer deg",
+    "orContinueWith": "Eller fortsett med",
+    "google": "Google",
+    "facebook": "Facebook",
+    "discord": "Discord",
+    "apple": "Apple"
+  },
+  "product": {
+    "addToCart": "Legg til i handlekurv",
+    "buyNow": "Kjøp nå",
+    "inStock": "På lager",
+    "outOfStock": "Utsolgt",
+    "price": "Pris",
+    "description": "Beskrivelse",
+    "features": "Funksjoner",
+    "specifications": "Spesifikasjoner"
+  },
+  "cart": {
+    "title": "Handlekurv",
+    "empty": "Handlekurven din er tom",
+    "subtotal": "Delsum",
+    "total": "Totalt",
+    "checkout": "Gå til kassen",
+    "continueShopping": "Fortsett å handle"
+  }
+}

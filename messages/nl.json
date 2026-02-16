@@ -1,0 +1,76 @@
+{
+  "common": {
+    "loading": "Laden...",
+    "error": "Fout",
+    "success": "Succes",
+    "cancel": "Annuleren",
+    "save": "Opslaan",
+    "delete": "Verwijderen",
+    "edit": "Bewerken",
+    "close": "Sluiten",
+    "search": "Zoeken"
+  },
+  "nav": {
+    "home": "Home",
+    "shop": "Winkel",
+    "about": "Over",
+    "contact": "Contact",
+    "login": "Inloggen",
+    "signup": "Registreren",
+    "logout": "Uitloggen",
+    "account": "Account"
+  },
+  "userMenu": {
+    "buyerRank": "Koper rang",
+    "mainSection": "Hoofd",
+    "dashboard": "Dashboard",
+    "myOrders": "Mijn bestellingen",
+    "financesSection": "Financiën",
+    "wallet": "Portemonnee",
+    "cashback": "Cashback",
+    "affiliateProgram": "Partnerprogramma",
+    "casesSection": "Zaken",
+    "myTickets": "Mijn tickets",
+    "generalSection": "Algemeen",
+    "accountSettings": "Accountinstellingen",
+    "bookmarks": "Bladwijzers",
+    "verification": "Verificatie",
+    "contactUs": "Neem contact op",
+    "bugReport": "Bug melden",
+    "logout": "Uitloggen"
+  },
+  "auth": {
+    "welcomeBack": "Welkom terug",
+    "loginSubtitle": "Log in om toegang te krijgen tot je account",
+    "email": "E-mail",
+    "password": "Wachtwoord",
+    "rememberMe": "Onthoud mij",
+    "forgotPassword": "Wachtwoord vergeten?",
+    "loginButton": "Inloggen",
+    "noAccount": "Geen account?",
+    "signupLink": "Registreren",
+    "orContinueWith": "Of ga verder met",
+    "google": "Google",
+    "facebook": "Facebook",
+    "discord": "Discord",
+    "apple": "Apple"
+  },
+  "product": {
+    "addToCart": "Toevoegen aan winkelwagen",
+    "buyNow": "Nu kopen",
+    "inStock": "Op voorraad",
+    "outOfStock": "Uitverkocht",
+    "price": "Prijs",
+    "description": "Beschrijving",
+    "features": "Kenmerken",
+    "specifications": "Specificaties"
+  },
+  "cart": {
+    "title": "Winkelwagen",
+    "empty": "Je winkelwagen is leeg",
+    "subtotal": "Subtotaal",
+    "total": "Totaal",
+    "checkout": "Afrekenen",
+    "continueShopping": "Verder winkelen"
+  }
+}

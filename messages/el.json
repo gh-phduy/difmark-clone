@@ -1,0 +1,76 @@
+{
+  "common": {
+    "loading": "Φόρτωση...",
+    "error": "Σφάλμα",
+    "success": "Επιτυχία",
+    "cancel": "Ακύρωση",
+    "save": "Αποθήκευση",
+    "delete": "Διαγραφή",
+    "edit": "Επεξεργασία",
+    "close": "Κλείσιμο",
+    "search": "Αναζήτηση"
+  },
+  "nav": {
+    "home": "Αρχική",
+    "shop": "Κατάστημα",
+    "about": "Σχετικά",
+    "contact": "Επικοινωνία",
+    "login": "Σύνδεση",
+    "signup": "Εγγραφή",
+    "logout": "Αποσύνδεση",
+    "account": "Λογαριασμός"
+  },
+  "userMenu": {
+    "buyerRank": "Βαθμός αγοραστή",
+    "mainSection": "Κύριο",
+    "dashboard": "Πίνακας ελέγχου",
+    "myOrders": "Οι παραγγελίες μου",
+    "financesSection": "Οικονομικά",
+    "wallet": "Πορτοφόλι",
+    "cashback": "Επιστροφή χρημάτων",
+    "affiliateProgram": "Πρόγραμμα συνεργατών",
+    "casesSection": "Υποθέσεις",
+    "myTickets": "Τα εισιτήριά μου",
+    "generalSection": "Γενικά",
+    "accountSettings": "Ρυθμίσεις λογαριασμού",
+    "bookmarks": "Σελιδοδείκτες",
+    "verification": "Επαλήθευση",
+    "contactUs": "Επικοινωνήστε μαζί μας",
+    "bugReport": "Αναφορά σφάλματος",
+    "logout": "Αποσύνδεση"
+  },
+  "auth": {
+    "welcomeBack": "Καλώς ήρθατε πίσω",
+    "loginSubtitle": "Συνδεθείτε για πρόσβαση στον λογαριασμό σας",
+    "email": "Email",
+    "password": "Κωδικός",
+    "rememberMe": "Να με θυμάσαι",
+    "forgotPassword": "Ξεχάσατε τον κωδικό;",
+    "loginButton": "Σύνδεση",
+    "noAccount": "Δεν έχετε λογαριασμό;",
+    "signupLink": "Εγγραφή",
+    "orContinueWith": "Ή συνεχίστε με",
+    "google": "Google",
+    "facebook": "Facebook",
+    "discord": "Discord",
+    "apple": "Apple"
+  },
+  "product": {
+    "addToCart": "Προσθήκη στο καλάθι",
+    "buyNow": "Αγορά τώρα",
+    "inStock": "Σε απόθεμα",
+    "outOfStock": "Εξαντλημένο",
+    "price": "Τιμή",
+    "description": "Περιγραφή",
+    "features": "Χαρακτηριστικά",
+    "specifications": "Προδιαγραφές"
+  },
+  "cart": {
+    "title": "Καλάθι",
+    "empty": "Το καλάθι σας είναι άδειο",
+    "subtotal": "Υποσύνολο",
+    "total": "Σύνολο",
+    "checkout": "Ολοκλήρωση αγοράς",
+    "continueShopping": "Συνέχεια αγορών"
+  }
+}

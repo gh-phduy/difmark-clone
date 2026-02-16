@@ -1,0 +1,76 @@
+{
+  "common": {
+    "loading": "Laddar...",
+    "error": "Fel",
+    "success": "Framgång",
+    "cancel": "Avbryt",
+    "save": "Spara",
+    "delete": "Ta bort",
+    "edit": "Redigera",
+    "close": "Stäng",
+    "search": "Sök"
+  },
+  "nav": {
+    "home": "Hem",
+    "shop": "Butik",
+    "about": "Om oss",
+    "contact": "Kontakt",
+    "login": "Logga in",
+    "signup": "Registrera",
+    "logout": "Logga ut",
+    "account": "Konto"
+  },
+  "userMenu": {
+    "buyerRank": "Köparrankning",
+    "mainSection": "Huvud",
+    "dashboard": "Instrumentpanel",
+    "myOrders": "Mina beställningar",
+    "financesSection": "Finans",
+    "wallet": "Plånbok",
+    "cashback": "Cashback",
+    "affiliateProgram": "Affiliateprogram",
+    "casesSection": "Ärenden",
+    "myTickets": "Mina biljetter",
+    "generalSection": "Allmänt",
+    "accountSettings": "Kontoinställningar",
+    "bookmarks": "Bokmärken",
+    "verification": "Verifiering",
+    "contactUs": "Kontakta oss",
+    "bugReport": "Buggrapport",
+    "logout": "Logga ut"
+  },
+  "auth": {
+    "welcomeBack": "Välkommen tillbaka",
+    "loginSubtitle": "Logga in för att komma åt ditt konto",
+    "email": "E-post",
+    "password": "Lösenord",
+    "rememberMe": "Kom ihåg mig",
+    "forgotPassword": "Glömt lösenord?",
+    "loginButton": "Logga in",
+    "noAccount": "Har du inget konto?",
+    "signupLink": "Registrera",
+    "orContinueWith": "Eller fortsätt med",
+    "google": "Google",
+    "facebook": "Facebook",
+    "discord": "Discord",
+    "apple": "Apple"
+  },
+  "product": {
+    "addToCart": "Lägg till i varukorg",
+    "buyNow": "Köp nu",
+    "inStock": "I lager",
+    "outOfStock": "Slutsåld",
+    "price": "Pris",
+    "description": "Beskrivning",
+    "features": "Funktioner",
+    "specifications": "Specifikationer"
+  },
+  "cart": {
+    "title": "Varukorg",
+    "empty": "Din varukorg är tom",
+    "subtotal": "Delsumma",
+    "total": "Totalt",
+    "checkout": "Gå till kassan",
+    "continueShopping": "Fortsätt handla"
+  }
+}

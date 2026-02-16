@@ -1,0 +1,76 @@
+{
+  "common": {
+    "loading": "Indlæser...",
+    "error": "Fejl",
+    "success": "Succes",
+    "cancel": "Annuller",
+    "save": "Gem",
+    "delete": "Slet",
+    "edit": "Rediger",
+    "close": "Luk",
+    "search": "Søg"
+  },
+  "nav": {
+    "home": "Hjem",
+    "shop": "Butik",
+    "about": "Om os",
+    "contact": "Kontakt",
+    "login": "Log ind",
+    "signup": "Tilmeld",
+    "logout": "Log ud",
+    "account": "Konto"
+  },
+  "userMenu": {
+    "buyerRank": "Køberrangering",
+    "mainSection": "Hoved",
+    "dashboard": "Dashboard",
+    "myOrders": "Mine ordrer",
+    "financesSection": "Finans",
+    "wallet": "Pung",
+    "cashback": "Cashback",
+    "affiliateProgram": "Affilieringsprogram",
+    "casesSection": "Sager",
+    "myTickets": "Mine billetter",
+    "generalSection": "Generelt",
+    "accountSettings": "Kontoindstillinger",
+    "bookmarks": "Bogmærker",
+    "verification": "Verifikation",
+    "contactUs": "Kontakt os",
+    "bugReport": "Fejlrapport",
+    "logout": "Log ud"
+  },
+  "auth": {
+    "welcomeBack": "Velkommen tilbage",
+    "loginSubtitle": "Log ind for at få adgang til din konto",
+    "email": "E-mail",
+    "password": "Adgangskode",
+    "rememberMe": "Husk mig",
+    "forgotPassword": "Glemt adgangskode?",
+    "loginButton": "Log ind",
+    "noAccount": "Har du ikke en konto?",
+    "signupLink": "Tilmeld",
+    "orContinueWith": "Eller fortsæt med",
+    "google": "Google",
+    "facebook": "Facebook",
+    "discord": "Discord",
+    "apple": "Apple"
+  },
+  "product": {
+    "addToCart": "Tilføj til kurv",
+    "buyNow": "Køb nu",
+    "inStock": "På lager",
+    "outOfStock": "Udsolgt",
+    "price": "Pris",
+    "description": "Beskrivelse",
+    "features": "Funktioner",
+    "specifications": "Specifikationer"
+  },
+  "cart": {
+    "title": "Indkøbskurv",
+    "empty": "Din indkøbskurv er tom",
+    "subtotal": "Subtotal",
+    "total": "Total",
+    "checkout": "Gå til kassen",
+    "continueShopping": "Fortsæt med at handle"
+  }
+}

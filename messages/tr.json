@@ -1,0 +1,76 @@
+{
+  "common": {
+    "loading": "Yükleniyor...",
+    "error": "Hata",
+    "success": "Başarılı",
+    "cancel": "İptal",
+    "save": "Kaydet",
+    "delete": "Sil",
+    "edit": "Düzenle",
+    "close": "Kapat",
+    "search": "Ara"
+  },
+  "nav": {
+    "home": "Ana Sayfa",
+    "shop": "Mağaza",
+    "about": "Hakkımızda",
+    "contact": "İletişim",
+    "login": "Giriş Yap",
+    "signup": "Kayıt Ol",
+    "logout": "Çıkış Yap",
+    "account": "Hesap"
+  },
+  "userMenu": {
+    "buyerRank": "Alıcı seviyesi",
+    "mainSection": "Ana",
+    "dashboard": "Kontrol Paneli",
+    "myOrders": "Siparişlerim",
+    "financesSection": "Finans",
+    "wallet": "Cüzdan",
+    "cashback": "Geri Ödeme",
+    "affiliateProgram": "Ortaklık Programı",
+    "casesSection": "Vakalar",
+    "myTickets": "Destek Taleplerim",
+    "generalSection": "Genel",
+    "accountSettings": "Hesap Ayarları",
+    "bookmarks": "Yer İşaretleri",
+    "verification": "Doğrulama",
+    "contactUs": "Bize Ulaşın",
+    "bugReport": "Hata Bildirimi",
+    "logout": "Çıkış Yap"
+  },
+  "auth": {
+    "welcomeBack": "Tekrar hoş geldiniz",
+    "loginSubtitle": "Hesabınıza erişmek için giriş yapın",
+    "email": "E-posta",
+    "password": "Şifre",
+    "rememberMe": "Beni hatırla",
+    "forgotPassword": "Şifrenizi mi unuttunuz?",
+    "loginButton": "Giriş Yap",
+    "noAccount": "Hesabınız yok mu?",
+    "signupLink": "Kayıt Ol",
+    "orContinueWith": "Veya devam et",
+    "google": "Google",
+    "facebook": "Facebook",
+    "discord": "Discord",
+    "apple": "Apple"
+  },
+  "product": {
+    "addToCart": "Sepete Ekle",
+    "buyNow": "Şimdi Satın Al",
+    "inStock": "Stokta Var",
+    "outOfStock": "Stokta Yok",
+    "price": "Fiyat",
+    "description": "Açıklama",
+    "features": "Özellikler",
+    "specifications": "Teknik Özellikler"
+  },
+  "cart": {
+    "title": "Sepet",
+    "empty": "Sepetiniz boş",
+    "subtotal": "Ara Toplam",
+    "total": "Toplam",
+    "checkout": "Ödeme",
+    "continueShopping": "Alışverişe Devam Et"
+  }
+}

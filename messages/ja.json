@@ -1,0 +1,76 @@
+{
+  "common": {
+    "loading": "読み込み中...",
+    "error": "エラー",
+    "success": "成功",
+    "cancel": "キャンセル",
+    "save": "保存",
+    "delete": "削除",
+    "edit": "編集",
+    "close": "閉じる",
+    "search": "検索"
+  },
+  "nav": {
+    "home": "ホーム",
+    "shop": "ショップ",
+    "about": "について",
+    "contact": "お問い合わせ",
+    "login": "ログイン",
+    "signup": "新規登録",
+    "logout": "ログアウト",
+    "account": "アカウント"
+  },
+  "userMenu": {
+    "buyerRank": "購入者ランク",
+    "mainSection": "メイン",
+    "dashboard": "ダッシュボード",
+    "myOrders": "注文履歴",
+    "financesSection": "財務",
+    "wallet": "ウォレット",
+    "cashback": "キャッシュバック",
+    "affiliateProgram": "アフィリエイトプログラム",
+    "casesSection": "ケース",
+    "myTickets": "チケット",
+    "generalSection": "一般",
+    "accountSettings": "アカウント設定",
+    "bookmarks": "ブックマーク",
+    "verification": "確認",
+    "contactUs": "お問い合わせ",
+    "bugReport": "バグ報告",
+    "logout": "ログアウト"
+  },
+  "auth": {
+    "welcomeBack": "おかえりなさい",
+    "loginSubtitle": "アカウントにアクセスするにはログインしてください",
+    "email": "メールアドレス",
+    "password": "パスワード",
+    "rememberMe": "ログイン状態を保持",
+    "forgotPassword": "パスワードをお忘れですか？",
+    "loginButton": "ログイン",
+    "noAccount": "アカウントをお持ちでないですか？",
+    "signupLink": "新規登録",
+    "orContinueWith": "または続行",
+    "google": "Google",
+    "facebook": "Facebook",
+    "discord": "Discord",
+    "apple": "Apple"
+  },
+  "product": {
+    "addToCart": "カートに追加",
+    "buyNow": "今すぐ購入",
+    "inStock": "在庫あり",
+    "outOfStock": "在庫切れ",
+    "price": "価格",
+    "description": "説明",
+    "features": "特徴",
+    "specifications": "仕様"
+  },
+  "cart": {
+    "title": "カート",
+    "empty": "カートは空です",
+    "subtotal": "小計",
+    "total": "合計",
+    "checkout": "チェックアウト",
+    "continueShopping": "買い物を続ける"
+  }
+}

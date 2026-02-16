@@ -1,0 +1,76 @@
+{
+  "common": {
+    "loading": "Ładowanie...",
+    "error": "Błąd",
+    "success": "Sukces",
+    "cancel": "Anuluj",
+    "save": "Zapisz",
+    "delete": "Usuń",
+    "edit": "Edytuj",
+    "close": "Zamknij",
+    "search": "Szukaj"
+  },
+  "nav": {
+    "home": "Strona główna",
+    "shop": "Sklep",
+    "about": "O nas",
+    "contact": "Kontakt",
+    "login": "Zaloguj się",
+    "signup": "Zarejestruj się",
+    "logout": "Wyloguj się",
+    "account": "Konto"
+  },
+  "userMenu": {
+    "buyerRank": "Ranga kupującego",
+    "mainSection": "Główne",
+    "dashboard": "Panel",
+    "myOrders": "Moje zamówienia",
+    "financesSection": "Finanse",
+    "wallet": "Portfel",
+    "cashback": "Cashback",
+    "affiliateProgram": "Program partnerski",
+    "casesSection": "Sprawy",
+    "myTickets": "Moje zgłoszenia",
+    "generalSection": "Ogólne",
+    "accountSettings": "Ustawienia konta",
+    "bookmarks": "Zakładki",
+    "verification": "Weryfikacja",
+    "contactUs": "Skontaktuj się z nami",
+    "bugReport": "Zgłoś błąd",
+    "logout": "Wyloguj się"
+  },
+  "auth": {
+    "welcomeBack": "Witaj ponownie",
+    "loginSubtitle": "Zaloguj się, aby uzyskać dostęp do swojego konta",
+    "email": "Email",
+    "password": "Hasło",
+    "rememberMe": "Zapamiętaj mnie",
+    "forgotPassword": "Zapomniałeś hasła?",
+    "loginButton": "Zaloguj się",
+    "noAccount": "Nie masz konta?",
+    "signupLink": "Zarejestruj się",
+    "orContinueWith": "Lub kontynuuj z",
+    "google": "Google",
+    "facebook": "Facebook",
+    "discord": "Discord",
+    "apple": "Apple"
+  },
+  "product": {
+    "addToCart": "Dodaj do koszyka",
+    "buyNow": "Kup teraz",
+    "inStock": "W magazynie",
+    "outOfStock": "Brak w magazynie",
+    "price": "Cena",
+    "description": "Opis",
+    "features": "Funkcje",
+    "specifications": "Specyfikacje"
+  },
+  "cart": {
+    "title": "Koszyk",
+    "empty": "Twój koszyk jest pusty",
+    "subtotal": "Suma częściowa",
+    "total": "Razem",
+    "checkout": "Przejdź do kasy",
+    "continueShopping": "Kontynuuj zakupy"
+  }
+}

@@ -1,0 +1,76 @@
+{
+  "common": {
+    "loading": "Caricamento...",
+    "error": "Errore",
+    "success": "Successo",
+    "cancel": "Annulla",
+    "save": "Salva",
+    "delete": "Elimina",
+    "edit": "Modifica",
+    "close": "Chiudi",
+    "search": "Cerca"
+  },
+  "nav": {
+    "home": "Home",
+    "shop": "Negozio",
+    "about": "Chi siamo",
+    "contact": "Contatti",
+    "login": "Accedi",
+    "signup": "Registrati",
+    "logout": "Esci",
+    "account": "Account"
+  },
+  "userMenu": {
+    "buyerRank": "Rango acquirente",
+    "mainSection": "Principale",
+    "dashboard": "Dashboard",
+    "myOrders": "I miei ordini",
+    "financesSection": "Finanze",
+    "wallet": "Portafoglio",
+    "cashback": "Cashback",
+    "affiliateProgram": "Programma affiliati",
+    "casesSection": "Casi",
+    "myTickets": "I miei ticket",
+    "generalSection": "Generale",
+    "accountSettings": "Impostazioni account",
+    "bookmarks": "Segnalibri",
+    "verification": "Verifica",
+    "contactUs": "Contattaci",
+    "bugReport": "Segnala bug",
+    "logout": "Esci"
+  },
+  "auth": {
+    "welcomeBack": "Bentornato",
+    "loginSubtitle": "Accedi per accedere al tuo account",
+    "email": "Email",
+    "password": "Password",
+    "rememberMe": "Ricordami",
+    "forgotPassword": "Password dimenticata?",
+    "loginButton": "Accedi",
+    "noAccount": "Non hai un account?",
+    "signupLink": "Registrati",
+    "orContinueWith": "O continua con",
+    "google": "Google",
+    "facebook": "Facebook",
+    "discord": "Discord",
+    "apple": "Apple"
+  },
+  "product": {
+    "addToCart": "Aggiungi al carrello",
+    "buyNow": "Acquista ora",
+    "inStock": "Disponibile",
+    "outOfStock": "Esaurito",
+    "price": "Prezzo",
+    "description": "Descrizione",
+    "features": "Caratteristiche",
+    "specifications": "Specifiche"
+  },
+  "cart": {
+    "title": "Carrello",
+    "empty": "Il tuo carrello è vuoto",
+    "subtotal": "Subtotale",
+    "total": "Totale",
+    "checkout": "Procedi al pagamento",
+    "continueShopping": "Continua lo shopping"
+  }
+}

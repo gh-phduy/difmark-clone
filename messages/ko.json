@@ -1,0 +1,76 @@
+{
+  "common": {
+    "loading": "로딩 중...",
+    "error": "오류",
+    "success": "성공",
+    "cancel": "취소",
+    "save": "저장",
+    "delete": "삭제",
+    "edit": "편집",
+    "close": "닫기",
+    "search": "검색"
+  },
+  "nav": {
+    "home": "홈",
+    "shop": "상점",
+    "about": "소개",
+    "contact": "연락처",
+    "login": "로그인",
+    "signup": "회원가입",
+    "logout": "로그아웃",
+    "account": "계정"
+  },
+  "userMenu": {
+    "buyerRank": "구매자 등급",
+    "mainSection": "메인",
+    "dashboard": "대시보드",
+    "myOrders": "내 주문",
+    "financesSection": "재무",
+    "wallet": "지갑",
+    "cashback": "캐시백",
+    "affiliateProgram": "제휴 프로그램",
+    "casesSection": "케이스",
+    "myTickets": "내 티켓",
+    "generalSection": "일반",
+    "accountSettings": "계정 설정",
+    "bookmarks": "북마크",
+    "verification": "인증",
+    "contactUs": "문의하기",
+    "bugReport": "버그 신고",
+    "logout": "로그아웃"
+  },
+  "auth": {
+    "welcomeBack": "다시 오신 것을 환영합니다",
+    "loginSubtitle": "계정에 액세스하려면 로그인하세요",
+    "email": "이메일",
+    "password": "비밀번호",
+    "rememberMe": "로그인 상태 유지",
+    "forgotPassword": "비밀번호를 잊으셨나요?",
+    "loginButton": "로그인",
+    "noAccount": "계정이 없으신가요?",
+    "signupLink": "회원가입",
+    "orContinueWith": "또는 계속하기",
+    "google": "구글",
+    "facebook": "페이스북",
+    "discord": "디스코드",
+    "apple": "애플"
+  },
+  "product": {
+    "addToCart": "장바구니에 추가",
+    "buyNow": "지금 구매",
+    "inStock": "재고 있음",
+    "outOfStock": "품절",
+    "price": "가격",
+    "description": "설명",
+    "features": "기능",
+    "specifications": "사양"
+  },
+  "cart": {
+    "title": "장바구니",
+    "empty": "장바구니가 비어 있습니다",
+    "subtotal": "소계",
+    "total": "합계",
+    "checkout": "결제",
+    "continueShopping": "쇼핑 계속하기"
+  }
+}

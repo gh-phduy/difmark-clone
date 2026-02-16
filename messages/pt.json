@@ -1,0 +1,76 @@
+{
+  "common": {
+    "loading": "Carregando...",
+    "error": "Erro",
+    "success": "Sucesso",
+    "cancel": "Cancelar",
+    "save": "Salvar",
+    "delete": "Excluir",
+    "edit": "Editar",
+    "close": "Fechar",
+    "search": "Pesquisar"
+  },
+  "nav": {
+    "home": "Início",
+    "shop": "Loja",
+    "about": "Sobre",
+    "contact": "Contato",
+    "login": "Entrar",
+    "signup": "Cadastrar",
+    "logout": "Sair",
+    "account": "Conta"
+  },
+  "userMenu": {
+    "buyerRank": "Classificação de comprador",
+    "mainSection": "Principal",
+    "dashboard": "Painel",
+    "myOrders": "Meus pedidos",
+    "financesSection": "Finanças",
+    "wallet": "Carteira",
+    "cashback": "Cashback",
+    "affiliateProgram": "Programa de afiliados",
+    "casesSection": "Casos",
+    "myTickets": "Meus tickets",
+    "generalSection": "Geral",
+    "accountSettings": "Configurações da conta",
+    "bookmarks": "Favoritos",
+    "verification": "Verificação",
+    "contactUs": "Entre em contato",
+    "bugReport": "Relatar erro",
+    "logout": "Sair"
+  },
+  "auth": {
+    "welcomeBack": "Bem-vindo de volta",
+    "loginSubtitle": "Faça login para acessar sua conta",
+    "email": "Email",
+    "password": "Senha",
+    "rememberMe": "Lembrar de mim",
+    "forgotPassword": "Esqueceu a senha?",
+    "loginButton": "Entrar",
+    "noAccount": "Não tem uma conta?",
+    "signupLink": "Cadastrar",
+    "orContinueWith": "Ou continuar com",
+    "google": "Google",
+    "facebook": "Facebook",
+    "discord": "Discord",
+    "apple": "Apple"
+  },
+  "product": {
+    "addToCart": "Adicionar ao carrinho",
+    "buyNow": "Comprar agora",
+    "inStock": "Em estoque",
+    "outOfStock": "Esgotado",
+    "price": "Preço",
+    "description": "Descrição",
+    "features": "Recursos",
+    "specifications": "Especificações"
+  },
+  "cart": {
+    "title": "Carrinho",
+    "empty": "Seu carrinho está vazio",
+    "subtotal": "Subtotal",
+    "total": "Total",
+    "checkout": "Finalizar compra",
+    "continueShopping": "Continuar comprando"
+  }
+}

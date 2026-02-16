@@ -1,0 +1,76 @@
+{
+  "common": {
+    "loading": "Cargando...",
+    "error": "Error",
+    "success": "Éxito",
+    "cancel": "Cancelar",
+    "save": "Guardar",
+    "delete": "Eliminar",
+    "edit": "Editar",
+    "close": "Cerrar",
+    "search": "Buscar"
+  },
+  "nav": {
+    "home": "Inicio",
+    "shop": "Tienda",
+    "about": "Acerca de",
+    "contact": "Contacto",
+    "login": "Iniciar sesión",
+    "signup": "Registrarse",
+    "logout": "Cerrar sesión",
+    "account": "Cuenta"
+  },
+  "userMenu": {
+    "buyerRank": "Rango de comprador",
+    "mainSection": "Principal",
+    "dashboard": "Panel",
+    "myOrders": "Mis pedidos",
+    "financesSection": "Finanzas",
+    "wallet": "Cartera",
+    "cashback": "Reembolso",
+    "affiliateProgram": "Programa de afiliados",
+    "casesSection": "Casos",
+    "myTickets": "Mis tickets",
+    "generalSection": "General",
+    "accountSettings": "Configuración de cuenta",
+    "bookmarks": "Marcadores",
+    "verification": "Verificación",
+    "contactUs": "Contáctanos",
+    "bugReport": "Informar error",
+    "logout": "Cerrar sesión"
+  },
+  "auth": {
+    "welcomeBack": "Bienvenido de nuevo",
+    "loginSubtitle": "Inicia sesión para acceder a tu cuenta",
+    "email": "Correo electrónico",
+    "password": "Contraseña",
+    "rememberMe": "Recuérdame",
+    "forgotPassword": "¿Olvidaste tu contraseña?",
+    "loginButton": "Iniciar sesión",
+    "noAccount": "¿No tienes una cuenta?",
+    "signupLink": "Registrarse",
+    "orContinueWith": "O continuar con",
+    "google": "Google",
+    "facebook": "Facebook",
+    "discord": "Discord",
+    "apple": "Apple"
+  },
+  "product": {
+    "addToCart": "Añadir al carrito",
+    "buyNow": "Comprar ahora",
+    "inStock": "En stock",
+    "outOfStock": "Agotado",
+    "price": "Precio",
+    "description": "Descripción",
+    "features": "Características",
+    "specifications": "Especificaciones"
+  },
+  "cart": {
+    "title": "Carrito",
+    "empty": "Tu carrito está vacío",
+    "subtotal": "Subtotal",
+    "total": "Total",
+    "checkout": "Finalizar compra",
+    "continueShopping": "Continuar comprando"
+  }
+}
