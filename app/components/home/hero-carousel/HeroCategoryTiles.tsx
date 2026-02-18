@@ -1,15 +1,17 @@
 import Image from "next/image";
 import Link from "next/link";
 import { Monitor, Package, CreditCard, Gamepad2 } from "lucide-react";
-import { cn } from "@/lib/utils";
 import { HERO_CATEGORIES, TOPUP_CATEGORIES } from "@/lib/constants/hero";
+import { SCATTERED_LAYOUTS } from "./scattered-layouts";
+import { ScatteredIcons } from "./ScatteredIcons";
+import { StackedImages } from "./StackedImages";
 
 const ICON_MAP = {
   monitor: Monitor,
   "gamepad-2": Gamepad2,
   "credit-card": CreditCard,
   package: Package,
-};
+} as const;
 
 interface HeroCategoryTilesProps {
   activeTab: "digital" | "topup";
@@ -24,7 +26,9 @@ export function HeroCategoryTiles({ activeTab }: HeroCategoryTilesProps) {
       <div className="flex justify-center gap-4">
         {categories.map((category) => {
           const IconComponent =
-            ICON_MAP[category.icon as keyof typeof ICON_MAP] || Monitor;
+            ICON_MAP[category.icon as keyof typeof ICON_MAP] ?? Monitor;
+          const isScattered = category.id in SCATTERED_LAYOUTS;
+
           return (
             <Link
               key={category.id}
@@ -51,29 +55,20 @@ export function HeroCategoryTiles({ activeTab }: HeroCategoryTilesProps) {
                   </h3>
                 </div>
 
-                <div className="absolute inset-y-0 right-0 z-10 flex w-[58%] items-end justify-end pr-1">
-                  <div className="relative h-full w-[124%]">
-                    {category.heroImages.map((heroImage, idx) => (
-                      <div
-                        key={`${category.id}-${idx}`}
-                        className="absolute inset-y-0 right-0 transition-all duration-300 group-hover:scale-105"
-                        style={{
-                          width: `${100 / category.heroImages.length}%`,
-                          right: `${idx * 10}%`,
-                          zIndex: idx,
-                        }}
-                      >
-                        <Image
-                          src={heroImage}
-                          alt={`${category.title} hero ${idx + 1}`}
-                          fill
-                          className="object-contain object-right"
-                          sizes="300px"
-                        />
-                      </div>
-                    ))}
-                  </div>
-                </div>
+                {isScattered ? (
+                  <ScatteredIcons
+                    categoryId={category.id}
+                    heroImages={category.heroImages}
+                    title={category.title}
+                  />
+                ) : (
+                  <StackedImages
+                    categoryId={category.id}
+                    heroImages={category.heroImages}
+                    title={category.title}
+                    sizes="300px"
+                  />
+                )}
               </div>
             </Link>
           );
@@ -86,7 +81,9 @@ export function HeroCategoryTiles({ activeTab }: HeroCategoryTilesProps) {
     <div className="grid grid-cols-2 gap-4 lg:grid-cols-4">
       {categories.map((category) => {
         const IconComponent =
-          ICON_MAP[category.icon as keyof typeof ICON_MAP] || Monitor;
+          ICON_MAP[category.icon as keyof typeof ICON_MAP] ?? Monitor;
+        const isScattered = category.id in SCATTERED_LAYOUTS;
+
         return (
           <Link
             key={category.id}
@@ -112,29 +109,20 @@ export function HeroCategoryTiles({ activeTab }: HeroCategoryTilesProps) {
                 </h3>
               </div>
 
-              <div className="absolute inset-y-0 right-0 z-10 flex w-[58%] items-end justify-end pr-1">
-                <div className="relative h-full w-[124%]">
-                  {category.heroImages.map((heroImage, idx) => (
-                    <div
-                      key={`${category.id}-${idx}`}
-                      className="absolute inset-y-0 right-0 transition-all duration-300 group-hover:scale-105"
-                      style={{
-                        width: `${100 / category.heroImages.length}%`,
-                        right: `${idx * 10}%`,
-                        zIndex: idx,
-                      }}
-                    >
-                      <Image
-                        src={heroImage}
-                        alt={`${category.title} hero ${idx + 1}`}
-                        fill
-                        className="object-contain object-right"
-                        sizes="(max-width: 1024px) 26vw, 14vw"
-                      />
-                    </div>
-                  ))}
-                </div>
-              </div>
+              {isScattered ? (
+                <ScatteredIcons
+                  categoryId={category.id}
+                  heroImages={category.heroImages}
+                  title={category.title}
+                />
+              ) : (
+                <StackedImages
+                  categoryId={category.id}
+                  heroImages={category.heroImages}
+                  title={category.title}
+                  sizes="(max-width: 1024px) 26vw, 14vw"
+                />
+              )}
             </div>
           </Link>
         );
