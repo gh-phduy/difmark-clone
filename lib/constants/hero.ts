@@ -5,6 +5,32 @@ export interface HeroSlide {
   alt?: string;
 }
 
+export const HERO_SLIDES_DIGITAL: HeroSlide[] = [
+  {
+    id: "hero-slide-tab-1",
+    image: "/hero-slide-tab-1.webp",
+    alt: "Digital Products Hero 1",
+  },
+  {
+    id: "hero-slide-tab-2",
+    image: "/hero-slide-tab-2.webp",
+    alt: "Digital Products Hero 2",
+  },
+];
+
+export const HERO_SLIDES_TOPUP: HeroSlide[] = [
+  {
+    id: "hero-slide-tab-1",
+    image: "/hero-slide-tab-1.webp",
+    alt: "Direct Top Up Hero 1",
+  },
+  {
+    id: "hero-slide-tab-2",
+    image: "/hero-slide-tab-2.webp",
+    alt: "Direct Top Up Hero 2",
+  },
+];
+
 export const HERO_SLIDES: HeroSlide[] = [
   {
     id: "hero-slide-1",
@@ -48,6 +74,12 @@ export const HERO_SIDE_BANNERS: SideBanner[] = [
     link: "/buy-cheap",
     alt: "Up to 10% Cashback",
   },
+  {
+    id: "topup-promo",
+    image: "/banner-item-2.webp",
+    link: "/buy-cheap",
+    alt: "Top Up Promo",
+  },
 ];
 
 // Hero category cards
@@ -58,7 +90,6 @@ export interface HeroCategory {
   image: string;
   heroImages: string[];
   link: string;
-  gradient: string;
 }
 
 export const HERO_CATEGORIES: HeroCategory[] = [
@@ -69,7 +100,6 @@ export const HERO_CATEGORIES: HeroCategory[] = [
     image: "/bg-category-hero-pc.jpg",
     heroImages: ["/category-hero-pc.webp"],
     link: "/buy-cheap?category=pc-games",
-    gradient: "from-purple-900/60 via-purple-600/30 to-transparent",
   },
   {
     id: "console-games",
@@ -78,7 +108,6 @@ export const HERO_CATEGORIES: HeroCategory[] = [
     image: "/bg-category-hero-console.jpg",
     heroImages: ["/category-hero-console.webp"],
     link: "/buy-cheap?category=console-games",
-    gradient: "from-blue-900/60 via-blue-600/30 to-transparent",
   },
   {
     id: "gift-cards",
@@ -91,7 +120,6 @@ export const HERO_CATEGORIES: HeroCategory[] = [
       "/category-hero-gift3.webp",
     ],
     link: "/buy-cheap?category=gift-cards",
-    gradient: "from-teal-900/60 via-teal-600/30 to-transparent",
   },
   {
     id: "software",
@@ -103,6 +131,38 @@ export const HERO_CATEGORIES: HeroCategory[] = [
       "/category-hero-software2.webp",
     ],
     link: "/buy-cheap?category=software",
-    gradient: "from-purple-900/60 via-purple-700/30 to-transparent",
+  },
+];
+
+export const TOPUP_CATEGORIES: HeroCategory[] = [
+  {
+    id: "all-category",
+    title: "ALL CATEGORY",
+    icon: "package",
+    image: "/bg-category-all-categories.jpg",
+    heroImages: ["/category-hero-all-categories.webp"],
+    link: "/buy-cheap?category=all",
+  },
+  {
+    id: "mobile-games",
+    title: "MOBILE GAMES",
+    icon: "gamepad-2",
+    image: "/bg-category-mobile.jpg",
+    heroImages: ["/category-hero-mobile.webp"],
+    link: "/buy-cheap?category=mobile-games",
+  },
+  {
+    id: "services",
+    title: "SERVICES",
+    icon: "credit-card",
+    image: "/bg-category-services.jpg",
+    heroImages: [
+      "/category-hero-services1.webp",
+      "/category-hero-services2.webp",
+      "/category-hero-services3.webp",
+      "/category-hero-services4.webp",
+      "/category-hero-services5.webp",
+    ],
+    link: "/buy-cheap?category=services",
   },
 ];

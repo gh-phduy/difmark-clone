@@ -2,8 +2,13 @@ import Image from "next/image";
 import Link from "next/link";
 import { HERO_SIDE_BANNERS } from "@/lib/constants/hero";
 
-export function HeroSideBanners() {
-  const banner = HERO_SIDE_BANNERS[0];
+interface HeroSideBannersProps {
+  activeTab: "digital" | "topup";
+}
+
+export function HeroSideBanners({ activeTab }: HeroSideBannersProps) {
+  const bannerIndex = activeTab === "topup" ? 1 : 0;
+  const banner = HERO_SIDE_BANNERS[bannerIndex];
 
   if (!banner) return null;
 

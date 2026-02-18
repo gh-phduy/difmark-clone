@@ -9,19 +9,22 @@ import {
 } from "@/components/ui/carousel";
 import Autoplay from "embla-carousel-autoplay";
 import { cn } from "@/lib/utils";
-import { HERO_SLIDES } from "@/lib/constants/hero";
+import { HERO_SLIDES, HERO_SLIDES_TOPUP } from "@/lib/constants/hero";
 
 interface HeroSlidesProps {
   setApi: (api: CarouselApi) => void;
   current: number;
   onIndicatorClick: (index: number) => void;
+  activeTab: "digital" | "topup";
 }
 
 export function HeroSlides({
   setApi,
   current,
   onIndicatorClick,
+  activeTab,
 }: HeroSlidesProps) {
+  const slides = activeTab === "digital" ? HERO_SLIDES : HERO_SLIDES_TOPUP;
   return (
     <Carousel
       setApi={setApi}
@@ -37,9 +40,9 @@ export function HeroSlides({
       ]}
       className="h-full w-full"
     >
-      <CarouselContent>
-        {HERO_SLIDES.map((slide) => (
-          <CarouselItem key={slide.id} className="h-[450px]">
+      <CarouselContent className="h-full">
+        {slides.map((slide) => (
+          <CarouselItem key={slide.id} className="h-full">
             <div className="relative h-full w-full overflow-hidden rounded-3xl">
               <Image
                 src={slide.image}
@@ -55,7 +58,7 @@ export function HeroSlides({
       <CarouselPrevious className="left-6 h-12 w-12 border-none bg-black/40 text-white shadow-xl backdrop-blur-md transition-all hover:bg-black/60 active:scale-95" />
       <CarouselNext className="right-6 h-12 w-12 border-none bg-black/40 text-white shadow-xl backdrop-blur-md transition-all hover:bg-black/60 active:scale-95" />
       <div className="absolute bottom-6 left-1/2 flex -translate-x-1/2 items-center gap-2 rounded-full bg-black/40 px-3 py-2 backdrop-blur-md">
-        {HERO_SLIDES.map((_, index) => (
+        {slides.map((_, index) => (
           <button
             key={index}
             onClick={() => onIndicatorClick(index)}
