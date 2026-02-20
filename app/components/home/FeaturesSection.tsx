@@ -19,6 +19,12 @@ const MASK_STYLE = {
   maskImage: `linear-gradient(to right, transparent 0%, black 8%, black 92%, transparent 100%)`,
 };
 
+/** Radial gradient overlay for center fade effect */
+const RADIAL_GRADIENT_STYLE = {
+  background: `radial-gradient(circle at center, rgba(0,0,0,0) 0%, rgba(0,0,0,0.08) 60%, rgba(0,0,0,0.15) 100%)`,
+  pointerEvents: "none" as const,
+};
+
 /** Feature items data */
 const FEATURES = [
   {
@@ -70,35 +76,36 @@ function FeatureCard({
   hoverImage,
 }: FeatureCardProps) {
   return (
-    <div
-      style={MASK_STYLE}
-      className="relative w-1/3 h-full group"
-    >
+    <div className="group relative h-full w-1/3 overflow-hidden rounded-2xl">
       {/* Hover background image */}
       <Image
         src={hoverImage}
         alt=""
         fill
-        className="z-10 opacity-0 group-hover:opacity-100 transition-all origin-center duration-1000 ease-out object-cover"
+        className="z-10 origin-center rounded-full object-cover opacity-0 transition-all duration-1000 ease-out group-hover:opacity-100"
         aria-hidden="true"
       />
 
+      {/* Radial gradient overlay for fade effect */}
+      <div
+        style={RADIAL_GRADIENT_STYLE}
+        className="absolute inset-0 z-[15] opacity-0 transition-opacity duration-1000 ease-out group-hover:opacity-100"
+      />
+
       {/* Content */}
-      <div className="relative w-full h-full z-20 justify-center items-center flex flex-col">
+      <div className="relative z-20 flex h-full w-full flex-col items-center justify-center">
         {/* Icon container */}
-        <div className="h-[56px] mb-3 text-dm-text-muted shadow-custom rounded-lg w-[56px] flex justify-center items-center">
+        <div className="mb-3 flex h-[56px] w-[56px] items-center justify-center rounded-lg text-dm-text-muted shadow-custom">
           <Icon size={iconSize} aria-hidden="true" />
         </div>
 
         {/* Title */}
-        <h3 className="text-[18px] text-dm-text-primary font-semibold">
+        <h3 className="text-[18px] font-semibold text-dm-text-primary">
           {title}
         </h3>
 
         {/* Description */}
-        <span className="text-[14px] text-dm-text-muted">
-          {description}
-        </span>
+        <span className="text-[14px] text-dm-text-muted">{description}</span>
       </div>
     </div>
   );
@@ -116,7 +123,7 @@ function FeatureCard({
 export default function AboutSection1() {
   return (
     <section
-      className="h-[156px] flex items-center justify-center text-center z-50 relative w-full"
+      className="relative z-10 flex h-[156px] w-full items-center justify-center text-center"
       aria-label="Key Features"
     >
       {/* Background image */}
@@ -130,7 +137,7 @@ export default function AboutSection1() {
       />
 
       {/* Features container */}
-      <div className="relative w-full max-w-[940px] 1200:max-w-[1140px] 1640:max-w-[1310px] 1920:max-w-[1590px] h-full flex z-20">
+      <div className="relative z-20 flex h-full w-full max-w-[940px] 1200:max-w-[1140px] 1640:max-w-[1310px] 1920:max-w-[1590px]">
         {FEATURES.map((feature) => (
           <FeatureCard
             key={feature.id}

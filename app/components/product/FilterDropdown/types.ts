@@ -18,4 +18,5 @@ export interface FilterDropdownProps {
   headerIcon: ReactNode;
   width?: string;
   onChange?: (id: string) => void;
+  className?: string;
 }

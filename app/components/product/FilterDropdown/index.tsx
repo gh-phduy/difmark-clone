@@ -12,6 +12,7 @@ export default function FilterDropdown({
   headerIcon,
   width = "w-[366px]",
   onChange,
+  className,
 }: FilterDropdownProps) {
   const {
     value,
@@ -26,7 +27,7 @@ export default function FilterDropdown({
   } = useFilterDropdown(options, defaultValue, onChange);
 
   return (
-    <div className={cn("relative", width)}>
+    <div className={cn("relative", width, className)}>
       <FilterDropdownTrigger
         triggerRef={triggerRef}
         arrowRef={arrowRef}

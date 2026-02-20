@@ -1,6 +1,7 @@
 "use client";
 
 import { useCallback, useEffect, useState } from "react";
+import { usePathname, useRouter } from "next/navigation";
 import { motion } from "framer-motion";
 import { CarouselApi } from "@/components/ui/carousel";
 import { HeroCategoryTiles } from "./hero-carousel/HeroCategoryTiles";
@@ -24,7 +25,18 @@ const TAB_CONTENT = {
 export function HeroCarousel() {
   const [api, setApi] = useState<CarouselApi>();
   const [current, setCurrent] = useState(0);
-  const [activeTab, setActiveTab] = useState<"digital" | "topup">("digital");
+  const pathname = usePathname();
+  const router = useRouter();
+  const activeTab: "digital" | "topup" =
+    pathname === "/direct-top-up" ? "topup" : "digital";
+
+  const handleTabChange = (tab: "digital" | "topup") => {
+    if (tab === "topup") {
+      router.push("/direct-top-up", { scroll: false });
+    } else {
+      router.push("/", { scroll: false });
+    }
+  };
 
   const scrollTo = useCallback(
     (index: number) => {
@@ -58,7 +70,7 @@ export function HeroCarousel() {
       {/* Content */}
       <div className="relative z-10">
         <div className="mx-auto w-full max-w-[1700px] px-4">
-          <HeroTabs activeTab={activeTab} onTabChange={setActiveTab} />
+          <HeroTabs activeTab={activeTab} onTabChange={handleTabChange} />
 
           <div className="mb-6 text-center">
             <motion.h1
