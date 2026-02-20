@@ -9,14 +9,17 @@
 
 import { useRef, useState, useEffect, useCallback } from "react";
 import Image from "next/image";
+import Link from "next/link";
 import { gsap } from "gsap";
-import { BsPersonFillCheck } from "react-icons/bs";
+import { FaDesktop, FaXbox, FaPlaystation } from "react-icons/fa";
 
 /* ============================================
    TYPES
    ============================================ */
 
 interface PopularGameItemProps {
+  /** Game ID */
+  id?: string | number;
   /** Game title */
   title?: string;
   /** Game price */
@@ -25,12 +28,8 @@ interface PopularGameItemProps {
   coverImage?: string;
   /** Preview video path */
   previewVideo?: string;
-  /** Seller name */
-  sellerName?: string;
-  /** Seller avatar */
-  sellerAvatar?: string;
-  /** Seller rank */
-  sellerRank?: string;
+  /** Platform */
+  platform?: string;
 }
 
 /* ============================================
@@ -39,13 +38,12 @@ interface PopularGameItemProps {
 
 /** Default values for the component */
 const DEFAULTS = {
+  id: "1",
   title: "Deliver At All Costs",
   price: "$38.30",
   coverImage: "/product1.png",
   previewVideo: "/video/product1.webm",
-  sellerName: "Easy-key",
-  sellerAvatar: "/avt1.png",
-  sellerRank: "🦄 Legendary",
+  platform: "pc",
 } as const;
 
 /** Animation durations */
@@ -66,13 +64,12 @@ const ANIMATION = {
  * Game card with hover video preview and GSAP animations
  */
 export default function PopularGameItem({
+  id = DEFAULTS.id,
   title = DEFAULTS.title,
   price = DEFAULTS.price,
   coverImage = DEFAULTS.coverImage,
   previewVideo = DEFAULTS.previewVideo,
-  sellerName = DEFAULTS.sellerName,
-  sellerAvatar = DEFAULTS.sellerAvatar,
-  sellerRank = DEFAULTS.sellerRank,
+  platform = DEFAULTS.platform,
 }: PopularGameItemProps) {
   // State
   const [isHovered, setIsHovered] = useState(false);
@@ -101,7 +98,7 @@ export default function PopularGameItem({
           duration: ANIMATION.containerExpand,
           ease: "power2.out",
         },
-        0
+        0,
       )
       // Fade out image
       .to(
@@ -111,7 +108,7 @@ export default function PopularGameItem({
           duration: ANIMATION.imageFade,
           ease: "power2.out",
         },
-        0
+        0,
       )
       // Fade in video
       .to(
@@ -121,7 +118,7 @@ export default function PopularGameItem({
           duration: ANIMATION.videoFade,
           ease: "power2.out",
         },
-        0.1
+        0.1,
       )
       // Change footer background
       .to(
@@ -131,7 +128,7 @@ export default function PopularGameItem({
           duration: ANIMATION.footerColor,
           ease: "power2.out",
         },
-        0.3
+        0.3,
       );
 
     return () => {
@@ -142,7 +139,9 @@ export default function PopularGameItem({
   // Event handlers
   const handleMouseEnter = useCallback(() => {
     setIsHovered(true);
-    videoRef.current?.play();
+    videoRef.current?.play().catch(() => {
+      // Ignore play errors (e.g., if video is not loaded yet)
+    });
     timelineRef.current?.play();
   }, []);
 
@@ -155,90 +154,82 @@ export default function PopularGameItem({
     timelineRef.current?.reverse();
   }, []);
 
+  const renderPlatformIcon = () => {
+    const p = platform?.toLowerCase();
+    if (p === "pc") return <FaDesktop size={14} className="text-white" />;
+    if (p === "xbox") return <FaXbox size={14} className="text-white" />;
+    if (p === "playstation")
+      return <FaPlaystation size={14} className="text-white" />;
+    return <FaDesktop size={14} className="text-white" />;
+  };
+
   return (
     <article
-      className="relative w-[252px] 800:w-full h-[300px] mx-auto select-none"
+      className="relative mx-auto h-[300px] w-[252px] select-none 800:w-full"
       role="listitem"
     >
-      <div
-        ref={containerRef}
-        className="w-full cursor-pointer absolute top-1/2 group -translate-y-1/2 left-1/2 -translate-x-1/2 h-[275px] rounded-lg overflow-hidden bg-surface-base flex flex-col"
-        onMouseEnter={handleMouseEnter}
-        onMouseLeave={handleMouseLeave}
-        tabIndex={0}
-        onFocus={handleMouseEnter}
-        onBlur={handleMouseLeave}
-        aria-label={`${title} - ${price}`}
-      >
-        {/* Media Container */}
-        <div className="relative flex-1">
-          {/* Cover Image */}
-          <div
-            ref={imageRef}
-            className="absolute inset-0 w-full h-full"
-          >
-            <Image
-              src={coverImage}
-              alt={title}
-              fill
-              className="object-cover"
-              sizes="(max-width: 800px) 252px, 100%"
-            />
-          </div>
-
-          {/* Preview Video */}
-          <video
-            ref={videoRef}
-            className="absolute inset-0 w-full h-full object-cover opacity-0"
-            src={previewVideo}
-            muted
-            loop
-            playsInline
-            aria-hidden="true"
-          />
-
-          {/* Seller Info Overlay */}
-          <div className="absolute bottom-0 w-full">
-            <div className="w-full relative gap-x-2 backdrop-blur-xs bg-surface-card/30 h-[65px] flex items-center px-4">
-              {/* Seller Avatar */}
+      <Link href={`/buy-cheap?id=${id}`} className="block h-full w-full">
+        <div
+          ref={containerRef}
+          className="group absolute top-1/2 left-1/2 flex h-[275px] w-full -translate-x-1/2 -translate-y-1/2 cursor-pointer flex-col overflow-hidden rounded-lg bg-surface-base"
+          onMouseEnter={handleMouseEnter}
+          onMouseLeave={handleMouseLeave}
+          tabIndex={0}
+          onFocus={handleMouseEnter}
+          onBlur={handleMouseLeave}
+          aria-label={`${title} - ${price}`}
+        >
+          {/* Media Container */}
+          <div className="relative flex-1">
+            {/* Cover Image */}
+            <div ref={imageRef} className="absolute inset-0 h-full w-full">
               <Image
-                src={sellerAvatar}
-                alt={`${sellerName} avatar`}
-                width={30}
-                height={30}
-                className="rounded-full"
+                src={coverImage}
+                alt={title}
+                fill
+                className="object-cover"
+                sizes="(max-width: 800px) 252px, 100%"
               />
+            </div>
 
-              {/* Seller Details */}
-              <div className="flex flex-col">
-                <div className="flex text-dm-text-primary gap-x-1 items-center">
-                  <span className="text-[12px]">{sellerName}</span>
-                  <BsPersonFillCheck
-                    size={15}
-                    aria-label="Verified seller"
-                  />
+            {/* Preview Video */}
+            <video
+              ref={videoRef}
+              className="absolute inset-0 h-full w-full object-cover opacity-0"
+              src={previewVideo}
+              muted
+              loop
+              playsInline
+              aria-hidden="true"
+            />
+
+            {/* Platform & Price Overlay */}
+            <div className="absolute bottom-0 w-full">
+              <div className="relative flex h-[40px] w-full items-center justify-between gap-x-2 bg-black/40 px-4 backdrop-blur-md">
+                {/* Platform Icons */}
+                <div className="flex items-center gap-x-2">
+                  {renderPlatformIcon()}
                 </div>
-                <span className="text-dm-text-muted text-[10px]">
-                  Rank: {sellerRank}
+
+                {/* Price */}
+                <span className="text-[15px] font-semibold text-white">
+                  {price}
                 </span>
               </div>
             </div>
           </div>
-        </div>
 
-        {/* Footer */}
-        <div
-          ref={footerRef}
-          className="w-full h-[57px] bg-surface-card flex px-2 justify-between items-center"
-        >
-          <h3 className="text-dm-text-primary text-xl font-semibold truncate">
-            {title}
-          </h3>
-          <span className="text-dm-text-primary text-xl font-semibold">
-            {price}
-          </span>
+          {/* Footer */}
+          <div
+            ref={footerRef}
+            className="flex h-[57px] w-full items-center bg-surface-card px-4"
+          >
+            <h3 className="truncate text-[14px] font-medium text-white">
+              {title} ({platform?.toUpperCase()})
+            </h3>
+          </div>
         </div>
-      </div>
+      </Link>
     </article>
   );
 }

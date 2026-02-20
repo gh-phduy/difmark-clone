@@ -4,6 +4,7 @@ import Breadcrumbs from "../../components/layout/Breadcrumbs";
 import { Skeleton } from "@/components/ui/skeleton";
 import ProductOverview from "../../components/product/ProductOverview";
 import { ProductApiResponse } from "@/app/types/product";
+import ScrollToTop from "../../components/shared/ScrollToTop";
 
 // Dynamic imports for below-the-fold components (lazy loading)
 const ProductDescription = dynamic(
@@ -34,9 +35,7 @@ async function getProduct(id: string): Promise<ProductApiResponse | null> {
   try {
     const res = await fetch(
       `${process.env.NEXT_PUBLIC_API_URL || "http://localhost:5000"}/api/products/${id}`,
-      {
-        next: { revalidate: 60 }, // Revalidate every minute
-      },
+      { cache: "no-store" },
     );
     if (!res.ok) return null;
     return res.json();
@@ -52,14 +51,24 @@ export default async function BuyCheapPage({
   searchParams: Promise<{ id?: string }>;
 }) {
   const { id } = await searchParams;
+  if (!id) {
+    return (
+      <main id="main-content" className="flex w-full max-w-[1590px] flex-col items-center gap-y-8">
+        <div className="rounded-lg bg-red-500/10 p-4 text-red-500">
+          No product ID provided.
+        </div>
+      </main>
+    );
+  }
   // Fetch product data on the server
-  const productData = await getProduct(id || "1");
+  const productData = await getProduct(id);
 
   return (
     <main
       id="main-content"
       className="flex w-full max-w-[1590px] flex-col items-center gap-y-8"
     >
+      <ScrollToTop />
       <Breadcrumbs />
 
       {/* Product Header Section */}

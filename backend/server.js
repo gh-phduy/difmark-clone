@@ -4,7 +4,7 @@ import cors from "cors";
 import { OAuth2Client } from "google-auth-library";
 import jwt from "jsonwebtoken";
 import Stripe from "stripe";
-import { mockProducts, listingProducts } from "./data.js";
+import { mockProducts, listingProducts, popularGames } from "./data.js";
 
 const stripe = new Stripe(process.env.STRIPE_SECRET_KEY);
 
@@ -113,6 +113,14 @@ app.get("/api/listing-products", (req, res) => {
   res.json({
     products: listingProducts,
     total: listingProducts.length,
+  });
+});
+
+// Get popular games
+app.get("/api/popular-games", (req, res) => {
+  res.json({
+    games: popularGames,
+    total: popularGames.length,
   });
 });
 

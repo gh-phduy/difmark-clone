@@ -2,7 +2,23 @@ import ProductCarousel from "../product/ProductCarousel";
 import SectionHeader from "../shared/SectionHeader";
 import PopularGameCard from "./PopularGameCard";
 
-export default function PopularGamesSection() {
+async function getPopularGames() {
+  try {
+    const res = await fetch(
+      `${process.env.NEXT_PUBLIC_API_URL || "http://localhost:5000"}/api/popular-games`,
+      { cache: "no-store" },
+    );
+    if (!res.ok) throw new Error("Failed to fetch popular games");
+    return res.json();
+  } catch (error) {
+    console.error("Error fetching popular games:", error);
+    return { games: [] };
+  }
+}
+
+export default async function PopularGamesSection() {
+  const { games } = await getPopularGames();
+
   return (
     <section
       className="w-full responsive px-8 800:px-0"
@@ -22,23 +38,31 @@ export default function PopularGamesSection() {
         role="list"
         aria-label="Popular games"
       >
-        <PopularGameCard />
-        <PopularGameCard />
-        <PopularGameCard />
-        <PopularGameCard />
-        <PopularGameCard />
-        <PopularGameCard />
-        <PopularGameCard />
-        <PopularGameCard />
+        {games.map((game: any) => (
+          <PopularGameCard
+            key={game.id}
+            id={game.id}
+            title={game.title}
+            price={`$ ${game.price}`}
+            coverImage={game.image}
+            previewVideo={game.video}
+            platform={game.platform}
+          />
+        ))}
       </div>
       <div className="block 800:hidden">
         <ProductCarousel>
-          <PopularGameCard />
-          <PopularGameCard />
-          <PopularGameCard />
-          <PopularGameCard />
-          <PopularGameCard />
-          <PopularGameCard />
+          {games.map((game: any) => (
+            <PopularGameCard
+              key={game.id}
+              id={game.id}
+              title={game.title}
+              price={`$ ${game.price}`}
+              coverImage={game.image}
+              previewVideo={game.video}
+              platform={game.platform}
+            />
+          ))}
         </ProductCarousel>
       </div>
     </section>
